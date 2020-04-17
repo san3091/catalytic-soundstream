@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'home#index'
   post 'patreon/authenticate'
   get 'patreon/user'
   resources :categories
