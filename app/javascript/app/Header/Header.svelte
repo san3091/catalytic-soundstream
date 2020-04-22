@@ -1,10 +1,12 @@
 <script>
   import Profile from './Profile/Profile.svelte'
+  import CatalyticSoundLogo from '../../assets/catalytic-sound-logo-(1)-WEB.png'
+  
 </script>
 
 <div class='header'>
   <div class='header-content'>
-    <img src='assets/catalytic-sound-logo-(1)-WEB.png' alt='Catalytic Sound Logo' >
+    <img src={CatalyticSoundLogo} alt='Catalytic Sound Logo' >
     <div class='header-right'>
       <Profile />
     </div>
@@ -18,7 +20,8 @@
     width: 100%;
     display: flex;
     z-index: 3;
-    border-bottom: 1px solid #f96854;
+    background-color: #f96854;
+    /* border-bottom: 1px solid #f96854; */
     /* border-bottom: 1px solid #3e3e3e; */
   }
 

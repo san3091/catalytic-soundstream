@@ -59,6 +59,7 @@
     min-width: var(--width);
     max-width: var(--width);
     /* border-left: 1px solid #3e3e3e; */
+    /* background-color: #f96854; */
     border-left: 1px solid #f96854;
   }
 
