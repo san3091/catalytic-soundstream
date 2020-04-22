@@ -36,6 +36,8 @@
   img {
     height: 60px;
     margin-left: 50px;
+    position: relative;
+    top: 5px;
   }
 
   .header-right {
