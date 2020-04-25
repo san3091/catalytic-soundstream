@@ -3,13 +3,21 @@
   import PatreonWordmarkBlack from '../../../assets/Patreon_Wordmark_Black.png'
   import PatronButton from '../../../assets/become_a_patron_button@2x.png'
 
-		let open = true
-		let loading = false
+	let open = true
+	let loading = false
 
-		const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
-		const redirect_uri = 'http://8c808422.ngrok.io'
-		const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
+	const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
+	const redirect_uri = 'http://8c808422.ngrok.io'
+	const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
 
+	const closeModal = (e) => {
+		if (contains(e, 'material-icons') || contains(e, 'modal-container')) {
+			open = false
+		}
+	}
+
+	const contains = (e, className) => e.target.classList.contains(className)
+	
 	onMount(async () => {
 		const urlParams = new URLSearchParams(window.location.search) // IE not supported
 		const accessToken = urlParams.get('code')
@@ -24,9 +32,9 @@
 	<h4>Connect with </h4>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} />
 </button>
-<div class:open class='modal-container'>
+<div class:open class='modal-container' on:click={closeModal}>
 	<div class='patreon-modal'>
-		<button on:click={() => {open=false}} class='close-button'>
+		<button class='close-button'>
     	<i class="material-icons">close</i>
 		</button>
 		{#if !loading}
@@ -50,6 +58,7 @@
 	* {
 		color: #3e3e3e;
 	}
+
 	button {
 		display: flex;
 		flex-direction: row;
@@ -87,6 +96,9 @@
 	}
 
 	.patreon-modal {
+		/* background-color: green; */
+		/* z-index: 1; */
+		/* pointer-events: none; */
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -103,6 +115,10 @@
 		box-sizing: border-box;
 		border: 1px solid #3e3e3e;
 		margin: 5px;
+	}
+
+	a:hover {
+		background: none;
 	}
 
 	.sign-in-button {
