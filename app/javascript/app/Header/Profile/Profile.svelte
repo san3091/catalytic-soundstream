@@ -56,7 +56,7 @@
 
 <style>
 	* {
-		color: #3e3e3e;
+		color: var(--medium-grey);
 	}
 
 	button {
@@ -67,9 +67,9 @@
 		justify-content: center;
 		padding: 10px;
 		cursor: pointer;
-		background-color: hsl(0, 0%, 100%, 80%);
+		background-color: var(--transparent-white);
 		margin: 10px;
-		border: 1px solid #3e3e3e;
+		border: 1px solid var(--medium-grey);
 	}
 
 	.patreon-wordmark {
@@ -91,20 +91,17 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* background-color: rgba(249, 104, 84, 0.9); */
-		background-color: rgba(62, 62, 62, 0.9);
+		/* background-color: var(--translucent-orange); */
+		background-color: var(--translucent-grey);
 	}
 
 	.patreon-modal {
-		/* background-color: green; */
-		/* z-index: 1; */
-		/* pointer-events: none; */
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		padding: 50px;
-		background-color: hsl(0, 0%, 100%, 90%);
+		background-color: var(--transparent-white);
 	}
 
 	h3 {
@@ -113,7 +110,7 @@
 
 	a {
 		box-sizing: border-box;
-		border: 1px solid #3e3e3e;
+		border: 1px solid var(--medium-grey);
 		margin: 5px;
 	}
 
@@ -156,6 +153,6 @@
   }
 
 	h4 {
-		color: #3e3e3e;
+		color: var(--medium-grey);
 	}
 </style>

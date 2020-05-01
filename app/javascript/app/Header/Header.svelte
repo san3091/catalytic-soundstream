@@ -6,7 +6,9 @@
 
 <div class='header'>
   <div class='header-content'>
-    <img src={CatalyticSoundLogo} alt='Catalytic Sound Logo' >
+    <a href='https://catalyticsound.com/'>
+      <img src={CatalyticSoundLogo} alt='Catalytic Sound Logo' >
+    </a>
     <div class='header-right'>
       <Profile />
     </div>
@@ -20,9 +22,9 @@
     width: 100%;
     display: flex;
     z-index: 3;
-    background-color: #f96854;
-    /* border-bottom: 1px solid #f96854; */
-    /* border-bottom: 1px solid #3e3e3e; */
+    background-color: var(--orange);
+    /* border-bottom: 1px solid var(--orange); */
+    /* border-bottom: 1px solid var(--medium-grey); */
   }
 
   .header-content {
@@ -38,6 +40,10 @@
     margin-left: 50px;
     position: relative;
     top: 5px;
+  }
+
+  a:hover {
+    background-color: transparent;
   }
 
   .header-right {

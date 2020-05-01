@@ -44,7 +44,7 @@
     display: flex;
     z-index: 1;
     padding: var(--padding);
-    margin-bottom: 15px;
+    margin-bottom: 2px;
   }
 
   .tile-container:first-child::after {
@@ -84,7 +84,7 @@
   .album-tile::after {
     content: '';
     position: absolute;
-    background-color: #222;
+    background-color: var(--black);
     opacity: 0;
     top: 4px;
     left: 4px;
@@ -102,7 +102,7 @@
     width: var(--size);
     box-sizing: border-box;
     padding: 10px;
-    background-color: hsl(0, 0%, 0%, 50%);
+    background-color: var(--transparent-black);
   }
 
   .album-info * {

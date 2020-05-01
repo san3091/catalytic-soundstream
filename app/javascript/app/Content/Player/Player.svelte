@@ -58,9 +58,9 @@
     position: relative;
     min-width: var(--width);
     max-width: var(--width);
-    /* border-left: 1px solid #3e3e3e; */
-    /* background-color: #f96854; */
-    border-left: 1px solid #f96854;
+    /* border-left: 1px solid var(--medium-grey); */
+    /* background-color: var(--orange); */
+    border-left: 1px solid var(--orange);
   }
 
   .player-content {

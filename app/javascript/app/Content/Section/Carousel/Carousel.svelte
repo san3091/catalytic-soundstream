@@ -78,6 +78,7 @@
     bind:clientWidth={carouselWidth}>
     {#if currentSection > 0}
       <button 
+        class:rotating
         class='previous-button'
         transition:fade
         on:click={previousSection}
@@ -105,6 +106,7 @@
     </div>
     {#if currentSection < (numberOfSections - 1) }
       <button 
+        class:rotating
         class='next-button'
         transition:fade
         on:click={nextSection}
@@ -146,20 +148,24 @@
     animation: invisible .4s ease-out forwards;
   }
   
+  .rotating {
+    bottom: 10px;
+  }
+  
   .previous-button{
     left: 0;
-    /* background: linear-gradient(-90deg, hsl(0, 0%, 0%, 0%), rgb(249, 104, 84, 0.4)); */
-    background: linear-gradient(-90deg, hsl(0, 0%, 0%, 0%), hsl(0, 0%, 0%, 40%));
+    background: linear-gradient(-90deg, transparent, var(--transparent-orange));
+    /* background: linear-gradient(-90deg, transparent, var(--transparent-black)); */
   }
 
   .next-button {
     right: 0;
-    /* background: linear-gradient(90deg, hsl(0, 0%, 0%, 0%), rgb(249, 104, 84, 0.4)); */
-    background: linear-gradient(90deg, hsl(0, 0%, 0%, 0%), hsl(0, 0%, 0%, 40%));
+    background: linear-gradient(90deg, transparent, var(--transparent-orange));
+    /* background: linear-gradient(90deg, transparent, var(--transparent-black)); */
   }
 
   .material-icons { 
-    color: rgba(255, 255, 255, 1);
+    color: var(--white);
     font-size: 48px;
   }
  
@@ -177,21 +183,21 @@
 
   @keyframes darken {
     0% {
-      background-color: hsl(0, 0%, 0%, 0%);
+      background-color: transparent;
     }
 
     100% {
-      background-color: hsl(0, 0%, 0%, 10%);
+      background-color: var(--tranparent-grey);
     }
   }
  
   @keyframes lighten {
     0% {
-      background-color: hsl(0, 0%, 0%, 10%);
+      background-color: var(--tranparent-grey);
     }
 
     100% {
-      background-color: hsl(0, 0%, 0%, 0%);
+      background-color: transparent;
     }
   }
   

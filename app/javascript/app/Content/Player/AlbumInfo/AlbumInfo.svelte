@@ -23,7 +23,7 @@
 
 <style>
   * {
-    color: #3e3e3e;
+    color: var(--medium-grey);
   }
   .info-container {
     width: 100%;
@@ -32,9 +32,9 @@
 
   .info-content {
     padding: 20px;
-    /* border-bottom: 2px solid #3e3e3e; */
-    border-bottom: 2px solid #f96854;
-    background-color: hsl(0, 0%, 100%, 80%);
+    /* border-bottom: 2px solid var(--medium-grey); */
+    border-bottom: 2px solid var(--orange);
+    background-color: var(--transparent-white);
   }
 
   p { 

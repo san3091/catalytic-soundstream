@@ -3,10 +3,6 @@
   export let currentSection
   export let scroll
 
-  let defaultDashColor = "#dbdedf"
-  // let activeDashColor = "#3e3e3e"
-  let activeDashColor = "#f96854"
-
   const iterableDashes = (numberOfSections) => {
     return [...Array(numberOfSections).keys()]
   }
@@ -18,10 +14,10 @@
 <svg viewBox="0 0 {indicatorLength} 20" class='progress-indicator' style='--width:{indicatorLength}'>
   {#each dashes as { id, dash }, i}
     <line 
+      class:active="{i == currentSection}"
       on:click={scroll(i)}
       x1={10 + i * 30} y1="10" 
-      x2={30 + i * 30} y2="10" 
-      stroke={i == currentSection ? activeDashColor : defaultDashColor} />
+      x2={30 + i * 30} y2="10" />
   {/each}
 </svg>
 
@@ -37,5 +33,11 @@
   line {
     cursor: pointer;
     stroke-width: 4;
+    stroke: var(--light-grey)
+  }
+
+  .active {
+    stroke: var(--orange);
+    /* stroke: var(--medium-grey) */
   }
 </style>
