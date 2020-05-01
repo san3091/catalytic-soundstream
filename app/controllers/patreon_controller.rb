@@ -6,12 +6,11 @@ class PatreonController < ApplicationController
     puts params
     client_id = Rails.application.credentials.patreon[:client_id]
     client_secret = Rails.application.credentials.patreon[:client_secret]
-    redirect_uri = "https://7a1e9058.ngrok.io"
+    redirect_uri = "https://762a34aa.ngrok.io"
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(auth_params[:code], redirect_uri)
     access_token = tokens['access_token']
-    binding.pry
     @user = get_user(access_token)
     is_member = @user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
 
@@ -29,7 +28,7 @@ class PatreonController < ApplicationController
   end
 
   private
-    
+
     def get_user(access_token)
       api_client = init_client(access_token)
       user_response = api_client.fetch_user()

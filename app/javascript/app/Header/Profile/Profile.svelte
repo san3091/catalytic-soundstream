@@ -7,7 +7,7 @@
 		let loading = false
 
 		const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
-		const redirect_uri = 'http://8c808422.ngrok.io'
+		const redirect_uri = 'https://762a34aa.ngrok.io'
 		const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
 
 	onMount(async () => {
