@@ -1,5 +1,5 @@
 <script>
-  import loading from '../../../stores.js'
+  import { loading } from '../../../stores.js'
   export let user
 
 	import PatronButton from '../../../../assets/become_a_patron_button@2x.png'
@@ -64,16 +64,16 @@
 	}
 
 	button {
+		width: 100%;
+		height: 100%;
+		background-color: transparent;
+		border: none;
 		display: flex;
 		flex-direction: row;
-		width: 250px;
+		cursor: pointer;
 		align-items: center;
 		justify-content: center;
-		padding: 10px;
-		cursor: pointer;
-		background-color: var(--transparent-white);
-		margin: 10px;
-		border: 1px solid var(--medium-grey);
+    padding: 10px;
 	}
 
 	.patreon-wordmark {
@@ -145,6 +145,7 @@
 	.close-button {
 		position: absolute;
 		width: 30px;
+		height: 30px;
 		top: 20px;
 		right: 20px;
 		padding: 0;
