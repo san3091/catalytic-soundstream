@@ -1,31 +1,85 @@
 <script>
-export let user
+  import { disconnectUser } from '../../../authHelpers.js'
+  import { user } from '../../../stores.js'
 
-const initials = () => {
-  // todo: consume full_name once merged with santi's work
-  return user.first_name.charAt(0) + user.last_name.charAt(0)
+  let open = false
+
+  const initials = () => {
+    // todo: consume full_name once merged with santi's work
+    return $user.first_name.charAt(0) + $user.last_name.charAt(0)
+  }
+
+const signOut = () => {
+  disconnectUser()
+  user.set(null)
 }
+
 </script>
 
 
-<button class='user-button'>
+<button class='user-button' on:click={() => { open = !open }} >
   <div class='user'>
     <div class='user-icon'>
       <h2>{initials()}</h2>
     </div>
     <div class='user-info'>
-      <h4 class='user-name'>{user.first_name} {user.last_name}</h4>
-      <!-- <h3 class='user-name'>{user.full_name}</h3> -->
-      <h6 class='user-email'>{user.email}</h6>
+      <h4 class='user-name'>{$user.first_name} {$user.last_name}</h4>
+      <!-- <h3 class='user-name'>{$user.full_name}</h3> -->
+      <h6 class='user-email'>{$user.email}</h6>
     </div>
   </div>
-  <i class="material-icons">expand_more</i>
+  <div class='expand-icon'>
+    {#if open}
+      <i class="material-icons">expand_less</i>
+    {:else}
+      <i class="material-icons">expand_more</i>
+    {/if}
+  </div>
 </button>
 
+{#if open}
+  <div class='menu'>
+    <a class='menu-button' href='https://www.patreon.com/user/creators' 
+    target="_blank" rel="noopener noreferrer">
+      <h4>View Profile</h4>
+    </a>
+    <button class='menu-button sign-out' on:click={signOut}>
+      <h4>Sign Out</h4>
+    </button>
+  </div>
+{/if}
+
 <style>
+  button, a {
+    box-sizing: border-box;
+    background-color: var(--transparent-white);
+    border-radius: 0;
+    border: 1px solid var(--medium-grey);
+  }
+
+  button:hover, a:hover {
+    background-color: var(--white);
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+  }
+   
+
   h2 {
     margin: 0;
     color: var(--medium-grey)
+  }
+
+  h4 {
+    color: var(--medium-grey);
+  }
+
+  h6 {
+    color: var(--black);
   }
 
   .user-button {
@@ -65,22 +119,39 @@ const initials = () => {
     align-items: flex-start;
   }
 
-  h4 {
-    color: var(--medium-grey);
-  }
-
-  h6 {
-    color: var(--black);
+  .expand-icon {
+    position: relative;
+    height: 28px;
+    width: 28px;
   }
 
   .material-icons {
+    position: absolute;
     font-size: 28px;
     color: var(--medium-grey);
-    height: 28px;
+    left: 0px;
   }
 
-  button {
-    background-color: transparent;
+  .menu {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 61px;
+    width: 100%;
+    border: 1px solid var(--medium-grey);
+    border-top: none;
+  }
+
+  .menu-button {
+    width: 100%;
+    height: 32px;
+    background-color: var(--transparent-white);
+    color: var(--medium-grey);
     border: none;
+  }
+
+  .sign-out:hover * {
+    color: red;
   }
 </style>

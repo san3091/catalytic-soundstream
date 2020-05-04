@@ -10,15 +10,14 @@
 	{#if !$user || !$user.is_member}
 		<PatreonModal user={$user} />
 	{:else}
-		<User user={$user} />
+		<User/>
 	{/if}
 </div>
 
 <style>
 	.container {
+		position: relative;
 		min-width: 250px;
 		margin: 10px;
-		background-color: var(--transparent-white);
-		border: 1px solid var(--medium-grey);
 	}
 </style>

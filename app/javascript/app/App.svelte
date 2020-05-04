@@ -3,7 +3,7 @@
 	import { user, loading } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
-	import authenticateUser from './authHelpers.js'
+	import { authenticateUser } from './authHelpers.js'
 
 	onMount(async () => {
 		let authenticatedUser = await authenticateUser()
@@ -28,10 +28,10 @@
 		--transparent-orange: hsl(7, 93%, 65%, 40%);
 		--translucent-orange: hsl(7, 93%, 65%, 90%);
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
-		--white: #fff;
+		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 10%);
 		
-
+		
 		background-color: var(--medium-grey);
 		/* background-color: var(--orange); */
 		padding: 0px;

@@ -6,7 +6,8 @@
 
 <div class='header'>
   <div class='header-content'>
-    <a href='https://catalyticsound.com/'>
+    <a href='https://catalyticsound.com/' 
+    target="_blank" rel="noopener noreferrer">
       <img src={CatalyticSoundLogo} alt='Catalytic Sound Logo' >
     </a>
     <div class='header-right'>

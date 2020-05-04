@@ -45,7 +45,8 @@
 					</a>
 					<a
 						class='become-patron-button'
-						href='https://www.patreon.com/catalyticsound'>
+						href='https://www.patreon.com/catalyticsound'
+						target="_blank" rel="noopener noreferrer">
 						<img 
 							class='become-patron-img' 
 							src={PatronButton} 
@@ -64,9 +65,10 @@
 	}
 
 	button {
+		box-sizing: border-box;
 		width: 100%;
 		height: 100%;
-		background-color: transparent;
+		background-color: var(--transparent-white);
 		border: none;
 		display: flex;
 		flex-direction: row;
@@ -74,6 +76,8 @@
 		align-items: center;
 		justify-content: center;
     padding: 10px;
+		border-radius: 0;
+		border: 1px solid var(--medium-grey);
 	}
 
 	.patreon-wordmark {

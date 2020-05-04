@@ -1,4 +1,8 @@
-const authenticateUser = async () => {
+export const disconnectUser = () => {
+  localStorage.removeItem('catalyticStreamingAccessToken')
+}
+
+export const authenticateUser = async () => {
   const localStorage = window.localStorage
   const urlParams = new URLSearchParams(window.location.search) // IE not supported
   let user = null
@@ -39,5 +43,3 @@ const authenticateLocalStorage = async (accessToken) => {
 
   return response.json()
 }
-
-export default authenticateUser
