@@ -3,7 +3,6 @@ class PatreonController < ApplicationController
 
   # POST /patreon/authenticate
   def authenticate
-
     client_id = Rails.application.credentials.patreon[:client_id]
     client_secret = Rails.application.credentials.patreon[:client_secret]
     redirect_uri = "https://bbb8ac2d.ngrok.io"
@@ -13,9 +12,6 @@ class PatreonController < ApplicationController
     @access_token = tokens['access_token']
     @user = get_user(@access_token)
     @is_member = is_member(@user)
-
-
-    # TODO chcek for title and above, add grandfathered members
   end
 
   # get patron user [access_token]
@@ -26,11 +22,10 @@ class PatreonController < ApplicationController
   end
 
   private
-  def is_member(user)
 
-    user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
-  end
-
+    def is_member(user)
+      user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" || Daddy.exists?(email: user.email) }
+    end
 
     def get_user(access_token)
       api_client = init_client(access_token)
