@@ -3,11 +3,13 @@ class AdminSessionsController < ApplicationController
   end
 
   def create
-  end
+    @admin = Admin.find_by(email: params[:email])
 
-  def login
-  end
-
-  def welcome
+    if @admin && @admin.authenticate(params[:password])
+      sessions[:admin_id] = @admin.id
+      redirect_to "/"
+    else
+      redirect_to '/login'
+    end
   end
 end
