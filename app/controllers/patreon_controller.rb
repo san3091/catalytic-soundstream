@@ -3,31 +3,34 @@ class PatreonController < ApplicationController
 
   # POST /patreon/authenticate
   def authenticate
-    puts params
+
     client_id = Rails.application.credentials.patreon[:client_id]
     client_secret = Rails.application.credentials.patreon[:client_secret]
-    redirect_uri = "https://762a34aa.ngrok.io"
+    redirect_uri = "https://bbb8ac2d.ngrok.io"
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
-    tokens = oauth_client.get_tokens(auth_params[:code], redirect_uri)
-    access_token = tokens['access_token']
-    @user = get_user(access_token)
-    is_member = @user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
+    tokens = oauth_client.get_tokens(params[:code], redirect_uri)
+    @access_token = tokens['access_token']
+    @user = get_user(@access_token)
+    @is_member = is_member(@user)
 
-    if is_member
-      @user
-    else
-      render status: :forbidden
-    end
 
+    # TODO chcek for title and above, add grandfathered members
   end
 
   # get patron user [access_token]
   def user
-    api_client = init_client(auth_params[:access_token])
+    @user = get_user(params[:access_token])
+    render json: { error: "not found" }, status: 404 unless @user
+    @is_member = is_member(@user) if @user
   end
 
   private
+  def is_member(user)
+
+    user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
+  end
+
 
     def get_user(access_token)
       api_client = init_client(access_token)
@@ -41,7 +44,7 @@ class PatreonController < ApplicationController
     end
 
     def auth_params
-      params.require(:patreon).permit(:code, :access_token)
+      params.require(:patreon).permit(:Hcode, :access_token)
     end
 
 end

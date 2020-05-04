@@ -1,6 +1,15 @@
-<script>
+<script>	
+	import { onMount } from 'svelte'
+	import { user, loading } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
+	import authenticateUser from './authHelpers.js'
+
+	onMount(async () => {
+		let authenticatedUser = await authenticateUser()
+		user.set(authenticatedUser)
+		loading.set(false)
+	})
 </script>
 
 <main>

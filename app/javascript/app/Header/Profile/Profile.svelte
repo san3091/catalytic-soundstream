@@ -1,58 +1,44 @@
 <script>
-  import { onMount } from 'svelte'
+	import { onMount } from 'svelte'
+	import { user, loading } from '../../stores.js'
   import PatreonWordmarkBlack from '../../../assets/Patreon_Wordmark_Black.png'
   import PatronButton from '../../../assets/become_a_patron_button@2x.png'
 
 	let open = true
-	let loading = false
 
-  const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
-  const redirect_uri = 'https://762a34aa.ngrok.io'
-  const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
-
-	const closeModal = (e) => {
-		if (contains(e, 'material-icons') || contains(e, 'modal-container')) {
-			open = false
-		}
-	}
-
-	const contains = (e, className) => e.target.classList.contains(className)
-
-	onMount(async () => {
-		const urlParams = new URLSearchParams(window.location.search) // IE not supported
-		const accessToken = urlParams.get('code')
-		if (accessToken) {
-			loading = true
-		}
-		// call backend with code
-	})
+	const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
+	const redirect_uri = 'https://bbb8ac2d.ngrok.io'
+	const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
 </script>
 
 <button on:click={() => {open=true}}>
 	<h4>Connect with </h4>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} />
 </button>
-<div class:open class='modal-container' on:click={closeModal}>
-	<div class='patreon-modal'>
-		<button class='close-button'>
-    	<i class="material-icons">close</i>
-		</button>
-		{#if !loading}
-			<h3>Sign in or become a patron to access more free jazz.</h3>
-			<a class='sign-in-button' href={patreonUrl}>
-				<h4>Sign in with </h4>
-				<img class='patreon-wordmark' src={PatreonWordmarkBlack} />
-			</a>
-			<a
-				class='become-patron-button'
-				href='https://www.patreon.com/catalyticsound'>
-				<img class='become-patron-img' src={PatronButton} />
-			</a>
-		{:else}
-			<h3>Working...</h3>
-		{/if}
+
+{#if !$user || !$user.is_member}
+	<div class:open class='modal-container'>
+		<div class='patreon-modal'>
+			<button on:click={() => {open=false}} class='close-button'>
+				<i class="material-icons">close</i>
+			</button>
+			{#if !$loading}
+				<h3>Sign in or become a patron to access more free jazz.</h3>
+				<a class='sign-in-button' href={patreonUrl}>
+					<h4>Sign in with </h4>
+					<img class='patreon-wordmark' src={PatreonWordmarkBlack} />
+				</a>
+				<a
+					class='become-patron-button'
+					href='https://www.patreon.com/catalyticsound'>
+					<img class='become-patron-img' src={PatronButton} />
+				</a>
+			{:else}
+				<h3>Working...</h3>
+			{/if}
+		</div>
 	</div>
-</div>
+{/if}
 
 <style>
 	* {
