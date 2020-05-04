@@ -1,4 +1,3 @@
-
 namespace :albums do
   desc 'Populate database from csv file'
   task :bulk_import, [:category] => [:environment] do |t, args|

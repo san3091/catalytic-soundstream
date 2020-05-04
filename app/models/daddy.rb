@@ -1,0 +1,2 @@
+class Daddy < ApplicationRecord
+end
