@@ -14,6 +14,7 @@ class PatreonController < ApplicationController
     @user = get_user(@access_token)
     @is_member = is_member(@user)
 
+
     # TODO chcek for title and above, add grandfathered members
   end
 
@@ -25,10 +26,11 @@ class PatreonController < ApplicationController
   end
 
   private
-    def is_member(user)
+  def is_member(user)
 
-      user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
-    end
+    user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
+  end
+
 
     def get_user(access_token)
       api_client = init_client(access_token)

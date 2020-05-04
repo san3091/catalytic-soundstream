@@ -37,9 +37,9 @@
             class='play-last-button' 
             class:selected
             on:click={playLastAlbum}>
-            <h6>
+            <h5>
               <b>DON'T MISS:</b>{lastAlbum.title}
-            </h6>
+            </h5>
           </button>
         </div>
       {/if}
@@ -59,6 +59,7 @@
 
   b {
     margin-right: 10px;
+    color: var(--medium-grey)
   }
 
   .section {
@@ -84,7 +85,7 @@
     padding: 5px 15px;
     border: none;
     background: #666a86;
-    color: #dbdedf;
+    color: var(--light-grey);
     height: 40px;
     border-radius: 0;
     cursor: pointer;
@@ -93,7 +94,7 @@
   .play-last-button::after {
     content: '';
     position: absolute;
-    background-color: #222;
+    background-color: var(--black);
     opacity: 0;
     top: 4px;
     left: 4px;

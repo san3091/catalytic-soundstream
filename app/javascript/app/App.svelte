@@ -18,15 +18,30 @@
 </main>
 
 <style>
-	main {
+	:global(body) {
+		--black: #222;
 		--medium-grey: #3e3e3e;
+		--light-grey: #dbdedf;
+		--orange: #f96854;
+		--transparent-white: hsl(0, 0%, 100%, 80%);
+		--transparent-black: hsl(0, 0%, 0%, 50%);
+		--transparent-orange: hsl(7, 93%, 65%, 40%);
+		--translucent-orange: hsl(7, 93%, 65%, 90%);
+		--translucent-grey: hsl(0, 0%, 24%, 90%);
+		--white: #fff;
+		--transparent-grey: hsl(0, 0%, 0%, 10%);
+		
+
+		background-color: var(--medium-grey);
+		/* background-color: var(--orange); */
+		padding: 0px;
 	}
 
 	:global(*) {
 		margin: 0;
 		padding: 0;
-		/* color: #3e3e3e; */
-		color: #dbdedf;
+		/* color: var(--medium-grey); */
+		color: var(--light-grey);
 	}
 
 	:global(button) {
@@ -42,19 +57,23 @@
 		font-size: 15px;
 	}
 
+	:global(h5) {
+		font-size: 14px;
+	}
+
+	:global(h6) {
+		font-size: 12px;
+	}
+
 	:global(h5, h6) {
-    color: #dbdedf;
+    color: var(--light-grey);
 	}
 
 	:global(p) {
 		margin-bottom: 20px;
 	}
 
-	:global(body) {
-		background-color: #3e3e3e;
-		/* background-color: #f96854; */
-		padding: 0px;
-	}
+
 
 	@media screen and (max-width: 1300px) {
 		:global(p) {

@@ -19,8 +19,8 @@
     align-items: center;
     min-height: 40px;
     width: 250px;
-    /* background-color: #dbdedf; */
-    background-color: #3e3e3e;
+    /* background-color: var(--light-grey); */
+    background-color: var(--medium-grey);
   }
 
   i {
@@ -28,8 +28,8 @@
     margin: 10px;
     z-index: 1;
     align-self: flex-start;
-    /* color: #3e3e3e; */
-    color: #DBDEDF;
+    /* color: var(--medium-grey); */
+    color: var(--light-grey);
   }
 
   input {
@@ -38,8 +38,8 @@
     padding-left: 40px;
     width: 100%;
     background-color: transparent;
-    color: #DBDEDF;
-    border: none;
     /* color: var(--medium-grey); */
+    color:var(--light-grey);
+    border: none;
   }
 </style>
