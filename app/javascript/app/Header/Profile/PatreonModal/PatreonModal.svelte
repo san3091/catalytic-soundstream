@@ -1,26 +1,24 @@
 <script>
-  import { loading } from '../../../stores.js'
+  import { loading, modalOpen } from '../../../stores.js'
   export let user
 
 	import PatronButton from '../../../../assets/become_a_patron_button@2x.png'
   import PatreonWordmarkBlack from '../../../../assets/Patreon_Wordmark_Black.png'
 
-  let open = true
-  
   const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
 	const redirect_uri = 'https://bbb8ac2d.ngrok.io'
 	const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
 </script>
 
-
-<button on:click={() => {open=true}}>
+<button on:click={() => {modalOpen.set(true)}}>
 	<h4>Connect with </h4>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
 
-<div class:open class='modal-container'>
+{#if $modalOpen}
+	<div class='modal-container'>
 		<div class='patreon-modal'>
-			<button on:click={() => {open=false}} class='close-button'>
+			<button on:click={() => {modalOpen.set(false)}} class='close-button'>
 				<i class="material-icons">close</i>
 			</button>
 			{#if !$loading}
@@ -58,6 +56,7 @@
 			{/if}
 		</div>
 	</div>
+{/if}
 
   <style>
 	* {
@@ -86,10 +85,6 @@
 	}
 
 	.modal-container {
-		display: none;
-	}
-
-	.open {
 		display: block;
 		position: fixed;
 		top: 0;
@@ -100,8 +95,7 @@
 		justify-content: center;
 		align-items: center;
 		/* background-color: var(--translucent-orange); */
-		background-color: var(--translucent-grey);
-	}
+		background-color: var(--translucent-grey);	}
 
 	.patreon-modal {
 		position: relative;

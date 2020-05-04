@@ -1,11 +1,14 @@
 <script>
   import { fade } from 'svelte/transition'
+  import { user } from '../../../stores.js'
 
   export let album
   export let selectAlbum
   export let selected
   export let tileWidth
   export let rotating
+
+  $: disabled = album.free || $user ? false : true
 
   $: loaded = !album.loading
   $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
@@ -20,10 +23,16 @@
     --padding:{padding}
   ' >
   {#if !album.loading && tileWidth}
+    {#if disabled}
+      <div class='album-art-screen'>
+        <i class='material-icons'>lock_open</i>
+      </div>
+    {/if}
     <button 
       transition:fade
       class='album-tile'
       class:selected
+      class:disabled
       style='--color:{album.color || "#666a86"};'
       on:click={ selectAlbum(album) } >
       <img src={album.thumbnail_url} />
@@ -105,6 +114,24 @@
     background-color: var(--transparent-black);
   }
 
+  .album-art-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--translucent-grey);
+    pointer-events: none;
+  }
+
+  .material-icons {
+    font-size: 48px;
+    color: var(--light-grey);
+  }
+
   .album-info * {
     text-align: left;
   }
@@ -131,6 +158,16 @@
   .selected::after, .album-tile.selected:hover::after {
     top: 8px;
     left: 8px;
+  }
+
+  .album-tile.disabled {
+    top: 0;
+    left: 0;
+  }
+
+  .album-tile.disabled:hover::after {
+    top: 4px;
+    left: 4px;
   }
 
   @keyframes fade-in {

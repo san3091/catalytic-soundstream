@@ -3,7 +3,7 @@
   import Search from './Search/Search.svelte'
   import Section from './Section/Section.svelte'
   import Player from './Player/Player.svelte'
-  import { playerOpen } from '../stores.js'
+  import { playerOpen, modalOpen, user } from '../stores.js'
   
   const albumURLs = [
     'https://soundcloud.com/user-861231864/sets/streaming-test-1/s-q4DAH',
@@ -69,13 +69,18 @@
         newAlbum.url = url
         newAlbum.index = index
         albums[index] = newAlbum
+        newAlbum.free = index < 6 ? true : false
       })
     })
   }
 
   const selectAlbum = (album) => {
-    playerOpen.set(true)
-    selectedAlbum = album
+    if (album.free || $user) {
+      playerOpen.set(true)
+      selectedAlbum = album
+    } else {
+      modalOpen.set(true)
+    }
   }
 
   onMount(() => {
