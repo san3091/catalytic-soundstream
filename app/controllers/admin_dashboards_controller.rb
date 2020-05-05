@@ -11,6 +11,7 @@ class AdminDashboardsController < ApplicationController
   def update
     category = Category.find_by(name: params[:category])
     category.import_albums(params[:file])
+    # SET THE FLASHHASH!!!! Thanks Will
   end
 
 end
