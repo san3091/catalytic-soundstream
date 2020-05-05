@@ -38,6 +38,5 @@
 
   .active {
     stroke: var(--orange);
-    /* stroke: var(--medium-grey) */
   }
 </style>

@@ -108,10 +108,7 @@
     position: relative;
     padding: 5px 15px;
     border: none;
-    /* background: #666a86; */
     background-color: var(--light-grey);
-    /* color: var(--medium-grey); */
-    /* color: var(--light-grey); */
     height: 40px;
     border-radius: 0;
     cursor: pointer;

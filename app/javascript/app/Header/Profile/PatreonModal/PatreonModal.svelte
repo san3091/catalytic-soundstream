@@ -112,7 +112,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* background-color: var(--translucent-orange); */
 		background-color: var(--translucent-grey);	}
 
 	.patreon-modal {

@@ -7,7 +7,7 @@
 	import { appWidth } from './stores.js'
 
 	let width
-	
+
 	const closeOpenThings = () => {
 		userIsOpen.set(false)
 		modalIsOpen.set(false)
@@ -46,14 +46,12 @@
 		
 		
 		background-color: var(--medium-grey);
-		/* background-color: var(--orange); */
 		padding: 0px;
 	}
 
 	:global(*) {
 		margin: 0;
 		padding: 0;
-		/* color: var(--medium-grey); */
 		color: var(--light-grey);
 	}
 
