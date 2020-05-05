@@ -1,9 +1,14 @@
 <script>	
 	import { onMount } from 'svelte'
-	import { user, loading } from './stores.js'
+	import { user, loading, userIsOpen, modalIsOpen } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
 	import { authenticateUser } from './authHelpers.js'
+
+	const closeOpenThings = () => {
+		userIsOpen.set(false)
+		modalIsOpen.set(false)
+	}
 
 	onMount(async () => {
 		let authenticatedUser = await authenticateUser()
@@ -12,7 +17,7 @@
 	})
 </script>
 
-<main>
+<main on:click={closeOpenThings}>
 	<Header />
 	<Content />
 </main>

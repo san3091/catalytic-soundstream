@@ -128,7 +128,7 @@
   }
 
   .material-icons {
-    font-size: 48px;
+    font-size: 32px;
     color: var(--light-grey);
   }
 

@@ -1,5 +1,5 @@
 <script>
-  import { loading, modalOpen } from '../../../stores.js'
+  import { loading, modalIsOpen } from '../../../stores.js'
   export let user
 
 	import PatronButton from '../../../../assets/become_a_patron_button@2x.png'
@@ -8,17 +8,23 @@
   const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
 	const redirect_uri = 'https://bbb8ac2d.ngrok.io'
 	const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
+
+	const openModal = () => modalIsOpen.set(true)
+	const closeModal = () => modalIsOpen.set(false)
+	// <Main> in App.svelte closes modal on:click
 </script>
 
-<button on:click={() => {modalOpen.set(true)}}>
+<button on:click|stopPropagation={openModal}>
 	<h4>Connect with </h4>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
 
-{#if $modalOpen}
+{#if $modalIsOpen}
 	<div class='modal-container'>
 		<div class='patreon-modal'>
-			<button on:click={() => {modalOpen.set(false)}} class='close-button'>
+			<button 
+				class='close-button'
+				on:click|stopPropagation={closeModal} >
 				<i class="material-icons">close</i>
 			</button>
 			{#if !$loading}

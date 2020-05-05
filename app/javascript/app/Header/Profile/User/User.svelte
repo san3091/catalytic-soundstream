@@ -1,13 +1,14 @@
 <script>
   import { disconnectUser } from '../../../authHelpers.js'
-  import { user } from '../../../stores.js'
-
-  let open = false
+  import { user, userIsOpen } from '../../../stores.js'
 
   const initials = () => {
     // todo: consume full_name once merged with santi's work
     return $user.first_name.charAt(0) + $user.last_name.charAt(0)
   }
+
+const toggleUserIsOpen = () => userIsOpen.set(!$userIsOpen)
+// <Main> in App.svelte closes user dropdown on:click
 
 const signOut = () => {
   disconnectUser()
@@ -17,7 +18,9 @@ const signOut = () => {
 </script>
 
 
-<button class='user-button' on:click={() => { open = !open }} >
+<button 
+  class='user-button' 
+  on:click|stopPropagation={toggleUserIsOpen} >
   <div class='user'>
     <div class='user-icon'>
       <h2>{initials()}</h2>
@@ -29,7 +32,7 @@ const signOut = () => {
     </div>
   </div>
   <div class='expand-icon'>
-    {#if open}
+    {#if $userIsOpen}
       <i class="material-icons">expand_less</i>
     {:else}
       <i class="material-icons">expand_more</i>
@@ -37,13 +40,18 @@ const signOut = () => {
   </div>
 </button>
 
-{#if open}
+{#if $userIsOpen}
   <div class='menu'>
-    <a class='menu-button' href='https://www.patreon.com/user/creators' 
+    <a 
+      class='menu-button' 
+      href='https://www.patreon.com/user/creators' 
+      on:click|stopPropagation
     target="_blank" rel="noopener noreferrer">
       <h4>View Profile</h4>
     </a>
-    <button class='menu-button sign-out' on:click={signOut}>
+    <button 
+      class='menu-button sign-out' 
+        on:click|stopPropagation={signOut}>
       <h4>Sign Out</h4>
     </button>
   </div>
@@ -54,7 +62,8 @@ const signOut = () => {
     box-sizing: border-box;
     background-color: var(--transparent-white);
     border-radius: 0;
-    border: 1px solid var(--medium-grey);
+    border: none;
+    border-bottom: 1px solid var(--medium-grey);
   }
 
   button:hover, a:hover {
@@ -139,8 +148,7 @@ const signOut = () => {
     position: absolute;
     top: 61px;
     width: 100%;
-    border: 1px solid var(--medium-grey);
-    border-top: none;
+    border-bottom: 1px solid var(--medium-grey);
   }
 
   .menu-button {

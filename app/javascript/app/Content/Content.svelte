@@ -3,7 +3,7 @@
   import Search from './Search/Search.svelte'
   import Section from './Section/Section.svelte'
   import Player from './Player/Player.svelte'
-  import { playerOpen, modalOpen, user } from '../stores.js'
+  import { playerIsOpen, modalOpen, user } from '../stores.js'
   
   const albumURLs = [
     'https://soundcloud.com/user-861231864/sets/streaming-test-1/s-q4DAH',
@@ -76,7 +76,7 @@
 
   const selectAlbum = (album) => {
     if (album.free || $user) {
-      playerOpen.set(true)
+      playerIsOpen.set(true)
       selectedAlbum = album
     } else {
       modalOpen.set(true)

@@ -154,14 +154,12 @@
   
   .previous-button{
     left: 0;
-    background: linear-gradient(-90deg, transparent, var(--transparent-orange));
-    /* background: linear-gradient(-90deg, transparent, var(--transparent-black)); */
+    background: linear-gradient(-90deg, transparent, var(--transparent-black));
   }
 
   .next-button {
     right: 0;
-    background: linear-gradient(90deg, transparent, var(--transparent-orange));
-    /* background: linear-gradient(90deg, transparent, var(--transparent-black)); */
+    background: linear-gradient(90deg, transparent, var(--transparent-black));
   }
 
   .material-icons { 
