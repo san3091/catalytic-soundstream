@@ -58,6 +58,7 @@
     border-radius: 0;
     border: none;
     border-bottom: 1px solid var(--medium-grey);
+		transition: background-color 0.3s ease;
   }
 
   button:hover, a:hover {

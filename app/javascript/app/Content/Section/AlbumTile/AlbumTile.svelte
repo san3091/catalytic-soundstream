@@ -88,6 +88,7 @@
     cursor: pointer;
     background-color: var(--color);
     border: none;
+    border-radius: 0px;
   }
 
   .album-tile::after {
@@ -161,13 +162,18 @@
   }
 
   .album-tile.disabled {
-    top: 0;
-    left: 0;
+    top: 4px;
+    left: 4px;
+  }
+
+  .album-tile.disabled:after {
+    top: 0px;
+    left: 0px;
   }
 
   .album-tile.disabled:hover::after {
-    top: 4px;
-    left: 4px;
+    top: 0px;
+    left: 0px;
   }
 
   @keyframes fade-in {

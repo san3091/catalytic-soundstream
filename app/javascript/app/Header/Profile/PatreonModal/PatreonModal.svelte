@@ -14,7 +14,9 @@
 	// <Main> in App.svelte closes modal on:click
 </script>
 
-<button on:click|stopPropagation={openModal}>
+<button 
+	class='connect-with-patreon-button'
+	on:click|stopPropagation={openModal}>
 	<h4>Connect with </h4>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
@@ -40,7 +42,10 @@
 					</a>
 				{:else}
 					<h3>Sign in or become a patron to access more free jazz.</h3>
-					<a class='sign-in-button' href={patreonUrl}>
+					<a 
+						class='sign-in-button' 
+						on:click|stopPropagation
+						href={patreonUrl}>
 						<h4>Sign in with </h4>
 						<img 
 							class='patreon-wordmark' 
@@ -85,6 +90,13 @@
 		border: 1px solid var(--medium-grey);
 	}
 
+	.connect-with-patreon-button {
+		transition: background-color 0.3s ease;
+	}
+
+	.connect-with-patreon-button:hover {
+		background-color: var(--white)
+	}
 	.patreon-wordmark {
 		height: 40px;
 		margin-left: 10px;
@@ -133,6 +145,11 @@
 		align-items: center;
 		justify-content: center;
 		padding: 10px;
+		transition: background-color 0.3s ease;
+	}
+
+	.sign-in-button:hover {
+		background-color: var(--white)
 	}
 
 	.become-patron-button {

@@ -14,6 +14,7 @@
 		let authenticatedUser = await authenticateUser()
 		user.set(authenticatedUser)
 		loading.set(false)
+		modalIsOpen.set(true)
 	})
 </script>
 
