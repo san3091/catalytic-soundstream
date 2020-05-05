@@ -2,28 +2,22 @@
   import { disconnectUser } from '../../../authHelpers.js'
   import { user, userIsOpen } from '../../../stores.js'
 
-  const initials = () => {
-    // todo: consume full_name once merged with santi's work
-    return $user.first_name.charAt(0) + $user.last_name.charAt(0)
+  const firstInitial = () => $user.first_name.charAt(0)
+  const toggleUserIsOpen = () => userIsOpen.set(!$userIsOpen)
+  // <Main> in App.svelte closes user dropdown on:click
+
+  const signOut = () => {
+    disconnectUser()
+    user.set(null)
   }
-
-const toggleUserIsOpen = () => userIsOpen.set(!$userIsOpen)
-// <Main> in App.svelte closes user dropdown on:click
-
-const signOut = () => {
-  disconnectUser()
-  user.set(null)
-}
-
 </script>
-
 
 <button 
   class='user-button' 
   on:click|stopPropagation={toggleUserIsOpen} >
   <div class='user'>
     <div class='user-icon'>
-      <h2>{initials()}</h2>
+      <h2>{firstInitial()}</h2>
     </div>
     <div class='user-info'>
       <h4 class='user-name'>{$user.first_name} {$user.last_name}</h4>
