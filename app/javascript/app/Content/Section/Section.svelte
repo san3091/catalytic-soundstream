@@ -1,6 +1,7 @@
 <script>
   import { fade } from 'svelte/transition'
   import Carousel from './Carousel/Carousel.svelte'
+  import { user } from '../../stores.js'
 
   export let headerText
   export let sectionDescription
@@ -11,8 +12,8 @@
 
   let width
 
-  const playLastAlbum = () => {
-    selectAlbum(lastAlbum)
+  const playDontMissAlbum = () => {
+    selectAlbum(dontMissAlbum)
   }
 
   const setPadding = (width) => {
@@ -21,11 +22,22 @@
     else { return 100 }
   }
 
+  const setDontMissAlbum = (albums, user) => {
+    if (!user) { 
+      const loadedAlbums = albums.filter(album => !album.loading)
+      const freeAlbums = loadedAlbums.filter(album => album.free)
+      const lastFreeAlbum = freeAlbums[freeAlbums.length - 1]
+      if (lastFreeAlbum) { return lastFreeAlbum }
+    }
+    
+    return albums[albums.length - 1]
+  }
+
   $: albums = rotating ? albums.slice(1) : albums
   $: padding = setPadding(width)
-  $: lastAlbum = albums[albums.length - 1]
+  $: dontMissAlbum = setDontMissAlbum(albums, $user)
   $: rotating = sectionNumber == 0
-  $: selected = lastAlbum == selectedAlbum
+  $: selected = dontMissAlbum == selectedAlbum
 </script>
 
 
@@ -36,15 +48,15 @@
         <h2>{headerText}</h2>
         <p>{sectionDescription}</p>
       </div>
-      {#if rotating && lastAlbum.title}
+      {#if rotating && dontMissAlbum.title}
         <div class='button-container'>
           <button 
             transition:fade 
             class='play-last-button' 
             class:selected
-            on:click={playLastAlbum}>
+            on:click|stopPropagation={playDontMissAlbum}>
             <h5>
-              <b>DON'T MISS:</b>{lastAlbum.title}
+              <b>DON'T MISS:</b>{dontMissAlbum.title}
             </h5>
           </button>
         </div>
