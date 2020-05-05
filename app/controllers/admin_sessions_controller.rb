@@ -14,4 +14,8 @@ class AdminSessionsController < ApplicationController
       redirect_to '/login'
     end
   end
+
+  def delete
+    session[:admin] = nil
+  end
 end

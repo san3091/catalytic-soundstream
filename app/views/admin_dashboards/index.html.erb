@@ -1,3 +1,5 @@
+<%= button_to 'Logout', action: 'delete', controller: 'admin_sessions'%>
+
 <div class='admin-dashboard__container'>
   <%= render "categories/upload_category", categories: @categories %>
 </div>

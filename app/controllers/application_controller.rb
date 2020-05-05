@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_logged_in?
-    !current_user.nil?
+    !current_admin.nil?
   end
 
   def authorized
