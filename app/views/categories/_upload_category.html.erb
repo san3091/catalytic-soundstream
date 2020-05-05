@@ -1,0 +1,15 @@
+<div class='upload-category__container'>
+  <%= form_tag 'admin', multipart: true do %>
+    <%= label_tag 'Category'%>
+    <div class="upload-category__radio-container">
+      <% categories.each do |category| %>
+        <%= label_tag category.name %>
+        <%= radio_button_tag "category", category.name %>
+      <% end %>
+    </div>
+
+    <%= label_tag 'album file (.csv format)' %>
+    <%= file_field_tag :file, accept: 'text/csv', class: 'upload-category__file-field'%>
+    <%= submit_tag 'Upload' %>
+  <% end %>
+</div>

@@ -1,0 +1,27 @@
+// Place all the styles related to the admin_dashboards controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.admin-dashboard__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-category__container {
+  width: 250px;
+  margin: 20px auto;
+}
+
+.upload-category__radio-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px 0;
+
+  label {
+    margin-right: 5px;
+  }
+}

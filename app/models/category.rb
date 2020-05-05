@@ -2,7 +2,7 @@ class Category < ApplicationRecord
   has_many :albums, dependent: :destroy
   require 'csv'
 
-  def import_albums(file, beginning_order)
+  def import_albums(file, beginning_order = 0)
     order = beginning_order
     albums = []
     CSV.foreach(file, headers: true) do |row|

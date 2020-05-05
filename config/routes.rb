@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   post 'patreon/authenticate'
   get 'patreon/user'
 
-  resources :categories
   get 'login', to: 'admin_sessions#new'
   post 'login', to: 'admin_sessions#create'
+  get 'admin', to: 'admin_dashboards#index'
+  post 'admin', to: 'admin_dashboards#update'
 end

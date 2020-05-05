@@ -1,4 +1,6 @@
 class AdminSessionsController < ApplicationController
+  layout "admin"
+
   def new
   end
 
@@ -6,8 +8,8 @@ class AdminSessionsController < ApplicationController
     @admin = Admin.find_by(email: params[:email])
 
     if @admin && @admin.authenticate(params[:password])
-      sessions[:admin_id] = @admin.id
-      redirect_to "/"
+      session[:admin_id] = @admin.id
+      redirect_to "/admin"
     else
       redirect_to '/login'
     end
