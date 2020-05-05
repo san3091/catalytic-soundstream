@@ -37,8 +37,8 @@
       on:click={ selectAlbum(album) } >
       <img src={album.thumbnail_url} />
       <div class='album-info'>
-        <h5>{album.title}</h5>
-        <h6>{album.author_name}</h6>
+        <h5 class='truncate'>{album.title}</h5>
+        <h6 class='truncate'>{album.author_name}</h6>
       </div>
     </button>
   {/if}
@@ -46,6 +46,13 @@
 
 
 <style>
+  .truncate {
+    width: calc(var(--tile-width) - 34px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .tile-container {
     box-sizing: border-box;
     width: var(--tile-width);
