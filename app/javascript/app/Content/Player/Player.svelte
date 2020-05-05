@@ -5,7 +5,7 @@
 
   import SoundCloudPlayer from './SoundCloudPlayer/SoundCloudPlayer.svelte'
   import AlbumInfo from './AlbumInfo/AlbumInfo.svelte'
-  import { playerOpen } from '../../stores.js'
+  import { playerIsOpen } from '../../stores.js'
   
   export let selectedAlbum
 
@@ -13,27 +13,27 @@
   let isClosed = false
   
   const toggleOpen = () => {
-    playerOpen.set(!$playerOpen)
+    playerIsOpen.set(!$playerIsOpen)
   }
 
   const close = () => {
-    playerOpen.set(false)
+    playerIsOpen.set(false)
     isClosed = true
   }
 
-  $: $playerOpen ? width.set(500) : width.set(50)
-  $: if ($playerOpen) { isClosed = false }
+  $: $playerIsOpen ? width.set(500) : width.set(50)
+  $: if ($playerIsOpen) { isClosed = false }
 </script>
 
 <div class='player' style='--width:{$width}px'>
   <button class='slide-button' on:click={toggleOpen} >
-    {#if $playerOpen}
+    {#if $playerIsOpen}
       <i transition:fade class="material-icons">keyboard_arrow_right</i>
     {:else}
       <i transition:fade class="material-icons">keyboard_arrow_left</i>
     {/if}
   </button>
-  {#if $playerOpen}
+  {#if $playerIsOpen}
     <button 
       transition:fade
       class='close-button' 

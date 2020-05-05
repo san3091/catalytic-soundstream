@@ -1,11 +1,14 @@
 <script>
   import { fade } from 'svelte/transition'
+  import { user } from '../../../stores.js'
 
   export let album
   export let selectAlbum
   export let selected
   export let tileWidth
   export let rotating
+
+  $: disabled = album.free || $user ? false : true
 
   $: loaded = !album.loading
   $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
@@ -20,16 +23,22 @@
     --padding:{padding}
   ' >
   {#if !album.loading && tileWidth}
+    {#if disabled}
+      <div class='album-art-screen'>
+        <i class='material-icons'>lock_open</i>
+      </div>
+    {/if}
     <button 
       transition:fade
       class='album-tile'
       class:selected
+      class:disabled
       style='--color:{album.color || "#666a86"};'
       on:click={ selectAlbum(album) } >
       <img src={album.thumbnail_url} />
       <div class='album-info'>
-        <h5>{album.title}</h5>
-        <h6>{album.author_name}</h6>
+        <h5 class='truncate'>{album.title}</h5>
+        <h6 class='truncate'>{album.author_name}</h6>
       </div>
     </button>
   {/if}
@@ -37,6 +46,13 @@
 
 
 <style>
+  .truncate {
+    width: calc(var(--tile-width) - 34px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .tile-container {
     box-sizing: border-box;
     width: var(--tile-width);
@@ -79,6 +95,7 @@
     cursor: pointer;
     background-color: var(--color);
     border: none;
+    border-radius: 0px;
   }
 
   .album-tile::after {
@@ -103,6 +120,25 @@
     box-sizing: border-box;
     padding: 10px;
     background-color: var(--transparent-black);
+  }
+
+  .album-art-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 100;
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--translucent-grey);
+    pointer-events: none;
+  }
+
+  .material-icons {
+    font-size: 32px;
+    color: var(--light-grey);
   }
 
   .album-info * {
@@ -131,6 +167,21 @@
   .selected::after, .album-tile.selected:hover::after {
     top: 8px;
     left: 8px;
+  }
+
+  .album-tile.disabled {
+    top: 4px;
+    left: 4px;
+  }
+
+  .album-tile.disabled:after {
+    top: 0px;
+    left: 0px;
+  }
+
+  .album-tile.disabled:hover::after {
+    top: 0px;
+    left: 0px;
   }
 
   @keyframes fade-in {

@@ -3,7 +3,7 @@
   import Search from './Search/Search.svelte'
   import Section from './Section/Section.svelte'
   import Player from './Player/Player.svelte'
-  import { playerOpen } from '../stores.js'
+  import { playerIsOpen, modalOpen, user } from '../stores.js'
   
   const albumURLs = [
     'https://soundcloud.com/user-861231864/sets/streaming-test-1/s-q4DAH',
@@ -45,7 +45,6 @@
   const caaAlbums = (albums) => {
     const albumsCopy = albums.slice(3, 22).map(album => {
       const albumCopy = Object.assign({}, album)
-      albumCopy.color = "#588b8b"
       return albumCopy
     })
     return albumsCopy
@@ -54,8 +53,6 @@
   const hwhAlbums = (albums) => {
     const albumsCopy = albums.slice(24, 29).map(album => {
       const albumCopy = Object.assign({}, album)
-      // albumCopy.color = "#faf3dd"
-      albumCopy.color = "#be3e82"
       return albumCopy
     })
     return albumsCopy
@@ -69,13 +66,18 @@
         newAlbum.url = url
         newAlbum.index = index
         albums[index] = newAlbum
+        newAlbum.free = index < 6 ? true : false
       })
     })
   }
 
   const selectAlbum = (album) => {
-    playerOpen.set(true)
-    selectedAlbum = album
+    if (album.free || $user) {
+      playerIsOpen.set(true)
+      selectedAlbum = album
+    } else {
+      modalOpen.set(true)
+    }
   }
 
   onMount(() => {
@@ -85,7 +87,6 @@
 
 <div class='content'>
   <div class='music-selection'> 
-    <!-- <Search /> -->
     <Section
       headerText='Rotating Selection'
       sectionDescription='Explore a rotating selection of free jazz. Find a new album every day.'

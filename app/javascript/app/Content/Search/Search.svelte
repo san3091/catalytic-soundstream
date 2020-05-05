@@ -1,7 +1,7 @@
 <script>
   import { tweened } from 'svelte/motion'
   import { cubicOut } from 'svelte/easing'
-  import { playerOpen } from '../../stores.js'
+  import { playerIsOpen } from '../../stores.js'
 </script>
 
 <div class='search'>

@@ -57,7 +57,13 @@
     resizing = false
   }
 
-  $: tilesPerScroll = (carouselWidth > 1100) ? 6 : 5
+  const setNumberOfVisibleTiles = (carouselWidth) => {
+    if (carouselWidth < 1000) { return 5 }
+    else if (carouselWidth < 1300) { return 6 }
+    else { return 7 }
+  }
+
+  $: tilesPerScroll = setNumberOfVisibleTiles(carouselWidth)
   $: rotatingMargin = rotating ? '12px' : '0'
   $: scrollable = itemsWidth > carouselWidth
   $: resizeTiles(carouselWidth)
@@ -128,6 +134,7 @@
     position: relative;
     display: flex;
     overflow: hidden;
+    padding-bottom: 12px;
   }
 
   .carousel-items {
@@ -146,6 +153,7 @@
     border: none;
     opacity: 0;
     animation: invisible .4s ease-out forwards;
+    margin-bottom: 12px;
   }
   
   .rotating {
@@ -154,14 +162,12 @@
   
   .previous-button{
     left: 0;
-    background: linear-gradient(-90deg, transparent, var(--transparent-orange));
-    /* background: linear-gradient(-90deg, transparent, var(--transparent-black)); */
+    background: linear-gradient(-90deg, transparent, var(--transparent-black));
   }
 
   .next-button {
     right: 0;
-    background: linear-gradient(90deg, transparent, var(--transparent-orange));
-    /* background: linear-gradient(90deg, transparent, var(--transparent-black)); */
+    background: linear-gradient(90deg, transparent, var(--transparent-black));
   }
 
   .material-icons { 

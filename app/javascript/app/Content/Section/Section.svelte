@@ -15,8 +15,14 @@
     selectAlbum(lastAlbum)
   }
 
+  const setPadding = (width) => {
+    if (width < 800) { return 10 }
+    else if (width < 1200) { return 50 }
+    else { return 100 }
+  }
+
   $: albums = rotating ? albums.slice(1) : albums
-  $: padding = (width > 1300) ? '100px' : '50px'
+  $: padding = setPadding(width)
   $: lastAlbum = albums[albums.length - 1]
   $: rotating = sectionNumber == 0
   $: selected = lastAlbum == selectedAlbum
@@ -24,7 +30,7 @@
 
 
 {#if albums.length}
-  <div class='section' bind:clientWidth={width} style='--padding:{padding}' >
+  <div class='section' bind:clientWidth={width} style='--padding:{padding}px' >
     <div class='section-top'>
       <div class='section-header'>
         <h2>{headerText}</h2>
@@ -59,7 +65,11 @@
 
   b {
     margin-right: 10px;
-    color: var(--medium-grey)
+    color: var(--medium-grey);
+  }
+
+  h5 {
+    color: var(--black);
   }
 
   .section {
@@ -84,8 +94,10 @@
     position: relative;
     padding: 5px 15px;
     border: none;
-    background: #666a86;
-    color: var(--light-grey);
+    /* background: #666a86; */
+    background-color: var(--light-grey);
+    /* color: var(--medium-grey); */
+    /* color: var(--light-grey); */
     height: 40px;
     border-radius: 0;
     cursor: pointer;

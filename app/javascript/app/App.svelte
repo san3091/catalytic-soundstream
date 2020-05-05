@@ -1,18 +1,24 @@
 <script>	
 	import { onMount } from 'svelte'
-	import { user, loading } from './stores.js'
+	import { user, loading, userIsOpen, modalIsOpen } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
-	import authenticateUser from './authHelpers.js'
+	import { authenticateUser } from './authHelpers.js'
+
+	const closeOpenThings = () => {
+		userIsOpen.set(false)
+		modalIsOpen.set(false)
+	}
 
 	onMount(async () => {
 		let authenticatedUser = await authenticateUser()
 		user.set(authenticatedUser)
 		loading.set(false)
+		modalIsOpen.set(true)
 	})
 </script>
 
-<main>
+<main on:click={closeOpenThings}>
 	<Header />
 	<Content />
 </main>
@@ -28,10 +34,10 @@
 		--transparent-orange: hsl(7, 93%, 65%, 40%);
 		--translucent-orange: hsl(7, 93%, 65%, 90%);
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
-		--white: #fff;
+		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 10%);
 		
-
+		
 		background-color: var(--medium-grey);
 		/* background-color: var(--orange); */
 		padding: 0px;
