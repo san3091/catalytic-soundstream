@@ -120,7 +120,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 0;
+    top: 4px;
+    left: 4px;
     z-index: 100;
     width: var(--size);
     height: var(--size);

@@ -45,7 +45,6 @@
   const caaAlbums = (albums) => {
     const albumsCopy = albums.slice(3, 22).map(album => {
       const albumCopy = Object.assign({}, album)
-      albumCopy.color = "#588b8b"
       return albumCopy
     })
     return albumsCopy
@@ -54,8 +53,6 @@
   const hwhAlbums = (albums) => {
     const albumsCopy = albums.slice(24, 29).map(album => {
       const albumCopy = Object.assign({}, album)
-      // albumCopy.color = "#faf3dd"
-      albumCopy.color = "#be3e82"
       return albumCopy
     })
     return albumsCopy
@@ -90,7 +87,6 @@
 
 <div class='content'>
   <div class='music-selection'> 
-    <!-- <Search /> -->
     <Section
       headerText='Rotating Selection'
       sectionDescription='Explore a rotating selection of free jazz. Find a new album every day.'
