@@ -1,5 +1,7 @@
 <script>
   import { fade } from 'svelte/transition'
+  import { tweened } from 'svelte/motion'
+  import { cubicOut } from 'svelte/easing'
   import Carousel from './Carousel/Carousel.svelte'
   import { user } from '../../stores.js'
 
@@ -11,14 +13,14 @@
   export let albums = []
 
   let width
-
+  let padding = tweened(100, { easing: cubicOut, duration: 400 })
   const playDontMissAlbum = () => {
     selectAlbum(dontMissAlbum)
   }
 
   const setPadding = (width) => {
     if (width < 800) { return 10 }
-    else if (width < 1200) { return 50 }
+    else if (width < 1100) { return 50 }
     else { return 100 }
   }
 
@@ -34,7 +36,7 @@
   }
 
   $: albums = rotating ? albums.slice(1) : albums
-  $: padding = setPadding(width)
+  $: padding.set(setPadding(width))
   $: dontMissAlbum = setDontMissAlbum(albums, $user)
   $: rotating = sectionNumber == 0
   $: selected = dontMissAlbum == selectedAlbum
@@ -42,7 +44,7 @@
 
 
 {#if albums.length}
-  <div class='section' bind:clientWidth={width} style='--padding:{padding}px' >
+  <div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
     <div class='section-top'>
       <div class='section-header'>
         <h2>{headerText}</h2>

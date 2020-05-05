@@ -5,7 +5,7 @@
 
   import SoundCloudPlayer from './SoundCloudPlayer/SoundCloudPlayer.svelte'
   import AlbumInfo from './AlbumInfo/AlbumInfo.svelte'
-  import { playerIsOpen } from '../../stores.js'
+  import { playerIsOpen, appWidth } from '../../stores.js'
   
   export let selectedAlbum
 
@@ -21,7 +21,11 @@
     isClosed = true
   }
 
-  $: $playerIsOpen ? width.set(500) : width.set(50)
+  const calcPlayerWidth = () => {
+    return $appWidth < 1400 ? 400 : 550
+  }
+
+  $: $playerIsOpen ? width.set(calcPlayerWidth($appWidth)) : width.set(50)
   $: if ($playerIsOpen) { isClosed = false }
 </script>
 
@@ -58,8 +62,6 @@
     position: relative;
     min-width: var(--width);
     max-width: var(--width);
-    /* border-left: 1px solid var(--medium-grey); */
-    /* background-color: var(--orange); */
     border-left: 1px solid var(--orange);
   }
 

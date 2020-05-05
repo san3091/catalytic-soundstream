@@ -23,7 +23,7 @@
 
 <style>
   * {
-    color: var(--medium-grey);
+    color: var(--light-grey);
   }
   .info-container {
     width: 100%;
@@ -32,9 +32,7 @@
 
   .info-content {
     padding: 20px;
-    /* border-bottom: 2px solid var(--medium-grey); */
-    border-bottom: 2px solid var(--orange);
-    background-color: var(--transparent-white);
+    border-left: 2px solid var(--orange);
   }
 
   p { 

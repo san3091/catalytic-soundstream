@@ -4,7 +4,10 @@
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
 	import { authenticateUser } from './authHelpers.js'
+	import { appWidth } from './stores.js'
 
+	let width
+	
 	const closeOpenThings = () => {
 		userIsOpen.set(false)
 		modalIsOpen.set(false)
@@ -16,9 +19,13 @@
 		loading.set(false)
 		modalIsOpen.set(true)
 	})
+
+	$: appWidth.set(width)
 </script>
 
-<main on:click={closeOpenThings}>
+<main 
+	on:click={closeOpenThings}
+	bind:clientWidth={width}>
 	<Header />
 	<Content />
 </main>
