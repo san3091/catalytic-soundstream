@@ -17,7 +17,7 @@ class Category < ApplicationRecord
 
   def set_order(insert_mode)
     self.albums.destroy_all if insert_mode == 'replace'
-    self.albums.maximum(:order)
+    self.albums.maximum(:order) || 0
   end
 
 end
