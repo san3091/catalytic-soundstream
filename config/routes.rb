@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   root 'home#index'
   post 'patreon/authenticate'
   get 'patreon/user'
-  resources :categories
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get 'login', to: 'admin_sessions#new'
+  post 'login', to: 'admin_sessions#create'
+  post 'logout', to: 'admin_sessions#delete'
+
+  get 'admin', to: 'admin_dashboards#index'
+  post 'admin', to: 'admin_dashboards#update'
 end
