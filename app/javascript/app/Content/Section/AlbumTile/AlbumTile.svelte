@@ -34,8 +34,8 @@
       class:selected
       class:disabled
       style='--color:{album.color || "#666a86"};'
-      on:click={ selectAlbum(album) } >
-      <img src={album.thumbnail_url} />
+      on:click|stopPropagation={() => {selectAlbum(album)}} >
+      <img src={album.thumbnail_url} alt={`${album.title} album art`} />
       <div class='album-info'>
         <h5 class='truncate'>{album.title}</h5>
         <h6 class='truncate'>{album.author_name}</h6>

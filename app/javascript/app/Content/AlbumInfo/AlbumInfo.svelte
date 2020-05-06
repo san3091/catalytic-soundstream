@@ -1,11 +1,10 @@
 <script>
   import { fade } from 'svelte/transition'
   export let album
-  import { mobileLayout } from '../../../stores.js'
 
 </script>
 
-<div class='info-container' class:mobile={$mobileLayout}>
+<div class='info-container'>
   {#if album}
     <div 
       class='info-content' 
@@ -40,7 +39,4 @@
     margin: 20px 0 0;
   }
 
-  .mobile {
-    margin-bottom: 25px;
-  }
 </style>

@@ -3,7 +3,7 @@
   import Search from './Search/Search.svelte'
   import Section from './Section/Section.svelte'
   import Player from './Player/Player.svelte'
-  import { playerIsOpen, modalOpen, user } from '../stores.js'
+  import { playerIsOpen, modalIsOpen, user, mobileLayout } from '../stores.js'
   
   const albumURLs = [
     'https://soundcloud.com/user-861231864/sets/streaming-test-1/s-q4DAH',
@@ -76,7 +76,7 @@
       playerIsOpen.set(true)
       selectedAlbum = album
     } else {
-      modalOpen.set(true)
+      modalIsOpen.set(true)
     }
   }
 
@@ -85,7 +85,7 @@
   })
 </script>
 
-<div class='content'>
+<div class='content' class:mobile={$mobileLayout}>
   <div class='music-selection'> 
     <Section
       headerText='Rotating Selection'
@@ -115,6 +115,7 @@
 
 <style>
   .content {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -136,5 +137,9 @@
     position: relative;
     min-height: 150px;
     width: 100%;
+  }
+
+  .mobile {
+    flex-direction: column;
   }
 </style>
