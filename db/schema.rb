@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2020_05_04_210635) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "current", default: false
     t.index ["category_id"], name: "index_albums_on_category_id"
-    t.index ["order"], name: "index_albums_on_order", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
