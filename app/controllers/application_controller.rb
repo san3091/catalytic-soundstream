@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
-
+  before_action :authorized
   helper_method :current_admin
   helper_method :admin_logged_in?
-  helper_method :authorized
 
   def current_admin
     Admin.find_by(id: session[:admin_id])

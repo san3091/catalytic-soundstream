@@ -1,8 +1,6 @@
 class AdminDashboardsController < ApplicationController
   layout "admin"
 
-  before_action :authorized
-
   def index
     @categories = Category.all
   end
