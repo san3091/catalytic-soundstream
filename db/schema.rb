@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_181819) do
+ActiveRecord::Schema.define(version: 2020_05_04_210635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -24,11 +32,17 @@ ActiveRecord::Schema.define(version: 2020_03_27_181819) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "current", default: false
     t.index ["category_id"], name: "index_albums_on_category_id"
-    t.index ["order"], name: "index_albums_on_order", unique: true
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "daddies", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

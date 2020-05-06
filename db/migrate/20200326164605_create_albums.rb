@@ -8,6 +8,5 @@ class CreateAlbums < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :albums, :order, unique: true
   end
 end
