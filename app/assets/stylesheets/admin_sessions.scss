@@ -1,0 +1,30 @@
+// Place all the styles related to the AdminSessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+input {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input[type=submit] {
+  margin-top: 20px;
+}
+
+.login__background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: orangered;
+}
+
+.login__container {
+  width: 250px;
+  padding: 40px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+

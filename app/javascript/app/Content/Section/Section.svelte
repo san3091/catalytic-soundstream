@@ -1,6 +1,9 @@
 <script>
   import { fade } from 'svelte/transition'
+  import { tweened } from 'svelte/motion'
+  import { cubicOut } from 'svelte/easing'
   import Carousel from './Carousel/Carousel.svelte'
+  import { user } from '../../stores.js'
 
   export let headerText
   export let sectionDescription
@@ -10,41 +13,52 @@
   export let albums = []
 
   let width
-
-  const playLastAlbum = () => {
-    selectAlbum(lastAlbum)
+  let padding = tweened(100, { easing: cubicOut, duration: 400 })
+  const playDontMissAlbum = () => {
+    selectAlbum(dontMissAlbum)
   }
 
   const setPadding = (width) => {
     if (width < 800) { return 10 }
-    else if (width < 1200) { return 50 }
+    else if (width < 1100) { return 50 }
     else { return 100 }
   }
 
+  const setDontMissAlbum = (albums, user) => {
+    if (!user) { 
+      const loadedAlbums = albums.filter(album => !album.loading)
+      const freeAlbums = loadedAlbums.filter(album => album.free)
+      const lastFreeAlbum = freeAlbums[freeAlbums.length - 1]
+      if (lastFreeAlbum) { return lastFreeAlbum }
+    }
+    
+    return albums[albums.length - 1]
+  }
+
   $: albums = rotating ? albums.slice(1) : albums
-  $: padding = setPadding(width)
-  $: lastAlbum = albums[albums.length - 1]
+  $: padding.set(setPadding(width))
+  $: dontMissAlbum = setDontMissAlbum(albums, $user)
   $: rotating = sectionNumber == 0
-  $: selected = lastAlbum == selectedAlbum
+  $: selected = dontMissAlbum == selectedAlbum
 </script>
 
 
 {#if albums.length}
-  <div class='section' bind:clientWidth={width} style='--padding:{padding}px' >
+  <div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
     <div class='section-top'>
       <div class='section-header'>
         <h2>{headerText}</h2>
         <p>{sectionDescription}</p>
       </div>
-      {#if rotating && lastAlbum.title}
+      {#if rotating && dontMissAlbum.title}
         <div class='button-container'>
           <button 
             transition:fade 
             class='play-last-button' 
             class:selected
-            on:click={playLastAlbum}>
+            on:click|stopPropagation={playDontMissAlbum}>
             <h5>
-              <b>DON'T MISS:</b>{lastAlbum.title}
+              <b>DON'T MISS:</b>{dontMissAlbum.title}
             </h5>
           </button>
         </div>
@@ -94,12 +108,9 @@
     position: relative;
     padding: 5px 15px;
     border: none;
-    /* background: #666a86; */
     background-color: var(--light-grey);
-    /* color: var(--medium-grey); */
-    /* color: var(--light-grey); */
     height: 40px;
-    border-radius: 0;
+    border-radius: 10px 0 10px 0;
     cursor: pointer;
   }
 
@@ -114,6 +125,7 @@
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
+    border-radius: 10px 0 10px 0;
   }
 
   .play-last-button:hover{

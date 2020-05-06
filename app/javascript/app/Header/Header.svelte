@@ -24,8 +24,6 @@
     display: flex;
     z-index: 3;
     background-color: var(--orange);
-    /* border-bottom: 1px solid var(--orange); */
-    /* border-bottom: 1px solid var(--medium-grey); */
   }
 
   .header-content {

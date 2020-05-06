@@ -4,21 +4,33 @@
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
 	import { authenticateUser } from './authHelpers.js'
+	import { appWidth, mobileLayout } from './stores.js'
+
+	let width
 
 	const closeOpenThings = () => {
 		userIsOpen.set(false)
 		modalIsOpen.set(false)
 	}
 
+	const setMobileLayout = (width) => {
+		if (width < 1000) { mobileLayout.set(true) }
+		else { mobileLayout.set(false) }
+	}
+
 	onMount(async () => {
 		let authenticatedUser = await authenticateUser()
 		user.set(authenticatedUser)
 		loading.set(false)
-		modalIsOpen.set(true)
 	})
+
+	$: appWidth.set(width)
+	$: setMobileLayout(width)
 </script>
 
-<main on:click={closeOpenThings}>
+<main 
+	on:click={closeOpenThings}
+	bind:clientWidth={width}>
 	<Header />
 	<Content />
 </main>
@@ -37,16 +49,13 @@
 		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 10%);
 		
-		
 		background-color: var(--medium-grey);
-		/* background-color: var(--orange); */
 		padding: 0px;
 	}
 
 	:global(*) {
 		margin: 0;
 		padding: 0;
-		/* color: var(--medium-grey); */
 		color: var(--light-grey);
 	}
 

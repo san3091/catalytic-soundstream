@@ -19,7 +19,6 @@
     align-items: center;
     min-height: 40px;
     width: 250px;
-    /* background-color: var(--light-grey); */
     background-color: var(--medium-grey);
   }
 
@@ -28,7 +27,6 @@
     margin: 10px;
     z-index: 1;
     align-self: flex-start;
-    /* color: var(--medium-grey); */
     color: var(--light-grey);
   }
 
@@ -38,7 +36,6 @@
     padding-left: 40px;
     width: 100%;
     background-color: transparent;
-    /* color: var(--medium-grey); */
     color:var(--light-grey);
     border: none;
   }

@@ -134,7 +134,7 @@
     position: relative;
     display: flex;
     overflow: hidden;
-    padding-bottom: 12px;
+    padding: 5px 5px 12px;
   }
 
   .carousel-items {

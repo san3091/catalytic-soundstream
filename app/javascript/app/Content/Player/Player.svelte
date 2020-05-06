@@ -5,12 +5,15 @@
 
   import SoundCloudPlayer from './SoundCloudPlayer/SoundCloudPlayer.svelte'
   import AlbumInfo from './AlbumInfo/AlbumInfo.svelte'
-  import { playerIsOpen } from '../../stores.js'
+  import { playerIsOpen, appWidth, mobileLayout } from '../../stores.js'
   
   export let selectedAlbum
 
   let width = tweened(50, { easing: cubicOut, duration: 400 })
+  let heightOffset = tweened(0, { easing: cubicOut, duration: 400 })
   let isClosed = false
+  let playerArrow = 'keyboard_arrow_right'
+  let playerHeight
   
   const toggleOpen = () => {
     playerIsOpen.set(!$playerIsOpen)
@@ -21,46 +24,61 @@
     isClosed = true
   }
 
-  $: $playerIsOpen ? width.set(500) : width.set(50)
+  const calcPlayerWidth = () => {
+    return $appWidth < 1300 ? 400 : 550
+  }
+
+  const setArrowIcon = (playerIsOpen, mobileLayout) => {
+    // console.log('arrow')
+    if ($mobileLayout) {
+      if ($playerIsOpen) {
+        playerArrow = 'keyboard_arrow_down'
+      } else {
+        playerArrow = 'keyboard_arrow_up'
+      }
+    } else {
+      if ($playerIsOpen) {
+        playerArrow = 'keyboard_arrow_right'
+      } else {
+        playerArrow = 'keyboard_arrow_left'
+      }
+    }
+  }
+  
+  $: setArrowIcon($playerIsOpen, $mobileLayout)
+  $: $playerIsOpen ? width.set(calcPlayerWidth($appWidth)) : width.set(50)
+  $: $playerIsOpen ? heightOffset.set(0) : heightOffset.set(-playerHeight + 50)
   $: if ($playerIsOpen) { isClosed = false }
 </script>
 
-<div class='player' style='--width:{$width}px'>
+<div 
+  class='player' 
+  class:mobile={$mobileLayout}
+  bind:clientHeight={playerHeight}
+  style='--width:{$width}px; --height-offset:{$heightOffset}px'>
   <button class='slide-button' on:click={toggleOpen} >
-    {#if $playerIsOpen}
-      <i transition:fade class="material-icons">keyboard_arrow_right</i>
-    {:else}
-      <i transition:fade class="material-icons">keyboard_arrow_left</i>
-    {/if}
+    <i transition:fade class="material-icons">{playerArrow}</i>
   </button>
-  {#if $playerIsOpen}
-    <button 
-      transition:fade
-      class='close-button' 
-      on:click={close}>
-      <i class="material-icons">close</i>
-    </button>
-  {/if}
   {#if !isClosed}
     <div transition:fade class='player-content'>
       <AlbumInfo album={selectedAlbum} />
       <SoundCloudPlayer selectedAlbum={selectedAlbum} />
     </div>
   {/if}
-
 </div>
 
 <style>
   .player {
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     position: relative;
     min-width: var(--width);
     max-width: var(--width);
-    /* border-left: 1px solid var(--medium-grey); */
-    /* background-color: var(--orange); */
+    overflow: hidden;
     border-left: 1px solid var(--orange);
+    background-color: var(--medium-grey);
   }
 
   .player-content {
@@ -68,7 +86,6 @@
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-
     width: 100%;
     margin: 50px 0;
     padding: 25px 50px 0 0;
@@ -80,27 +97,46 @@
     border: none;
   }
 
-  .close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-  }
-
   .slide-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     height: 100%;
-    min-width: 50px;
   }
 
   .slide-button i {
-    position: absolute;
-    left: 0;
-    margin-left: 10px;
-  }
-
-  .material-icons {
+    flex: 1;
     margin: 10px;
     font-size: 28px;
+    /* color: var(--orange); */
+  }
+
+  /* .slide-button:hover i {
+    font-size: 32px;
+  } */
+
+  .mobile {
+    z-index: 2;
+    flex-direction: column;
+    min-width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--orange);
+    overflow: visible;
+    position: absolute;
+    bottom: var(--height-offset);
+  }
+
+  .mobile .player-content {
+    margin: 0;
+    padding: 0 25px 25px;
+  }
+
+  .mobile .slide-button {
+    width: 100%;
+  }
+  
+  .mobile .slide-button i {
+    max-width: 28px;
   }
 </style>
