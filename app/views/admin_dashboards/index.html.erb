@@ -1,5 +1,8 @@
-<%= button_to 'Logout', action: 'delete', controller: 'admin_sessions'%>
 
 <div class='admin-dashboard__container'>
+  <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
   <%= render "categories/upload_category", categories: @categories %>
+  <%= button_to 'Logout', action: 'delete', controller: 'admin_sessions'%>
 </div>

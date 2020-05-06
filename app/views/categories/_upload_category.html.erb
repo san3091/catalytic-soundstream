@@ -8,6 +8,14 @@
       <% end %>
     </div>
 
+    <%= label_tag 'Insert Mode'%>
+    <div>
+      <%= label_tag "Replace" %>
+      <%= radio_button_tag "insert_mode", "replace"%>
+      <%= label_tag "Append" %>
+      <%= radio_button_tag "insert_mode", "append"%>
+    </div>
+
     <%= label_tag 'album file (.csv format)' %>
     <%= file_field_tag :file, accept: 'text/csv', class: 'upload-category__file-field'%>
     <%= submit_tag 'Upload' %>

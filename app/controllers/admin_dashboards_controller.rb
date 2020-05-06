@@ -10,8 +10,8 @@ class AdminDashboardsController < ApplicationController
   # post update category name, csv file
   def update
     category = Category.find_by(name: params[:category])
-    category.import_albums(params[:file])
-    # SET THE FLASHHASH!!!! Thanks Will
+    result = category.import_albums(params[:file])
+    redirect_to '/admin', notice: "Succes! #{result.ids.length} albums added to the #{category.name} category."
   end
 
 end
