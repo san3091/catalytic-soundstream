@@ -12,7 +12,7 @@
 
   $: loaded = !album.loading
   $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
-  $: padding = (tileWidth > 180) ? 10 : 5
+  $: padding = (tileWidth > 180) ? 12 : 8
 </script>
 
 <div 
@@ -47,7 +47,9 @@
 
 <style>
   .truncate {
-    width: calc(var(--tile-width) - 34px);
+    position: relative;
+    right: 10px;
+    width: calc(var(--tile-width) - 45px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -95,7 +97,7 @@
     cursor: pointer;
     background-color: var(--color);
     border: none;
-    border-radius: 0px;
+    border-radius: 15px 0 15px 0;
   }
 
   .album-tile::after {
@@ -109,6 +111,7 @@
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
+    border-radius: 15px 0 15px 0;
   }
 
   .album-info {
@@ -118,8 +121,9 @@
     flex-grow: 1;
     width: var(--size);
     box-sizing: border-box;
-    padding: 10px;
+    padding: 10px 0 10px 20px;
     background-color: var(--transparent-black);
+    border-radius: 0 0 15px 0;
   }
 
   .album-art-screen {
@@ -147,6 +151,7 @@
   
   img {
     height: var(--size);
+    border-radius: 15px 0 0 0;
   }
 
   .album-tile:hover{
