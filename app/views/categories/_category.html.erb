@@ -1,0 +1,13 @@
+<div class="table__container">
+  <div class="table__header">
+    <h2><%= category.name %></h2>
+  </div>
+
+  <% category.albums.each do |album| %>
+    <div class="table__row">
+      <div class="table__col"><%= album.order %></div>
+      <div class="table__col"><%= album.title %></div>
+      <div class="table__col"><%= album.url %></div>
+    </div>
+  <% end %>
+</div>

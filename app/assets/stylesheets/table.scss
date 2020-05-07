@@ -1,0 +1,18 @@
+.table__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.table__header {
+  align-self: center;
+}
+
+.table__row {
+  display: flex;
+  align-items: center;
+}
+
+.table__col {
+  margin-right: 10px;
+  min-width: 100px;
+}
