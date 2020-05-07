@@ -1,1 +1,1 @@
-json.extract! category, :id, :name, :albums, :current
+json.extract! category, :id, :name, :albums

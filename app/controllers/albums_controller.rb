@@ -6,7 +6,8 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.includes(:albums).order('albums.order')
+    # I think this is ordering categories by album order and not the albums under the category
+    @categories = Category.includes(:albums)
   end
 
 end
