@@ -13,13 +13,14 @@
   export let albums = []
 
   let width
+  let mousedown
   let padding = tweened(100, { easing: cubicOut, duration: 400 })
   const playDontMissAlbum = () => {
     selectAlbum(dontMissAlbum)
   }
 
   const setPadding = (width) => {
-    if (width < 800) { return 10 }
+    if (width < 1000) { return 10 }
     else if (width < 1100) { return 50 }
     else { return 100 }
   }
@@ -56,7 +57,11 @@
             transition:fade 
             class='play-last-button' 
             class:selected
-            on:click|stopPropagation={playDontMissAlbum}>
+            class:mousedown
+            on:click|stopPropagation={playDontMissAlbum}
+            on:mousedown|stopPropagation={() => { mousedown = true } }
+            on:mouseup|stopPropagation={() => { mousedown = false } }
+            on:mouseleave|stopPropagation={() => { mousedown = false } } >
             <h5>
               <b>DON'T MISS:</b>{dontMissAlbum.title}
             </h5>
@@ -68,7 +73,8 @@
       albums={albums} 
       selectAlbum={selectAlbum} 
       selectedAlbum={selectedAlbum}
-      rotating={rotating} />
+      rotating={rotating}
+      dontMissIndex={dontMissAlbum.index} />
   </div>
 {/if} 
 
@@ -146,6 +152,16 @@
   .selected::after, .play-last-button.selected:hover::after {
     top: 8px;
     left: 8px;
+  }
+
+  .play-last-button.mousedown {
+     top: 0px;
+     left: 0px;
+  }
+  
+  .play-last-button.mousedown::after {
+    top: 4px;
+    left: 4px;
   }
 
   @keyframes fade-in {

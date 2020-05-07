@@ -73,11 +73,11 @@
 	}
 
 	:global(h5) {
-		font-size: 14px;
+		font-size: 12px;
 	}
 
 	:global(h6) {
-		font-size: 12px;
+		font-size: 10px;
 	}
 
 	:global(h5, h6) {
@@ -107,10 +107,10 @@
 		}
 
 		:global(h5) {
-			font-size: 12px;
+			font-size: 10px;
 		}
 		:global(h6) {
-			font-size: 10px;
+			font-size: 8px;
 		}
 	}
 	

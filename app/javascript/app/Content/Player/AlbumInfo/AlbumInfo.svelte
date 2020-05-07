@@ -32,6 +32,7 @@
   }
 
   .info-content {
+    box-sizing: border-box;
     padding: 20px;
     border-left: 2px solid var(--orange);
   }

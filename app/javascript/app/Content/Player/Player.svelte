@@ -25,7 +25,7 @@
   }
 
   const calcPlayerWidth = () => {
-    return $appWidth < 1300 ? 400 : 550
+    return $appWidth < 1200 ? 400 : 550
   }
 
   const setArrowIcon = (playerIsOpen, mobileLayout) => {
@@ -46,8 +46,8 @@
   }
   
   $: setArrowIcon($playerIsOpen, $mobileLayout)
-  $: $playerIsOpen ? width.set(calcPlayerWidth($appWidth)) : width.set(50)
-  $: $playerIsOpen ? heightOffset.set(0) : heightOffset.set(-playerHeight + 50)
+  $: $playerIsOpen ? width.set(calcPlayerWidth($appWidth)) : width.set(48)
+  $: $playerIsOpen ? heightOffset.set(0) : heightOffset.set(-playerHeight + 48)
   $: if ($playerIsOpen) { isClosed = false }
 </script>
 

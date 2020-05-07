@@ -7,6 +7,9 @@
   export let selected
   export let tileWidth
   export let rotating
+  export let dontMiss
+
+  let mousedown
 
   $: disabled = album.free || $user ? false : true
 
@@ -17,6 +20,8 @@
 
 <div 
   class='tile-container' 
+  class:dont-miss={dontMiss}
+
   style='
     --size:{tileWidth - (padding * 2)}px; 
     --visibility:{extraTextVisibility};
@@ -33,8 +38,12 @@
       class='album-tile'
       class:selected
       class:disabled
+      class:mousedown
       style='--color:{album.color || "#666a86"};'
-      on:click|stopPropagation={() => {selectAlbum(album)}} >
+      on:click|stopPropagation={() => {selectAlbum(album)}}
+      on:mousedown|stopPropagation={() => { mousedown = true } }
+      on:mouseup|stopPropagation={() => { mousedown = false } }
+      on:mouseleave|stopPropagation={() => { mousedown = false } } >
       <img src={album.thumbnail_url} alt={`${album.title} album art`} />
       <div class='album-info'>
         <h5 class='truncate'>{album.title}</h5>
@@ -78,7 +87,7 @@
 
   }
  
-  .tile-container:nth-child(30)::after {
+  .tile-container.dont-miss::after {
     visibility: var(--visibility);
     opacity: 0;
     content: "DON'T MISS";
@@ -162,6 +171,17 @@
   .album-tile:hover::after {
     top: 6px;
     left: 6px;
+  }
+
+
+  .album-tile.mousedown {
+     top: 0px;
+     left: 0px;
+  }
+  
+  .album-tile.mousedown::after {
+    top: 4px;
+    left: 4px;
   }
 
   .selected, .album-tile.selected:hover {
