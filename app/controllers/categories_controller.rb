@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.includes(:albums).order('albums.order')
+    @categories = Category.includes(:albums)
   end
 
 end
