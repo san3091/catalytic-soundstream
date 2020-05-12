@@ -6,12 +6,12 @@ class Daddy < ApplicationRecord
       daddies << self.new(name: row[0], email: row[1]) if is_member(row[8])
     end
 
-    self.import(daddies)
+    self.import!(daddies)
   end
 
   private
 
-  def is_member(tier)
+  def self.is_member(tier)
     tier && tier == 'Member'
   end
 
