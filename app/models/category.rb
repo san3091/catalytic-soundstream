@@ -5,8 +5,16 @@ class Category < ApplicationRecord
   def import_albums(file, insert_mode)
     order = set_order(insert_mode)
     albums = []
-    CSV.foreach(file, headers: true) do |row|
-      albums << Album.new(title: row[0], url: row[1], order: order, category: self)
+    CSV.foreach(file, headers: %w(artist title description curator bandcamp_url soundcloud_url)) do |row|
+      albums << Album.new do |a|
+        a.title           = row['title']
+        a.arist           = row['artist']
+        a.soundcloud_url  = row['soundcloud_url']
+        a.bandcamp_url    = row['bandcamp_url']
+        a.curator         = Curator.find_or_create_by(name: row['curator'])
+        a.order           = order
+        a.category        = self
+      end
       order += 1
     end
 

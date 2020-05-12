@@ -6,9 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-category_names = %w(History Curated Catalytic)
+category_names = %w(history curated catalytic)
 categories = category_names.map { |category| Category.create(name: category) }
 puts "Created categories #{category_names.join(" ")}"
 
 admin = Admin.create(name: "admin", email: Rails.application.credentials.admin_email, password: Rails.application.credentials.admin_password)
-puts "Created sample admin"
+puts 'Created sample admin'
+
+categories.map { |category| category.import_albums("lib/#{category.name}csv", 'replace') }
+puts 'Added seed albums to categories'
