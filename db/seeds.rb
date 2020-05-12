@@ -6,20 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-category_names = %w(history curated)
+category_names = %w(History Curated Catalytic)
 categories = category_names.map { |category| Category.create(name: category) }
+puts "Created categories #{category_names.join(" ")}"
 
-order = 1
-album_titles = %w(Argh Love Noise Tender)
-sample_url = "this.is.fake/right"
-curated = categories[1]
-album_titles.map do |album_title| 
-  album = Album.new(title: album_title, url: sample_url, order: order)
-  curated.albums << album
-  curated.save!
-  album.save!
-  order += 1
-  puts "Album #{album_title} created"
-end
-
-puts "All's well"
+admin = Admin.create(name: "admin", email: Rails.application.credentials.admin_email, password: Rails.application.credentials.admin_password)
+puts "Created sample admin"
