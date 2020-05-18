@@ -118,9 +118,11 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: stretch;
     width: 100%;
     height: calc(100vh - 82px);
+    overflow-y: scroll;
+
   }
 
   .music-selection {
@@ -128,15 +130,14 @@
     padding-top: 25px;
     display: flex;
     flex-direction:column;
-    width: 100%;
-    overflow-y: scroll;
+    width: 0;
+    flex-grow: 1;
   }
 
   .footer {
     display: inline-block;
     position: relative;
     min-height: 150px;
-    width: 100%;
   }
 
   .mobile {

@@ -15,7 +15,7 @@
 
   $: loaded = !album.loading
   $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
-  $: padding = (tileWidth > 180) ? 12 : 8
+  $: padding = (tileWidth > 180) ? 8 : 4
 </script>
 
 <div 
@@ -58,7 +58,7 @@
   .truncate {
     position: relative;
     right: 10px;
-    width: calc(var(--tile-width) - 45px);
+    width: calc(var(--tile-width) - 35px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -106,7 +106,7 @@
     cursor: pointer;
     background-color: var(--color);
     border: none;
-    border-radius: 15px 0 15px 0;
+    border-radius: 10px 0 10px 0;
   }
 
   .album-tile::after {
@@ -114,13 +114,13 @@
     position: absolute;
     background-color: var(--black);
     opacity: 0;
-    top: 4px;
-    left: 4px;
+    top: 2px;
+    left: 2px;
     height: 100%;
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
-    border-radius: 15px 0 15px 0;
+    border-radius: 10px 0 10px 0;
   }
 
   .album-info {
@@ -132,7 +132,7 @@
     box-sizing: border-box;
     padding: 10px 0 10px 20px;
     background-color: var(--transparent-black);
-    border-radius: 0 0 15px 0;
+    border-radius: 0 0 10px 0;
   }
 
   .album-art-screen {
@@ -160,17 +160,17 @@
   
   img {
     height: var(--size);
-    border-radius: 15px 0 0 0;
+    border-radius: 10px 0 0 0;
   }
 
   .album-tile:hover{
-    top: -2px;
-    left: -2px;
+    top: -1px;
+    left: -1px;
   }
 
   .album-tile:hover::after {
-    top: 6px;
-    left: 6px;
+    top: 3px;
+    left: 3px;
   }
 
 
@@ -180,18 +180,18 @@
   }
   
   .album-tile.mousedown::after {
-    top: 4px;
-    left: 4px;
+    top: 2px;
+    left: 2px;
   }
 
   .selected, .album-tile.selected:hover {
-    top: -4px;
-    left: -4px;
+    top: -2px;
+    left: -2px;
   }
 
   .selected::after, .album-tile.selected:hover::after {
-    top: 8px;
-    left: 8px;
+    top: 5px;
+    left: 5px;
   }
 
   .album-tile.disabled {

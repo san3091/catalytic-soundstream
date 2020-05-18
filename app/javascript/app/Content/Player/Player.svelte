@@ -29,7 +29,6 @@
   }
 
   const setArrowIcon = (playerIsOpen, mobileLayout) => {
-    // console.log('arrow')
     if ($mobileLayout) {
       if ($playerIsOpen) {
         playerArrow = 'keyboard_arrow_down'
@@ -72,8 +71,9 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    position: relative;
+    position: sticky;
+    right: 0;
+    top: 0;
     min-width: var(--width);
     max-width: var(--width);
     overflow: hidden;

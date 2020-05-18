@@ -116,7 +116,7 @@
     border: none;
     background-color: var(--light-grey);
     height: 40px;
-    border-radius: 10px 0 10px 0;
+    border-radius: 5px 0 5px 0;
     cursor: pointer;
   }
 
@@ -125,44 +125,48 @@
     position: absolute;
     background-color: var(--black);
     opacity: 0;
-    top: 4px;
-    left: 4px;
+    top: 2px;
+    left: 2px;
     height: 100%;
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
-    border-radius: 10px 0 10px 0;
+    border-radius: 5px 0 5px 0;
   }
 
   .play-last-button:hover{
-    top: -2px;
-    left: -2px;
+    top: -1px;
+    left: -1px;
   }
 
   .play-last-button:hover::after {
-    top: 6px;
-    left: 6px;
+    top: 3px;
+    left: 3px;
   }
-
-  .selected, .play-last-button.selected:hover {
-    top: -4px;
-    left: -4px;
-  }
-
-  .selected::after, .play-last-button.selected:hover::after {
-    top: 8px;
-    left: 8px;
-  }
-
+  
   .play-last-button.mousedown {
      top: 0px;
      left: 0px;
   }
-  
-  .play-last-button.mousedown::after {
-    top: 4px;
-    left: 4px;
+
+ .play-last-button.mousedown::after {
+    top: 2px;
+    left: 2px;
   }
+
+  .selected, .play-last-button.selected:hover {
+    top: -2px;
+    left: -2px;
+  }
+
+  .selected::after, .play-last-button.selected:hover::after {
+    top: 5px;
+    left: 5px;
+  }
+
+  
+  
+ 
 
   @keyframes fade-in {
     0% {
