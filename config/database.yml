@@ -82,4 +82,6 @@ production:
   <<: *default
   database: catalytic_streaming_prod
   username: catalytic
-  password: <%= ENV['CATALYTIC_STREAMING_BACKEND_DATABASE_PASSWORD'] %>
+  password: <%= Rails.application.credentials.db[:stage_password] %>
+  host: <%= Rails.application.credentials.db[:stage_host] %>
+  port: <%= Rails.application.credentials.db[:stage_port] %>
