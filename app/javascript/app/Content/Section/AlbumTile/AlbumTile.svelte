@@ -69,7 +69,6 @@
     width: var(--tile-width);
     position: relative;
     display: flex;
-    z-index: 1;
     padding: var(--padding);
     margin-bottom: 2px;
   }
@@ -142,7 +141,7 @@
     position: absolute;
     top: 4px;
     left: 4px;
-    z-index: 100;
+    z-index: 1;
     width: var(--size);
     height: var(--size);
     background-color: var(--translucent-grey);

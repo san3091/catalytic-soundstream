@@ -86,7 +86,7 @@
 </script>
 
 <div class='content' class:mobile={$mobileLayout}>
-  <div class='music-selection'> 
+  <div class='music-selection' class:mobile={$mobileLayout}> 
     <Section
       headerText='Rotating Selection'
       sectionDescription='Explore a rotating selection of free jazz. Find a new album every day.'
@@ -108,9 +108,11 @@
       selectAlbum={selectAlbum}
       selectedAlbum={selectedAlbum || albums[1]}
       albums={hwhAlbums(albums)} />
-    <div class='footer'></div>
+    <div class='footer' class:player-open={$playerIsOpen}></div>
   </div>
-  <Player selectedAlbum={selectedAlbum || albums[1]} />
+  <div class='player-container' class:mobile={$mobileLayout}>
+    <Player selectedAlbum={selectedAlbum || albums[1]} />
+  </div>
 </div>
 
 <style>
@@ -122,7 +124,10 @@
     width: 100%;
     height: calc(100vh - 82px);
     overflow-y: scroll;
-
+  }
+   
+  .content.mobile {
+    flex-direction: column;
   }
 
   .music-selection {
@@ -134,13 +139,34 @@
     flex-grow: 1;
   }
 
+  .music-selection.mobile {
+    width: 100%;
+  }
+
   .footer {
     display: inline-block;
     position: relative;
     min-height: 150px;
   }
 
-  .mobile {
-    flex-direction: column;
+  .footer.player-open {
+    min-height: 700px;
+  }
+
+  .player-container {
+    display: flex;
+    position: sticky;
+    right: 0;
+    top: 0;
+  }
+
+  .player-container.mobile {
+    position: fixed;
+    z-index: 5;
+    pointer-events: none;
+    right: unset;
+    top: unset;
+    bottom: 0;
+    width: 100%;
   }
 </style>
