@@ -23,7 +23,9 @@
     width: 100%;
     display: flex;
     z-index: 3;
-    background-color: var(--orange);
+    background-color: var(--light-grey);
+    /* background-color: var(--medium-grey); */
+    border-bottom: 1px solid var(--orange);
   }
 
   .header-content {

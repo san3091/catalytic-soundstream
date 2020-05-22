@@ -43,20 +43,22 @@
 		--orange: #f96854;
 		--transparent-white: hsl(0, 0%, 100%, 80%);
 		--transparent-black: hsl(0, 0%, 0%, 50%);
-		--transparent-orange: hsl(7, 93%, 65%, 40%);
-		--translucent-orange: hsl(7, 93%, 65%, 90%);
+		/* --transparent-orange: hsl(7, 93%, 65%, 40%);
+		--translucent-orange: hsl(7, 93%, 65%, 90%); */
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 10%);
 		
-		background-color: var(--medium-grey);
+		background-color: var(--light-grey);
+		/* background-color: var(--medium-grey); */
 		padding: 0px;
 	}
 
 	:global(*) {
 		margin: 0;
 		padding: 0;
-		color: var(--light-grey);
+		color: var(--medium-grey);
+		/* color: var(--light-grey); */
 	}
 
 	:global(button) {
@@ -81,7 +83,8 @@
 	}
 
 	:global(h5, h6) {
-    color: var(--light-grey);
+    /* color: var(--light-grey); */
+    color: white;
 	}
 
 	:global(p) {

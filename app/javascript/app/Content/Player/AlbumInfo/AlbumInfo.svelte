@@ -24,7 +24,7 @@
 
 <style>
   * {
-    color: var(--light-grey);
+    color: var(--medium-grey);
   }
   .info-container {
     width: 100%;

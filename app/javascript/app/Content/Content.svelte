@@ -89,28 +89,30 @@
   <div class='music-selection' class:mobile={$mobileLayout}> 
     <Section
       headerText='Rotating Selection'
-      sectionDescription='Explore a rotating selection of free jazz. Find a new album every day.'
+      sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists.  [One album in, one out—every day.]'
       sectionNumber={0}
       selectAlbum={selectAlbum}
       selectedAlbum={selectedAlbum || albums[1]}
       albums={albums} />
     <Section 
       headerText='Catalytic Artist Albums'
-      sectionDescription='Discover artists represented by Catalytic Sound.'
+      sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
       sectionNumber={1}
       selectAlbum={selectAlbum}
       selectedAlbum={selectedAlbum || albums[1]}
       albums={caaAlbums(albums)} />
     <Section 
       headerText="History is What's Happening"
-      sectionDescription='Experience an artist curated selection of pre-2000s free jazz.'
+      sectionDescription='Discover classics from the Catalytic Sound catalog.'
       sectionNumber={2}
       selectAlbum={selectAlbum}
       selectedAlbum={selectedAlbum || albums[1]}
       albums={hwhAlbums(albums)} />
-    <div class='footer' class:player-open={$playerIsOpen}></div>
+    <div class='footer' class:mobile-player-open={$playerIsOpen && $mobileLayout}></div>
   </div>
-  <div class='player-container' class:mobile={$mobileLayout}>
+  <div 
+    class='player-container' 
+    class:mobile={$mobileLayout}>
     <Player selectedAlbum={selectedAlbum || albums[1]} />
   </div>
 </div>
@@ -149,7 +151,7 @@
     min-height: 150px;
   }
 
-  .footer.player-open {
+  .footer.mobile-player-open {
     min-height: 700px;
   }
 

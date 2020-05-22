@@ -103,9 +103,11 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    background-color: var(--color);
+    background-color: var(--light-grey);
+    /* background-color: var(--color); */
     border: none;
     border-radius: 10px 0 10px 0;
+    /* border-radius: 10px 0 10px 0; */
   }
 
   .album-tile::after {
@@ -120,6 +122,7 @@
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
     border-radius: 10px 0 10px 0;
+    /* border-radius: 10px 0 10px 0; */
   }
 
   .album-info {
@@ -132,6 +135,7 @@
     padding: 10px 0 10px 20px;
     background-color: var(--transparent-black);
     border-radius: 0 0 10px 0;
+    /* border-radius: 0 0 10px 0; */
   }
 
   .album-art-screen {
@@ -139,8 +143,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 4px;
-    left: 4px;
+    top: 2px;
+    left: 2px;
     z-index: 1;
     width: var(--size);
     height: var(--size);
@@ -155,11 +159,13 @@
 
   .album-info * {
     text-align: left;
+    /* color: white; */
   }
   
   img {
     height: var(--size);
     border-radius: 10px 0 0 0;
+    /* border-radius: 10px 0 0 0; */
   }
 
   .album-tile:hover{
@@ -194,8 +200,8 @@
   }
 
   .album-tile.disabled {
-    top: 4px;
-    left: 4px;
+    top: 2px;
+    left: 2px;
   }
 
   .album-tile.disabled:after {

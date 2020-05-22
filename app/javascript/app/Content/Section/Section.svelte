@@ -86,10 +86,13 @@
   b {
     margin-right: 10px;
     color: var(--medium-grey);
+    /* color: var(--light-grey); */
+    /* color: white; */
   }
 
   h5 {
-    color: var(--black);
+    color: white;
+    /* color: var(--black); */
   }
 
   .section {
@@ -114,7 +117,9 @@
     position: relative;
     padding: 5px 15px;
     border: none;
-    background-color: var(--light-grey);
+    /* background-color: var(--medium-grey); */
+    background-color: var(--orange);
+    /* background-color: var(--light-grey); */
     height: 40px;
     border-radius: 5px 0 5px 0;
     cursor: pointer;

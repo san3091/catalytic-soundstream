@@ -33,7 +33,8 @@
   line {
     cursor: pointer;
     stroke-width: 4;
-    stroke: var(--light-grey)
+    stroke: var(--medium-grey);
+    /* stroke: var(--light-grey); */
   }
 
   .active {

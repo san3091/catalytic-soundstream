@@ -76,7 +76,8 @@
     max-width: var(--width);
     overflow: hidden;
     border-left: 1px solid var(--orange);
-    background-color: var(--medium-grey);
+    background-color: var(--light-grey);
+    /* background-color: var(--medium-grey); */
     z-index: 1;
   }
 
