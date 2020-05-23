@@ -15,7 +15,7 @@
 
   $: loaded = !album.loading
   $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
-  $: padding = (tileWidth > 180) ? 8 : 4
+  $: padding = (tileWidth > 180) ? 12 : 8
 </script>
 
 <div 
@@ -44,7 +44,9 @@
       on:mousedown|stopPropagation={() => { mousedown = true } }
       on:mouseup|stopPropagation={() => { mousedown = false } }
       on:mouseleave|stopPropagation={() => { mousedown = false } } >
-      <img src={album.thumbnail_url} alt={`${album.title} album art`} />
+      <div class='album-art'>
+        <img src={album.thumbnail_url} alt={`${album.title} album art`} />
+      </div>
       <div class='album-info'>
         <h5 class='truncate'>{album.title}</h5>
         <h6 class='truncate'>{album.author_name}</h6>
@@ -78,12 +80,12 @@
     opacity: 0;
     content: 'NEW TODAY';
     position: absolute;
-    bottom: -30px;
+    color: var(--orange);
+    bottom: -20px;
     size: 20px;
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
-
   }
  
   .tile-container.dont-miss::after {
@@ -91,8 +93,9 @@
     opacity: 0;
     content: "DON'T MISS";
     position: absolute;
-    bottom: -30px;
+    bottom: -20px;
     size: 20px;
+    color: var(--orange);
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
@@ -103,14 +106,18 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    background-color: var(--light-grey);
+    background-color: transparent;
+    /* background-color: var(--light-grey); */
     /* background-color: var(--color); */
     border: none;
-    border-radius: 10px 0 10px 0;
-    /* border-radius: 10px 0 10px 0; */
   }
 
-  .album-tile::after {
+  .album-art {
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .album-art::after {
     content: '';
     position: absolute;
     background-color: var(--black);
@@ -121,8 +128,10 @@
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
-    border-radius: 10px 0 10px 0;
-    /* border-radius: 10px 0 10px 0; */
+  }
+
+  .selected .album-art::after {
+    background-color: var(--medium-grey);
   }
 
   .album-info {
@@ -132,10 +141,8 @@
     flex-grow: 1;
     width: var(--size);
     box-sizing: border-box;
+    margin-top: 8px;
     padding: 10px 0 10px 20px;
-    background-color: var(--transparent-black);
-    border-radius: 0 0 10px 0;
-    /* border-radius: 0 0 10px 0; */
   }
 
   .album-art-screen {
@@ -164,52 +171,50 @@
   
   img {
     height: var(--size);
-    border-radius: 10px 0 0 0;
-    /* border-radius: 10px 0 0 0; */
   }
 
-  .album-tile:hover{
+  .album-tile:hover .album-art {
     top: -1px;
     left: -1px;
   }
 
-  .album-tile:hover::after {
+  .album-tile:hover .album-art::after {
     top: 3px;
     left: 3px;
   }
 
 
-  .album-tile.mousedown {
+  .album-tile.mousedown .album-art{
      top: 0px;
      left: 0px;
   }
   
-  .album-tile.mousedown::after {
+  .album-tile.mousedown .album-art::after {
+    top: 2px;
+    left: 2px;
+  }
+  
+  .selected .album-art, .album-tile.selected:hover .album-art {
+    top: -4px;
+    left: -4px;
+  }
+
+  .selected .album-art::after, .album-tile.selected:hover .album-art::after {
+    top: 6px;
+    left: 6px;
+  }
+
+  .album-tile.disabled .album-art {
     top: 2px;
     left: 2px;
   }
 
-  .selected, .album-tile.selected:hover {
-    top: -2px;
-    left: -2px;
-  }
-
-  .selected::after, .album-tile.selected:hover::after {
-    top: 5px;
-    left: 5px;
-  }
-
-  .album-tile.disabled {
-    top: 2px;
-    left: 2px;
-  }
-
-  .album-tile.disabled:after {
+  .album-tile.disabled .album-art:after {
     top: 0px;
     left: 0px;
   }
 
-  .album-tile.disabled:hover::after {
+  .album-tile.disabled:hover .album-art::after {
     top: 0px;
     left: 0px;
   }

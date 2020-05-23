@@ -121,7 +121,7 @@
     background-color: var(--orange);
     /* background-color: var(--light-grey); */
     height: 40px;
-    border-radius: 5px 0 5px 0;
+    border-radius: 0;
     cursor: pointer;
   }
 
@@ -136,7 +136,7 @@
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
-    border-radius: 5px 0 5px 0;
+    border-radius: 0;
   }
 
   .play-last-button:hover{
