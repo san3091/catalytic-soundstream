@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include HttpAuthConcern
+
   before_action :authorized
   helper_method :current_admin
   helper_method :admin_logged_in?
