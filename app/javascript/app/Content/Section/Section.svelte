@@ -13,13 +13,14 @@
   export let albums = []
 
   let width
+  let mousedown
   let padding = tweened(100, { easing: cubicOut, duration: 400 })
   const playDontMissAlbum = () => {
     selectAlbum(dontMissAlbum)
   }
 
   const setPadding = (width) => {
-    if (width < 800) { return 10 }
+    if (width < 1000) { return 10 }
     else if (width < 1100) { return 50 }
     else { return 100 }
   }
@@ -56,7 +57,11 @@
             transition:fade 
             class='play-last-button' 
             class:selected
-            on:click|stopPropagation={playDontMissAlbum}>
+            class:mousedown
+            on:click|stopPropagation={playDontMissAlbum}
+            on:mousedown|stopPropagation={() => { mousedown = true } }
+            on:mouseup|stopPropagation={() => { mousedown = false } }
+            on:mouseleave|stopPropagation={() => { mousedown = false } } >
             <h5>
               <b>DON'T MISS:</b>{dontMissAlbum.title}
             </h5>
@@ -68,7 +73,8 @@
       albums={albums} 
       selectAlbum={selectAlbum} 
       selectedAlbum={selectedAlbum}
-      rotating={rotating} />
+      rotating={rotating}
+      dontMissIndex={dontMissAlbum.index} />
   </div>
 {/if} 
 
@@ -80,10 +86,13 @@
   b {
     margin-right: 10px;
     color: var(--medium-grey);
+    /* color: var(--light-grey); */
+    /* color: white; */
   }
 
   h5 {
-    color: var(--black);
+    color: white;
+    /* color: var(--black); */
   }
 
   .section {
@@ -108,9 +117,11 @@
     position: relative;
     padding: 5px 15px;
     border: none;
-    background-color: var(--light-grey);
+    /* background-color: var(--medium-grey); */
+    background-color: var(--orange);
+    /* background-color: var(--light-grey); */
     height: 40px;
-    border-radius: 10px 0 10px 0;
+    border-radius: 0;
     cursor: pointer;
   }
 
@@ -119,34 +130,48 @@
     position: absolute;
     background-color: var(--black);
     opacity: 0;
-    top: 4px;
-    left: 4px;
+    top: 2px;
+    left: 2px;
     height: 100%;
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
-    border-radius: 10px 0 10px 0;
+    border-radius: 0;
   }
 
   .play-last-button:hover{
+    top: -1px;
+    left: -1px;
+  }
+
+  .play-last-button:hover::after {
+    top: 3px;
+    left: 3px;
+  }
+  
+  .play-last-button.mousedown {
+     top: 0px;
+     left: 0px;
+  }
+
+ .play-last-button.mousedown::after {
+    top: 2px;
+    left: 2px;
+  }
+
+  .selected, .play-last-button.selected:hover {
     top: -2px;
     left: -2px;
   }
 
-  .play-last-button:hover::after {
-    top: 6px;
-    left: 6px;
-  }
-
-  .selected, .play-last-button.selected:hover {
-    top: -4px;
-    left: -4px;
-  }
-
   .selected::after, .play-last-button.selected:hover::after {
-    top: 8px;
-    left: 8px;
+    top: 5px;
+    left: 5px;
   }
+
+  
+  
+ 
 
   @keyframes fade-in {
     0% {

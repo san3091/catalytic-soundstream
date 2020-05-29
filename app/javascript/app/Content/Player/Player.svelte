@@ -25,11 +25,10 @@
   }
 
   const calcPlayerWidth = () => {
-    return $appWidth < 1300 ? 400 : 550
+    return $appWidth < 1200 ? 400 : 550
   }
 
   const setArrowIcon = (playerIsOpen, mobileLayout) => {
-    // console.log('arrow')
     if ($mobileLayout) {
       if ($playerIsOpen) {
         playerArrow = 'keyboard_arrow_down'
@@ -46,8 +45,8 @@
   }
   
   $: setArrowIcon($playerIsOpen, $mobileLayout)
-  $: $playerIsOpen ? width.set(calcPlayerWidth($appWidth)) : width.set(50)
-  $: $playerIsOpen ? heightOffset.set(0) : heightOffset.set(-playerHeight + 50)
+  $: $playerIsOpen ? width.set(calcPlayerWidth($appWidth)) : width.set(48)
+  $: $playerIsOpen ? heightOffset.set(0) : heightOffset.set(-playerHeight + 48)
   $: if ($playerIsOpen) { isClosed = false }
 </script>
 
@@ -69,16 +68,17 @@
 
 <style>
   .player {
+    pointer-events: all;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    position: relative;
     min-width: var(--width);
     max-width: var(--width);
     overflow: hidden;
     border-left: 1px solid var(--orange);
-    background-color: var(--medium-grey);
+    background-color: var(--light-grey);
+    /* background-color: var(--medium-grey); */
+    z-index: 1;
   }
 
   .player-content {
@@ -102,19 +102,14 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 100%;
   }
 
   .slide-button i {
     flex: 1;
     margin: 10px;
     font-size: 28px;
-    /* color: var(--orange); */
   }
 
-  /* .slide-button:hover i {
-    font-size: 32px;
-  } */
 
   .mobile {
     z-index: 2;

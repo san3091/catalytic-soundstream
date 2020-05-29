@@ -24,7 +24,7 @@
 
 <style>
   * {
-    color: var(--light-grey);
+    color: var(--medium-grey);
   }
   .info-container {
     width: 100%;
@@ -32,6 +32,7 @@
   }
 
   .info-content {
+    box-sizing: border-box;
     padding: 20px;
     border-left: 2px solid var(--orange);
   }

@@ -9,6 +9,7 @@
   export let selectAlbum
   export let selectedAlbum
   export let rotating
+  export let dontMissIndex
 
   let carouselWidth, itemsWidth
   let currentSection = 0
@@ -97,7 +98,7 @@
       style='
         --carousel-offset:{$carouselOffset}px; 
         --tile-width:{$tileWidth}px; 
-        --rotating-margin:{rotatingMargin}
+        --rotating-margin:{rotatingMargin};
       '
       bind:clientWidth={itemsWidth}
     >
@@ -107,7 +108,8 @@
           selectAlbum={selectAlbum}
           selected={selectedAlbum == album}
           tileWidth={$tileWidth}
-          rotating={rotating} />
+          rotating={rotating}
+          dontMiss={album.index == dontMissIndex} />
       {/each}
     </div>
     {#if currentSection < (numberOfSections - 1) }
@@ -134,7 +136,7 @@
     position: relative;
     display: flex;
     overflow: hidden;
-    padding: 5px 5px 12px;
+    padding: 5px 5px 2px;
   }
 
   .carousel-items {
