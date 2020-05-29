@@ -12,7 +12,7 @@
       transition:fade
       >
       <h3>{album.title}</h3>
-      <h4>{album.author_name}</h4>
+      <h4>{album.artist}</h4>
       {#if album.description}
         <p>
           {album.description}

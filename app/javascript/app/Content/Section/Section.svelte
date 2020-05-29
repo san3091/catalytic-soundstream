@@ -43,40 +43,37 @@
   $: selected = dontMissAlbum == selectedAlbum
 </script>
 
-
-{#if albums.length}
-  <div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
-    <div class='section-top'>
-      <div class='section-header'>
-        <h2>{headerText}</h2>
-        <p>{sectionDescription}</p>
-      </div>
-      {#if rotating && dontMissAlbum.title}
-        <div class='button-container'>
-          <button 
-            transition:fade 
-            class='play-last-button' 
-            class:selected
-            class:mousedown
-            on:click|stopPropagation={playDontMissAlbum}
-            on:mousedown|stopPropagation={() => { mousedown = true } }
-            on:mouseup|stopPropagation={() => { mousedown = false } }
-            on:mouseleave|stopPropagation={() => { mousedown = false } } >
-            <h5>
-              <b>DON'T MISS:</b>{dontMissAlbum.title}
-            </h5>
-          </button>
-        </div>
-      {/if}
+<div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
+  <div class='section-top'>
+    <div class='section-header'>
+      <h2>{headerText}</h2>
+      <p>{sectionDescription}</p>
     </div>
-    <Carousel 
-      albums={albums} 
-      selectAlbum={selectAlbum} 
-      selectedAlbum={selectedAlbum}
-      rotating={rotating}
-      dontMissIndex={dontMissAlbum.index} />
+    {#if rotating && dontMissAlbum.title}
+      <div class='button-container'>
+        <button 
+          transition:fade 
+          class='play-last-button' 
+          class:selected
+          class:mousedown
+          on:click|stopPropagation={playDontMissAlbum}
+          on:mousedown|stopPropagation={() => { mousedown = true } }
+          on:mouseup|stopPropagation={() => { mousedown = false } }
+          on:mouseleave|stopPropagation={() => { mousedown = false } } >
+          <h5>
+            <b>DON'T MISS:</b>{dontMissAlbum.title}
+          </h5>
+        </button>
+      </div>
+    {/if}
   </div>
-{/if} 
+  <Carousel 
+    albums={albums} 
+    selectAlbum={selectAlbum} 
+    selectedAlbum={selectedAlbum}
+    rotating={rotating}
+    dontMissIndex={dontMissAlbum.index} />
+</div>
 
 <style>
   h2, p {

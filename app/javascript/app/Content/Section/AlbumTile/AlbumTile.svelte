@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { user } from '../../../stores.js'
 
@@ -16,6 +17,15 @@
   $: loaded = !album.loading
   $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
   $: padding = (tileWidth > 180) ? 12 : 8
+  
+  onMount(() => {
+    SC.oEmbed(album.soundcloud_url)
+    .then(SCAlbum => {
+      const { html, thumbnail_url} = SCAlbum
+      Object.assign(album, {html, thumbnail_url})
+      album.free = true
+    })
+  })
 </script>
 
 <div 
@@ -27,7 +37,7 @@
     --visibility:{extraTextVisibility};
     --padding:{padding}
   ' >
-  {#if !album.loading && tileWidth}
+  {#if album.thumbnail_url && tileWidth}
     {#if disabled}
       <div class='album-art-screen'>
         <i class='material-icons'>lock_open</i>
@@ -49,7 +59,7 @@
       </div>
       <div class='album-info'>
         <h5 class='truncate'>{album.title}</h5>
-        <h6 class='truncate'>{album.author_name}</h6>
+        <h6 class='truncate'>{album.artist}</h6>
       </div>
     </button>
   {/if}
