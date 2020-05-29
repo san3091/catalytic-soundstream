@@ -59,8 +59,8 @@ albums_data = []
     artist: Faker::Ancient.hero,
     description: Faker::Lorem.paragraph,
     bandcamp_url: Faker::Internet.url(host: 'bandcamp.com'),
-    curator: curators.sample,
-    category: categories.sample,
+    curator_id: curators.sample.id,
+    category_id: categories.sample.id,
   }
 end
 albums = Album.create!(albums_data)
