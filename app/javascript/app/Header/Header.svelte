@@ -17,8 +17,6 @@
     width: 100%;
     display: flex;
     z-index: 3;
-    /* background-color: var(--transparent-orange); */
-    /* background-color: var(--medium-grey); */
     border-bottom: 1px solid var(--orange);
   }
 

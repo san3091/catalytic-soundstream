@@ -8,28 +8,11 @@
   let categories
   let selectedAlbum
 
-  const caaAlbums = (albums) => {
-    const albumsCopy = albums.slice(3, 22).map(album => {
-      const albumCopy = Object.assign({}, album)
-      return albumCopy
-    })
-    return albumsCopy
-  }
-  
-  const hwhAlbums = (albums) => {
-    const albumsCopy = albums.slice(24, 29).map(album => {
-      const albumCopy = Object.assign({}, album)
-      return albumCopy
-    })
-    return albumsCopy
-  }
-
   const getAlbums = async () => {
     const url = '/categories'
     const response = await fetch(url)
     categories = await response.json()
   }
-
 
   const selectFirstAlbum = () => {
     const firstAlbum = categories[0].albums[0]
@@ -37,7 +20,6 @@
     .then(SCAlbum => {
       const { html, thumbnail_url} = SCAlbum
       Object.assign(firstAlbum, {html, thumbnail_url})
-      firstAlbum.free = true
       selectedAlbum = firstAlbum
     })
   }

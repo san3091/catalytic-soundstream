@@ -15,6 +15,7 @@
   let width
   let mousedown
   let padding = tweened(100, { easing: cubicOut, duration: 400 })
+  
   const playDontMissAlbum = () => {
     selectAlbum(dontMissAlbum)
   }
@@ -26,17 +27,17 @@
   }
 
   const setDontMissAlbum = (albums, user) => {
-    if (!user) { 
-      const loadedAlbums = albums.filter(album => !album.loading)
-      const freeAlbums = loadedAlbums.filter(album => album.free)
-      const lastFreeAlbum = freeAlbums[freeAlbums.length - 1]
-      if (lastFreeAlbum) { return lastFreeAlbum }
-    }
-    
+    if (!user) { return null }
     return albums[albums.length - 1]
   }
 
-  $: albums = rotating ? albums.slice(1) : albums
+  const assignIndices = (albums) => {
+    albums.forEach((album, index) => {
+      album.index = index
+    });
+  }
+
+  $: assignIndices(albums)
   $: padding.set(setPadding(width))
   $: dontMissAlbum = setDontMissAlbum(albums, $user)
   $: rotating = sectionNumber == 0
@@ -49,7 +50,7 @@
       <h2>{headerText}</h2>
       <p>{sectionDescription}</p>
     </div>
-    {#if rotating && dontMissAlbum.title}
+    {#if rotating && dontMissAlbum}
       <div class='button-container'>
         <button 
           transition:fade 
@@ -72,7 +73,7 @@
     selectAlbum={selectAlbum} 
     selectedAlbum={selectedAlbum}
     rotating={rotating}
-    dontMissIndex={dontMissAlbum.index} />
+    dontMissIndex={dontMissAlbum && dontMissAlbum.index} />
 </div>
 
 <style>
@@ -83,13 +84,10 @@
   b {
     margin-right: 10px;
     color: var(--medium-grey);
-    /* color: var(--light-grey); */
-    /* color: white; */
   }
 
   h5 {
     color: white;
-    /* color: var(--black); */
   }
 
   .section {
@@ -114,9 +112,7 @@
     position: relative;
     padding: 5px 15px;
     border: none;
-    /* background-color: var(--medium-grey); */
     background-color: var(--orange);
-    /* background-color: var(--light-grey); */
     height: 40px;
     border-radius: 0;
     cursor: pointer;
@@ -165,10 +161,6 @@
     top: 5px;
     left: 5px;
   }
-
-  
-  
- 
 
   @keyframes fade-in {
     0% {
