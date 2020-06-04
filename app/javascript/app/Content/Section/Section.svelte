@@ -15,6 +15,7 @@
   let width
   let mousedown
   let padding = tweened(100, { easing: cubicOut, duration: 400 })
+  
   const playDontMissAlbum = () => {
     selectAlbum(dontMissAlbum)
   }
@@ -26,57 +27,54 @@
   }
 
   const setDontMissAlbum = (albums, user) => {
-    if (!user) { 
-      const loadedAlbums = albums.filter(album => !album.loading)
-      const freeAlbums = loadedAlbums.filter(album => album.free)
-      const lastFreeAlbum = freeAlbums[freeAlbums.length - 1]
-      if (lastFreeAlbum) { return lastFreeAlbum }
-    }
-    
+    if (!user) { return null }
     return albums[albums.length - 1]
   }
 
-  $: albums = rotating ? albums.slice(1) : albums
+  const assignIndices = (albums) => {
+    albums.forEach((album, index) => {
+      album.index = index
+    });
+  }
+
+  $: assignIndices(albums)
   $: padding.set(setPadding(width))
   $: dontMissAlbum = setDontMissAlbum(albums, $user)
   $: rotating = sectionNumber == 0
   $: selected = dontMissAlbum == selectedAlbum
 </script>
 
-
-{#if albums.length}
-  <div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
-    <div class='section-top'>
-      <div class='section-header'>
-        <h2>{headerText}</h2>
-        <p>{sectionDescription}</p>
-      </div>
-      {#if rotating && dontMissAlbum.title}
-        <div class='button-container'>
-          <button 
-            transition:fade 
-            class='play-last-button' 
-            class:selected
-            class:mousedown
-            on:click|stopPropagation={playDontMissAlbum}
-            on:mousedown|stopPropagation={() => { mousedown = true } }
-            on:mouseup|stopPropagation={() => { mousedown = false } }
-            on:mouseleave|stopPropagation={() => { mousedown = false } } >
-            <h5>
-              <b>DON'T MISS:</b>{dontMissAlbum.title}
-            </h5>
-          </button>
-        </div>
-      {/if}
+<div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
+  <div class='section-top'>
+    <div class='section-header'>
+      <h2>{headerText}</h2>
+      <p>{sectionDescription}</p>
     </div>
-    <Carousel 
-      albums={albums} 
-      selectAlbum={selectAlbum} 
-      selectedAlbum={selectedAlbum}
-      rotating={rotating}
-      dontMissIndex={dontMissAlbum.index} />
+    {#if rotating && dontMissAlbum}
+      <div class='button-container'>
+        <button 
+          transition:fade 
+          class='play-last-button' 
+          class:selected
+          class:mousedown
+          on:click|stopPropagation={playDontMissAlbum}
+          on:mousedown|stopPropagation={() => { mousedown = true } }
+          on:mouseup|stopPropagation={() => { mousedown = false } }
+          on:mouseleave|stopPropagation={() => { mousedown = false } } >
+          <h5>
+            <b>DON'T MISS:</b>{dontMissAlbum.title}
+          </h5>
+        </button>
+      </div>
+    {/if}
   </div>
-{/if} 
+  <Carousel 
+    albums={albums} 
+    selectAlbum={selectAlbum} 
+    selectedAlbum={selectedAlbum}
+    rotating={rotating}
+    dontMissIndex={dontMissAlbum && dontMissAlbum.index} />
+</div>
 
 <style>
   h2, p {
@@ -86,13 +84,10 @@
   b {
     margin-right: 10px;
     color: var(--medium-grey);
-    /* color: var(--light-grey); */
-    /* color: white; */
   }
 
   h5 {
     color: white;
-    /* color: var(--black); */
   }
 
   .section {
@@ -117,9 +112,7 @@
     position: relative;
     padding: 5px 15px;
     border: none;
-    /* background-color: var(--medium-grey); */
     background-color: var(--orange);
-    /* background-color: var(--light-grey); */
     height: 40px;
     border-radius: 0;
     cursor: pointer;
@@ -168,10 +161,6 @@
     top: 5px;
     left: 5px;
   }
-
-  
-  
- 
 
   @keyframes fade-in {
     0% {

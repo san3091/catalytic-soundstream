@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { user } from '../../../stores.js'
 
@@ -10,12 +11,25 @@
   export let dontMiss
 
   let mousedown
+  let thumbnail = album.thumbnail_url
 
-  $: disabled = album.free || $user ? false : true
+  const loadSoundcloudData = async () => {
+    await SC.oEmbed(album.soundcloud_url)
+      .then(SCAlbum => {
+        const { html, thumbnail_url} = SCAlbum
+        const free = album.index == 0
+        thumbnail = thumbnail_url
+        Object.assign(album, {html, free})
+      })
+  }
 
-  $: loaded = !album.loading
-  $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
+  $: enabled = $user || album.index == 0
+  $: extraTextVisibility = rotating ? 'visible' : 'hidden'
   $: padding = (tileWidth > 180) ? 12 : 8
+  
+  onMount(async () => {
+    await loadSoundcloudData()
+  })
 </script>
 
 <div 
@@ -27,8 +41,8 @@
     --visibility:{extraTextVisibility};
     --padding:{padding}
   ' >
-  {#if !album.loading && tileWidth}
-    {#if disabled}
+  {#if thumbnail && tileWidth}
+    {#if !enabled}
       <div class='album-art-screen'>
         <i class='material-icons'>lock_open</i>
       </div>
@@ -37,7 +51,7 @@
       transition:fade
       class='album-tile'
       class:selected
-      class:disabled
+      class:enabled
       class:mousedown
       style='--color:{album.color || "#666a86"};'
       on:click|stopPropagation={() => {selectAlbum(album)}}
@@ -45,16 +59,15 @@
       on:mouseup|stopPropagation={() => { mousedown = false } }
       on:mouseleave|stopPropagation={() => { mousedown = false } } >
       <div class='album-art'>
-        <img src={album.thumbnail_url} alt={`${album.title} album art`} />
+        <img src={thumbnail} alt={`${album.title} album art`} />
       </div>
       <div class='album-info'>
         <h5 class='truncate'>{album.title}</h5>
-        <h6 class='truncate'>{album.author_name}</h6>
+        <h6 class='truncate'>{album.artist}</h6>
       </div>
     </button>
   {/if}
 </div>
-
 
 <style>
   .truncate {
@@ -107,8 +120,6 @@
     flex-direction: column;
     cursor: pointer;
     background-color: transparent;
-    /* background-color: var(--light-grey); */
-    /* background-color: var(--color); */
     border: none;
   }
 
@@ -122,8 +133,6 @@
     position: absolute;
     background-color: var(--black);
     opacity: 0;
-    top: 2px;
-    left: 2px;
     height: 100%;
     width: 100%;
     z-index: -2;
@@ -150,8 +159,6 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 2px;
-    left: 2px;
     z-index: 1;
     width: var(--size);
     height: var(--size);
@@ -166,57 +173,60 @@
 
   .album-info * {
     text-align: left;
-    /* color: white; */
   }
   
   img {
     height: var(--size);
   }
 
-  .album-tile:hover .album-art {
-    top: -1px;
-    left: -1px;
+  .album-tile.enabled .album-art {
+    top: -2px;
+    left: -2px;
   }
 
-  .album-tile:hover .album-art::after {
-    top: 3px;
-    left: 3px;
-  }
-
-
-  .album-tile.mousedown .album-art{
-     top: 0px;
-     left: 0px;
-  }
-  
-  .album-tile.mousedown .album-art::after {
+  .album-tile.enabled .album-art::after {
     top: 2px;
     left: 2px;
   }
-  
-  .selected .album-art, .album-tile.selected:hover .album-art {
+
+  .album-tile.enabled:hover .album-art {
     top: -4px;
     left: -4px;
   }
 
-  .selected .album-art::after, .album-tile.selected:hover .album-art::after {
-    top: 6px;
-    left: 6px;
+  .album-tile.enabled:hover .album-art::after {
+    top: 4px;
+    left: 4px;
   }
 
-  .album-tile.disabled .album-art {
+ .album-tile.enabled.mousedown .album-art {
+    top: -2px;
+    left: -2px;
+  }
+
+ .album-tile.enabled.mousedown .album-art::after {
     top: 2px;
     left: 2px;
   }
 
-  .album-tile.disabled .album-art:after {
-    top: 0px;
-    left: 0px;
+  .enabled.selected .album-art {
+    top: -6px;
+    left: -6px;
   }
-
-  .album-tile.disabled:hover .album-art::after {
-    top: 0px;
-    left: 0px;
+  
+  .enabled.selected .album-art::after {
+    top: 6px;
+    left: 6px;
+  }
+ 
+  .enabled.selected:hover .album-art {
+    top: -6px;
+    left: -6px;
+  }
+  
+  .enabled.selected:hover .album-art::after {
+    top: 6px;
+    left: 6px;
   }
 
   @keyframes fade-in {
