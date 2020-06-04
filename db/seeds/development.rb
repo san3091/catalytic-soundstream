@@ -65,3 +65,5 @@ albums_data = []
 end
 albums = Album.create!(albums_data)
 puts 'Created albums'
+
+Rake::Task['albums:init_current'].invoke
