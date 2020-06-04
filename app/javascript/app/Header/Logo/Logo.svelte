@@ -1,7 +1,7 @@
 <script>
   import { fade } from 'svelte/transition'
-  // import CatalyticSoundLogo from '../../../assets/caalytic soundstream.png'
-  import CatalyticSoundLogo from '../../../assets/catalytic-sound-logo-(1)-WEB.png'
+  import CatalyticSoundImage from '../../../assets/catalytic-sound.png'
+  import StreamImage from '../../../assets/stream.png'
 
 </script>
  
@@ -11,12 +11,12 @@
   rel="noopener noreferrer" >
   <img 
     class='catalytic-sound' 
-    src={CatalyticSoundLogo} 
+    src={CatalyticSoundImage} 
     alt='Catalytic Sound' />
   <div class='divider'></div>
   <img 
     class='stream'
-    src={CatalyticSoundLogo} 
+    src={StreamImage} 
     alt='Stream' />
 </a>
 
@@ -26,7 +26,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    
   }
 
   img {
@@ -52,6 +51,7 @@
     position: relative;
     opacity: 0;
     z-index: -1;
+    margin-left: -48px;
     animation: slide .4s ease-out 1.6s forwards;
     animation-fill-mode: both;
   }
