@@ -46,10 +46,9 @@
         headerText='Rotating Selection'
         sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day.'
         sectionNumber={0}
-        loaded={categories[0].loaded}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
-        albums={categories[0].albums} />
+        albums={categories[2].albums} />
       <Section 
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
@@ -63,7 +62,7 @@
         sectionNumber={2}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
-        albums={categories[2].albums} />
+        albums={categories[0].albums} />
     {/if}
     <div class='footer' class:mobile-player-open={$playerIsOpen && $mobileLayout}></div>
   </div>
