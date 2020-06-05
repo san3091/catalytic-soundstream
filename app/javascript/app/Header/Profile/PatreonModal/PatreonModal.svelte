@@ -6,7 +6,7 @@
   import PatreonWordmarkBlack from '../../../../assets/Patreon_Wordmark_Black.png'
 
   const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
-	const redirect_uri = 'https://bbb8ac2d.ngrok.io'
+	const redirect_uri = 'https://27d8beebdd79.ngrok.io'
 	const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
 
 	const openModal = () => modalIsOpen.set(true)

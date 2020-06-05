@@ -12,7 +12,7 @@
       transition:fade
       >
       <h3>{album.title}</h3>
-      <h4>{album.author_name}</h4>
+      <h4>{album.artist}</h4>
       {#if album.description}
         <p>
           {album.description}
@@ -24,7 +24,7 @@
 
 <style>
   * {
-    color: var(--light-grey);
+    color: var(--medium-grey);
   }
   .info-container {
     width: 100%;
@@ -32,6 +32,7 @@
   }
 
   .info-content {
+    box-sizing: border-box;
     padding: 20px;
     border-left: 2px solid var(--orange);
   }

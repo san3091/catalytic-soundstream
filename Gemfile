@@ -5,7 +5,7 @@ ruby '2.6.3'
 
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 gem 'sass-rails', '>= 6'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
@@ -14,6 +14,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'activerecord-import'
 gem 'patreon'
 gem 'bcrypt', '~> 3.1'
+gem 'acts_as_list'
+gem 'whenever', require: false
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

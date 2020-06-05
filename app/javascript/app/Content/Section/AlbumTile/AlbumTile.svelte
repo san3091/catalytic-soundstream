@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { user } from '../../../stores.js'
 
@@ -7,23 +8,41 @@
   export let selected
   export let tileWidth
   export let rotating
+  export let dontMiss
 
-  $: disabled = album.free || $user ? false : true
+  let mousedown
+  let thumbnail = album.thumbnail_url
 
-  $: loaded = !album.loading
-  $: extraTextVisibility = rotating && loaded ? 'visible' : 'hidden'
+  const loadSoundcloudData = async () => {
+    await SC.oEmbed(album.soundcloud_url)
+      .then(SCAlbum => {
+        const { html, thumbnail_url} = SCAlbum
+        const free = album.index == 0
+        thumbnail = thumbnail_url
+        Object.assign(album, {html, free})
+      })
+  }
+
+  $: enabled = $user || album.index == 0
+  $: extraTextVisibility = rotating ? 'visible' : 'hidden'
   $: padding = (tileWidth > 180) ? 12 : 8
+  
+  onMount(async () => {
+    await loadSoundcloudData()
+  })
 </script>
 
 <div 
   class='tile-container' 
+  class:dont-miss={dontMiss}
+
   style='
     --size:{tileWidth - (padding * 2)}px; 
     --visibility:{extraTextVisibility};
     --padding:{padding}
   ' >
-  {#if !album.loading && tileWidth}
-    {#if disabled}
+  {#if thumbnail && tileWidth}
+    {#if !enabled}
       <div class='album-art-screen'>
         <i class='material-icons'>lock_open</i>
       </div>
@@ -32,24 +51,29 @@
       transition:fade
       class='album-tile'
       class:selected
-      class:disabled
+      class:enabled
+      class:mousedown
       style='--color:{album.color || "#666a86"};'
-      on:click|stopPropagation={() => {selectAlbum(album)}} >
-      <img src={album.thumbnail_url} alt={`${album.title} album art`} />
+      on:click|stopPropagation={() => {selectAlbum(album)}}
+      on:mousedown|stopPropagation={() => { mousedown = true } }
+      on:mouseup|stopPropagation={() => { mousedown = false } }
+      on:mouseleave|stopPropagation={() => { mousedown = false } } >
+      <div class='album-art'>
+        <img src={thumbnail} alt={`${album.title} album art`} />
+      </div>
       <div class='album-info'>
         <h5 class='truncate'>{album.title}</h5>
-        <h6 class='truncate'>{album.author_name}</h6>
+        <h6 class='truncate'>{album.artist}</h6>
       </div>
     </button>
   {/if}
 </div>
 
-
 <style>
   .truncate {
     position: relative;
     right: 10px;
-    width: calc(var(--tile-width) - 45px);
+    width: calc(var(--tile-width) - 35px);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -60,7 +84,6 @@
     width: var(--tile-width);
     position: relative;
     display: flex;
-    z-index: 1;
     padding: var(--padding);
     margin-bottom: 2px;
   }
@@ -70,21 +93,22 @@
     opacity: 0;
     content: 'NEW TODAY';
     position: absolute;
-    bottom: -30px;
+    color: var(--orange);
+    bottom: -20px;
     size: 20px;
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
-
   }
  
-  .tile-container:nth-child(30)::after {
+  .tile-container.dont-miss::after {
     visibility: var(--visibility);
     opacity: 0;
     content: "DON'T MISS";
     position: absolute;
-    bottom: -30px;
+    bottom: -20px;
     size: 20px;
+    color: var(--orange);
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
@@ -95,23 +119,30 @@
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    background-color: var(--color);
+    background-color: transparent;
     border: none;
-    border-radius: 15px 0 15px 0;
   }
 
-  .album-tile::after {
+  .album-art {
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .album-art::after {
     content: '';
     position: absolute;
     background-color: var(--black);
+    top: 0;
+    left: 0;
     opacity: 0;
-    top: 4px;
-    left: 4px;
     height: 100%;
     width: 100%;
     z-index: -2;
     animation: fade-in 1s 0.5s ease-in forwards;
-    border-radius: 15px 0 15px 0;
+  }
+
+  .selected .album-art::after {
+    background-color: var(--medium-grey);
   }
 
   .album-info {
@@ -121,9 +152,8 @@
     flex-grow: 1;
     width: var(--size);
     box-sizing: border-box;
+    margin-top: 8px;
     padding: 10px 0 10px 20px;
-    background-color: var(--transparent-black);
-    border-radius: 0 0 15px 0;
   }
 
   .album-art-screen {
@@ -131,9 +161,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 4px;
-    left: 4px;
-    z-index: 100;
+    z-index: 1;
     width: var(--size);
     height: var(--size);
     background-color: var(--translucent-grey);
@@ -151,42 +179,56 @@
   
   img {
     height: var(--size);
-    border-radius: 15px 0 0 0;
   }
 
-  .album-tile:hover{
+  .album-tile.enabled .album-art {
     top: -2px;
     left: -2px;
   }
 
-  .album-tile:hover::after {
-    top: 6px;
-    left: 6px;
+  .album-tile.enabled .album-art::after {
+    top: 2px;
+    left: 2px;
   }
 
-  .selected, .album-tile.selected:hover {
+  .album-tile.enabled:hover .album-art {
     top: -4px;
     left: -4px;
   }
 
-  .selected::after, .album-tile.selected:hover::after {
-    top: 8px;
-    left: 8px;
-  }
-
-  .album-tile.disabled {
+  .album-tile.enabled:hover .album-art::after {
     top: 4px;
     left: 4px;
   }
 
-  .album-tile.disabled:after {
-    top: 0px;
-    left: 0px;
+ .album-tile.enabled.mousedown .album-art {
+    top: -2px;
+    left: -2px;
   }
 
-  .album-tile.disabled:hover::after {
-    top: 0px;
-    left: 0px;
+ .album-tile.enabled.mousedown .album-art::after {
+    top: 2px;
+    left: 2px;
+  }
+
+  .enabled.selected .album-art {
+    top: -6px;
+    left: -6px;
+  }
+  
+  .enabled.selected .album-art::after {
+    top: 6px;
+    left: 6px;
+  }
+ 
+  .enabled.selected:hover .album-art {
+    top: -6px;
+    left: -6px;
+  }
+  
+  .enabled.selected:hover .album-art::after {
+    top: 6px;
+    left: 6px;
   }
 
   @keyframes fade-in {

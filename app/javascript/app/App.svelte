@@ -44,19 +44,21 @@
 		--transparent-white: hsl(0, 0%, 100%, 80%);
 		--transparent-black: hsl(0, 0%, 0%, 50%);
 		--transparent-orange: hsl(7, 93%, 65%, 40%);
-		--translucent-orange: hsl(7, 93%, 65%, 90%);
+		/* --translucent-orange: hsl(7, 93%, 65%, 90%); */
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 10%);
 		
-		background-color: var(--medium-grey);
+		background-color: var(--light-grey);
+		/* background-color: var(--medium-grey); */
 		padding: 0px;
 	}
 
 	:global(*) {
 		margin: 0;
 		padding: 0;
-		color: var(--light-grey);
+		color: var(--medium-grey);
+		/* color: var(--light-grey); */
 	}
 
 	:global(button) {
@@ -73,15 +75,20 @@
 	}
 
 	:global(h5) {
-		font-size: 14px;
-	}
-
-	:global(h6) {
 		font-size: 12px;
 	}
 
-	:global(h5, h6) {
-    color: var(--light-grey);
+	:global(h6) {
+		font-size: 10px;
+	}
+
+	:global(h5) {
+		color: var(--black)
+	} 
+	
+	:global(h6) {
+    color: var(--medium-grey);
+    /* color: white; */
 	}
 
 	:global(p) {
@@ -107,10 +114,10 @@
 		}
 
 		:global(h5) {
-			font-size: 12px;
+			font-size: 10px;
 		}
 		:global(h6) {
-			font-size: 10px;
+			font-size: 8px;
 		}
 	}
 	
