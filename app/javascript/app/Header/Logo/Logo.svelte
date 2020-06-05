@@ -52,7 +52,7 @@
     opacity: 0;
     z-index: -1;
     margin-left: -36px;
-˝    animation: slide .4s ease-out 1.6s forwards;
+    animation: slide .4s ease-out 1.6s forwards;
     animation-fill-mode: both;
   }
 
