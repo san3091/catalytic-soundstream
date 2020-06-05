@@ -51,8 +51,8 @@
     position: relative;
     opacity: 0;
     z-index: -1;
-    margin-left: -48px;
-    animation: slide .4s ease-out 1.6s forwards;
+    margin-left: -36px;
+˝    animation: slide .4s ease-out 1.6s forwards;
     animation-fill-mode: both;
   }
 
