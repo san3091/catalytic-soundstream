@@ -51,7 +51,7 @@ categories = Category.create!(categories)
 puts 'Created categories'
 
 albums_data = []
-120.times do |order|
+90.times do |order|
   albums_data << {
     title: Faker::Relationship.familial,
     soundcloud_url: soundcloud_urls.sample,
