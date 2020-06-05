@@ -18,7 +18,6 @@ namespace :albums do
       .includes(:albums)
       .find_by(name: "curated")
       .albums
-      .order(:order)
       .limit(30)
       .update(current: true)
 
@@ -27,14 +26,14 @@ namespace :albums do
 
   desc 'Rotate current albums for curated playlist. Run in cron.'
   task :daily_rotate => :environment do
-    curated = Category.includes(:albums).find_by(name: "Curated")
-    current_albums = curated.albums.where(current: true).order(:order)
-    oldest_album = current_albums.first
+    curated = Category.includes(:albums).find_by(name: "curated")
+    current = curated.albums.where(current: true)
+    oldest_album = current.first
     oldest_album.update(current: false)
-    puts "album #{oldest_album.name} removed from current albums"
+    puts "album #{oldest_album.title} by #{oldest_album.artist} removed from current albums"
 
-    new_album = curated.albums.where(order: current_albums.last.order + 1)
+    new_album = current.last.lower_item
     new_album.update(current: true)
-    puts "album #{new_album.name} added to current albums"
+    puts "album #{new_album.title} by #{new_album.artist} added to current albums"
   end
 end

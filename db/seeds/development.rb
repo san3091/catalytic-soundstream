@@ -53,9 +53,8 @@ puts 'Created categories'
 albums_data = []
 90.times do |order|
   albums_data << {
-    title: Faker::Relationship.familial,
+    title: Faker::Ancient.god,
     soundcloud_url: soundcloud_urls.sample,
-    order: order,
     artist: Faker::Ancient.hero,
     description: Faker::Lorem.paragraph,
     bandcamp_url: Faker::Internet.url(host: 'bandcamp.com'),
@@ -65,3 +64,5 @@ albums_data = []
 end
 albums = Album.create!(albums_data)
 puts 'Created albums'
+
+Rake::Task['albums:init_current'].invoke

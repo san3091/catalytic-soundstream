@@ -1,4 +1,4 @@
 class Album < ApplicationRecord
   belongs_to :category
-  validates :order, uniqueness: { scope: :category }
+  acts_as_list scope: :category
 end
