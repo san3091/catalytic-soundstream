@@ -18,7 +18,6 @@ namespace :albums do
       .includes(:albums)
       .find_by(name: "curated")
       .albums
-      .order(:order)
       .limit(30)
       .update(current: true)
 
