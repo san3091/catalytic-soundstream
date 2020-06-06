@@ -18,7 +18,12 @@
           {album.description}
         </p>
       {/if}
-      <a href={album.bandcamp_url} class='bandcamp-link'>View on Bandcamp</a>
+      <a 
+        href={album.bandcamp_url} 
+        class='bandcamp-link'
+        target="_blank" rel="noopener noreferrer">
+        Buy on Bandcamp
+      </a>
     </div>
   {/if}
 </div>
@@ -54,5 +59,10 @@
     background-color: var(--orange);
     font-size: 18px;
     text-decoration: none;
+    transition: background-color .1s ease-in;
+  }
+
+  .bandcamp-link:hover {
+    background-color: var(--red-orange);
   }
 </style>

@@ -77,7 +77,6 @@
     overflow: hidden;
     border-left: 1px solid var(--orange);
     background-color: var(--light-grey);
-    /* background-color: var(--medium-grey); */
     z-index: 1;
   }
 
