@@ -18,6 +18,12 @@
           {album.description}
         </p>
       {/if}
+      <a 
+        href={album.bandcamp_url} 
+        class='bandcamp-link'
+        target="_blank" rel="noopener noreferrer">
+        Buy on Bandcamp
+      </a>
     </div>
   {/if}
 </div>
@@ -43,5 +49,20 @@
 
   .mobile {
     margin-bottom: 25px;
+  }
+
+  .bandcamp-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+    background-color: var(--orange);
+    font-size: 18px;
+    text-decoration: none;
+    transition: background-color .1s ease-in;
+  }
+
+  .bandcamp-link:hover {
+    background-color: var(--red-orange);
   }
 </style>

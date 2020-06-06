@@ -48,7 +48,7 @@
   <div class='section-top'>
     <div class='section-header'>
       <h2>{headerText}</h2>
-      <p>{sectionDescription}</p>
+      <p class='description'>{sectionDescription}</p>
     </div>
     {#if rotating && dontMissAlbum}
       <div class='button-container'>
@@ -101,6 +101,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+  }
+
+  .description {
+    margin-bottom: 30px;
   }
 
   .button-container {
