@@ -18,6 +18,7 @@
           {album.description}
         </p>
       {/if}
+      <a href={album.bandcamp_url} class='bandcamp-link'>View on Bandcamp</a>
     </div>
   {/if}
 </div>
@@ -43,5 +44,15 @@
 
   .mobile {
     margin-bottom: 25px;
+  }
+
+  .bandcamp-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+    background-color: var(--orange);
+    font-size: 18px;
+    text-decoration: none;
   }
 </style>
