@@ -14,6 +14,7 @@ class Category < ApplicationRecord
         a.bandcamp_url    = row['bandcamp link']
         a.curator_id      = Curator.find_or_create_by(name: row['curator']).id
         a.category        = self
+        a.current         = self.name == 'curated' ? false : true
       end
 
       new_album.save!
