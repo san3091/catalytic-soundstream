@@ -11,15 +11,15 @@
       class='info-content' 
       transition:fade
       >
-      <h3>{album.title}</h3>
-      <h4>{album.artist}</h4>
+      <h2 class='title'>{album.title}</h2>
+      <h4 class='artist'>{album.artist}</h4>
       {#if album.description}
         <p>
           {album.description}
         </p>
       {/if}
       {#if album.curator}
-        <h4>Curated by: {album.curator}</h4>
+        <h5 class='curator'>Curated by: {album.curator}</h5>
       {/if}
       {#if album.bandcamp_url}
         <a 
@@ -50,6 +50,15 @@
 
   p { 
     margin: 20px 0 0;
+  }
+  
+  .title {
+    color: black;
+    margin-top: 0;
+  }
+  .curator {
+    margin-top: 20px;
+    color: black;
   }
 
   .mobile {
