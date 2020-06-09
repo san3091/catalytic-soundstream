@@ -11,9 +11,10 @@ class Category < ApplicationRecord
         a.artist          = row['artist']
         a.description     = row['description']
         a.soundcloud_url  = row['soundcloud private share link']
-        a.bandcamp_url    = row['bandcamp_link']
+        a.bandcamp_url    = row['bandcamp link']
         a.curator_id      = Curator.find_or_create_by(name: row['curator']).id
         a.category        = self
+        a.current         = self.name == 'curated' ? false : true
       end
 
       new_album.save!
