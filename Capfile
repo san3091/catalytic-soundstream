@@ -5,8 +5,14 @@ require "capistrano/setup"
 require "capistrano/deploy"
 
 require 'capistrano/rails'
-require 'capistrano/passenger'
+# Passenger 6.0.5 did not like playing with me so I'm putting it in timeout
+# require 'capistrano/passenger'
+
 require 'capistrano/rbenv'
+require 'capistrano/puma'
+install_plugin Capistrano::Puma  # Default puma tasks
+install_plugin Capistrano::Puma::Nginx
+
 require 'whenever/capistrano'
 
 require "capistrano/scm/git"

@@ -1,5 +1,5 @@
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
 
-server '167.71.87.188', user: 'deploy', roles: %w{app db web}
+server '138.197.5.16', user: 'deploy', roles: %w{app db web}
 
 set :linked_files, %w{config/credentials/production.key}
