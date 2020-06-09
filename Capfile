@@ -10,8 +10,6 @@ require 'capistrano/rails'
 
 require 'capistrano/rbenv'
 require 'capistrano/puma'
-install_plugin Capistrano::Puma  # Default puma tasks
-install_plugin Capistrano::Puma::Nginx
 
 require 'whenever/capistrano'
 
