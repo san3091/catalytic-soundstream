@@ -24,6 +24,8 @@ default: &default
 development:
   <<: *default
   database: catalytic_streaming_dev
+  username: deploy
+  password: <%= ENV['DATABASE_URL'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -82,4 +84,4 @@ production:
   <<: *default
   database: catalytic_streaming_prod
   username: catalytic
-  password: <%= ENV['CATALYTIC_STREAMING_BACKEND_DATABASE_PASSWORD'] %>
+  password: <%= ENV['CATALYTIC_STREAMING_DATABASE_PASSWORD'] %>
