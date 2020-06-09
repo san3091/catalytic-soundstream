@@ -1,4 +1,4 @@
-class AdminSessionsController < ApplicationController
+class AdminSessionsController < AdminController
   layout "admin"
   skip_before_action :authorized, only: [:new, :create]
 

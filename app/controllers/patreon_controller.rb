@@ -1,6 +1,5 @@
 class PatreonController < ApplicationController
   skip_before_action :verify_authenticity_token
-  skip_before_action :authorized
 
   # POST /patreon/authenticate
   def authenticate
