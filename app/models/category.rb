@@ -9,6 +9,7 @@ class Category < ApplicationRecord
       albums << Album.new do |a|
         a.title           = row['title']
         a.artist          = row['artist']
+        a.description     = row['description']
         a.soundcloud_url  = row['soundcloud_url']
         a.bandcamp_url    = row['bandcamp_url']
         a.curator_id      = Curator.find_or_create_by(name: row['curator']).id

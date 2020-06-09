@@ -48,14 +48,14 @@
         sectionNumber={0}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
-        albums={categories[2].albums} />
+        albums={categories[1].albums} />
       <Section 
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
         sectionNumber={1}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
-        albums={categories[1].albums} />
+        albums={categories[2].albums} />
       <Section 
         headerText="History is What's Happening"
         sectionDescription='Discover classics from the Catalytic Sound catalog.'

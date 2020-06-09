@@ -18,12 +18,17 @@
           {album.description}
         </p>
       {/if}
-      <a 
-        href={album.bandcamp_url} 
-        class='bandcamp-link'
-        target="_blank" rel="noopener noreferrer">
-        Buy on Bandcamp
-      </a>
+      {#if album.curator}
+        <h4>Curated by: {album.curator}</h4>
+      {/if}
+      {#if album.bandcamp_url}
+        <a 
+          href={album.bandcamp_url} 
+          class='bandcamp-link'
+          target="_blank" rel="noopener noreferrer">
+          Buy on Bandcamp
+        </a>
+      {/if}
     </div>
   {/if}
 </div>
