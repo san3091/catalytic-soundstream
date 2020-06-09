@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.includes(:albums)
+    @categories = Category.includes(albums: :curator)
   end
 
 end
