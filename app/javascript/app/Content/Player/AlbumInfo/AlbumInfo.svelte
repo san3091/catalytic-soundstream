@@ -26,7 +26,7 @@
           href={album.bandcamp_url} 
           class='bandcamp-link'
           target="_blank" rel="noopener noreferrer">
-          Buy on Bandcamp
+          View on Bandcamp
         </a>
       {/if}
     </div>
