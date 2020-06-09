@@ -1,4 +1,4 @@
-class AdminDashboardsController < ApplicationController
+class AdminDashboardsController < AdminController
   layout "admin"
 
   def index
