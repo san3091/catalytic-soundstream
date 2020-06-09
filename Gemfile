@@ -38,7 +38,8 @@ group :development do
   gem "binding_of_caller"
   gem 'capistrano', '~> 3.11'
   gem 'capistrano-rails', '~> 1.4'
-  gem 'capistrano-passenger', '~> 0.2.0'
+  # gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 end
 
