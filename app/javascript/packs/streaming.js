@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = new App({
     target: document.body,
     props: {
-      name: 'Svelte'
+      patreonRedirect: process.env.PATREON_REDIRECT,
+      patreonClientId: process.env.PATREON_CLIENT_ID
     }
   });
 
