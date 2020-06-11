@@ -1,1 +1,6 @@
-server '159.89.54.144', user: 'deploy', roles: %w{app db web}
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
+
+server '138.197.5.16', user: 'deploy', roles: %w{app db web}
+
+set :linked_files, %w{config/credentials/production.key}
+set :conditionally_migrate, true

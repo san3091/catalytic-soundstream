@@ -5,18 +5,21 @@ class Category < ApplicationRecord
 
   def import_albums(file, insert_mode)
     albums = []
-    CSV.foreach(file, headers: %w(artist title description curator bandcamp_url soundcloud_url)) do |row|
-      albums << Album.new do |a|
+    CSV.foreach(file, headers: :first_row) do |row|
+      new_album = Album.new do |a|
         a.title           = row['title']
         a.artist          = row['artist']
-        a.soundcloud_url  = row['soundcloud_url']
-        a.bandcamp_url    = row['bandcamp_url']
+        a.description     = row['description']
+        a.soundcloud_url  = row['soundcloud private share link']
+        a.bandcamp_url    = row['bandcamp link']
         a.curator_id      = Curator.find_or_create_by(name: row['curator']).id
         a.category        = self
+        a.current         = self.name == 'curated' ? false : true
       end
+
+      new_album.save!
     end
 
-    Album.import!(albums, recursive: true)
   end
 
 end

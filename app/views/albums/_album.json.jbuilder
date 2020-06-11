@@ -1,0 +1,9 @@
+json.id album.id
+json.title album.title
+json.soundcloud_url album.soundcloud_url
+json.artist album.artist
+json.current album.current
+json.artist album.artist
+json.description album.description
+json.bandcamp_url album.bandcamp_url
+json.curator album.curator.name
