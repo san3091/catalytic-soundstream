@@ -33,3 +33,5 @@ yarn-debug.log*
 /config/credentials/production.key
 .DS_Store
 .env
+
+/config/credentials/staging.key
