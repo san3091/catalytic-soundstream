@@ -35,7 +35,7 @@
 
 <style>
   * {
-    color: var(--medium-grey);
+    color: var(--dark-grey);
   }
   .info-container {
     width: 100%;

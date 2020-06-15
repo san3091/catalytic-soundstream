@@ -43,28 +43,26 @@
 <style>
 	:global(body) {
 		--black: #000;
-		--medium-grey: #3e3e3e;
+		--dark-grey: #3e3e3e;
+		--medium-grey: #8D8E8F;
 		--light-grey: #dbdedf;
 		--orange: #f96854;
 		--red-orange: #D3372B;
 		--transparent-white: hsl(0, 0%, 100%, 80%);
 		--transparent-black: hsl(0, 0%, 0%, 50%);
 		--transparent-orange: hsl(7, 93%, 65%, 40%);
-		/* --translucent-orange: hsl(7, 93%, 65%, 90%); */
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 10%);
 
 		background-color: var(--light-grey);
-		/* background-color: var(--medium-grey); */
 		padding: 0px;
 	}
 
 	:global(*) {
 		margin: 0;
 		padding: 0;
-		color: var(--medium-grey);
-		/* color: var(--light-grey); */
+		color: var(--dark-grey);
 	}
 
 	:global(button) {
@@ -93,15 +91,12 @@
 	}
 
 	:global(h6) {
-    color: var(--medium-grey);
-    /* color: white; */
+    color: var(--dark-grey);
 	}
 
 	:global(p) {
 		margin-bottom: 20px;
 	}
-
-
 
 	@media screen and (max-width: 1300px) {
 		:global(p) {

@@ -19,7 +19,7 @@
     align-items: center;
     min-height: 40px;
     width: 250px;
-    background-color: var(--medium-grey);
+    background-color: var(--dark-grey);
   }
 
   i {

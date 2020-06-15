@@ -87,7 +87,7 @@
 		justify-content: center;
     padding: 10px;
 		border-radius: 0;
-		border: 1px solid var(--medium-grey);
+		border: 1px solid var(--dark-grey);
 	}
 
 	.connect-with-patreon-button {

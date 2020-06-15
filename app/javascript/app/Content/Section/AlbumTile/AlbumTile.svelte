@@ -75,7 +75,7 @@
     margin-bottom: 4px;
     color: black;
   }
-  
+
   .truncate {
     position: relative;
     right: 10px;
@@ -148,7 +148,7 @@
   }
 
   .selected .album-art::after {
-    background-color: var(--medium-grey);
+    background-color: var(--dark-grey);
   }
 
   .album-info {
