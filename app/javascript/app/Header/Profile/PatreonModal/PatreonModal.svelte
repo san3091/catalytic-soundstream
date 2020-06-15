@@ -40,7 +40,7 @@
 							alt='become a patron' />
 					</a>
 				{:else}
-					<h3>Sign in or become a patron to access more free jazz.</h3>
+					<h3>Sign in or become a patron to access more music.</h3>
 					<a
 						class='sign-in-button'
 						on:click|stopPropagation
