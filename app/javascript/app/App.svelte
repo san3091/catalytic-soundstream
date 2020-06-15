@@ -42,7 +42,7 @@
 
 <style>
 	:global(body) {
-		--black: #222;
+		--black: #000;
 		--medium-grey: #3e3e3e;
 		--light-grey: #dbdedf;
 		--orange: #f96854;

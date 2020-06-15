@@ -73,9 +73,6 @@
 {/if}
 
   <style>
-	* {
-		color: var(--medium-grey);
-	}
 
 	button {
 		box-sizing: border-box;

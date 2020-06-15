@@ -45,7 +45,6 @@
   .info-content {
     box-sizing: border-box;
     padding: 20px;
-    border-left: 2px solid var(--orange);
   }
 
   p { 
@@ -53,7 +52,7 @@
   }
   
   .title {
-    color: black;
+    color: var(--black);
     margin-top: 0;
   }
   .curator {

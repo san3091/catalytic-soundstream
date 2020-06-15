@@ -152,7 +152,6 @@
     flex-grow: 1;
     width: var(--size);
     box-sizing: border-box;
-    margin-top: 8px;
     padding: 10px 0 10px 20px;
   }
 
