@@ -15,7 +15,7 @@
   }
 
   const selectFirstAlbum = () => {
-    const firstAlbum = categories[0].albums[0]
+    const firstAlbum = categories[1].albums[0]
     SC.oEmbed(firstAlbum.soundcloud_url)
     .then(SCAlbum => {
       const { html, thumbnail_url} = SCAlbum
@@ -43,8 +43,8 @@
   <div class='music-selection' class:mobile={$mobileLayout}> 
     {#if categories}
       <Section
-        headerText='Rotating Selection'
-        sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day.'
+        headerText='Catalytic Radio'
+        sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day'
         sectionNumber={0}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
