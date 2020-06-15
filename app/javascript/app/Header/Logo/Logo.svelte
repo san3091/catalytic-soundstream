@@ -54,7 +54,7 @@
     margin-left: -36px;
     animation: slide .4s ease-out 1.6s forwards;
     animation-fill-mode: both;
-    margin-top: 1px; 
+    margin-top: 0.5px; 
   }
 
   @keyframes slide {

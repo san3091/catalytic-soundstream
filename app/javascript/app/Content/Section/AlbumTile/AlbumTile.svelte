@@ -62,7 +62,7 @@
         <img src={thumbnail} alt={`${album.title} album art`} />
       </div>
       <div class='album-info'>
-        <h5 class='truncate'>{album.title}</h5>
+        <h4 class='truncate'>{album.title}</h4>
         <h6 class='truncate'>{album.artist}</h6>
       </div>
     </button>
@@ -70,6 +70,12 @@
 </div>
 
 <style>
+
+  h4 {
+    margin-bottom: 4px;
+    color: black;
+  }
+  
   .truncate {
     position: relative;
     right: 10px;
