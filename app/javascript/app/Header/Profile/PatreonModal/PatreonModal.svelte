@@ -135,7 +135,7 @@
 	a {
 		box-sizing: border-box;
 		text-decoration: none;
-		margin: 5px;
+		margin: 4px;
 	}
 
 	a:hover {
