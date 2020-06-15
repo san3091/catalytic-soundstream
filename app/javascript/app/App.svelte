@@ -75,7 +75,8 @@
 	}
 
 	:global(h4) {
-		font-size: 15px;
+		font-size: 14px;
+		font-weight: 500;
 	}
 
 	:global(h5) {
@@ -111,7 +112,7 @@
 		}
 
 		:global(h4) {
-			font-size: 14px;
+			font-size: 13px;
 		}
 
 		:global(h5) {
