@@ -16,7 +16,7 @@
 <button
 	class='connect-with-patreon-button'
 	on:click|stopPropagation={openModal}>
-	<h4>Connect with </h4>
+	<h5>Connect with </h5>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
 
@@ -45,11 +45,15 @@
 						class='sign-in-button'
 						on:click|stopPropagation
 						href={patreonUrl}>
-						<h4>Sign in with </h4>
-						<img
-							class='patreon-wordmark'
-							src={PatreonWordmarkBlack}
-							alt='sign in with patreon'/>
+						<button
+							class='connect-with-patreon-button'
+							on:click|stopPropagation={openModal}>
+							<h5>Sign in with </h5>
+							<img
+								class='patreon-wordmark'
+								src={PatreonWordmarkBlack}
+								alt='sign in with patreon'/>
+						</button>
 					</a>
 					<a
 						class='become-patron-button'
@@ -90,14 +94,16 @@
 	}
 
 	.connect-with-patreon-button {
+		padding: 8px;
 		transition: background-color 0.3s ease;
 	}
 
 	.connect-with-patreon-button:hover {
 		background-color: var(--white)
 	}
+
 	.patreon-wordmark {
-		height: 40px;
+		height: 32px;
 		margin-left: 10px;
 	}
 
@@ -128,7 +134,7 @@
 
 	a {
 		box-sizing: border-box;
-		border: 1px solid var(--medium-grey);
+		text-decoration: none;
 		margin: 5px;
 	}
 
@@ -137,22 +143,12 @@
 	}
 
 	.sign-in-button {
-		width: 240px;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		padding: 10px;
-		transition: background-color 0.3s ease;
-	}
-
-	.sign-in-button:hover {
-		background-color: var(--white)
+		width: 200px;
 	}
 
 	.become-patron-button {
-		width: 240px;
-		height: 62px;
+		width: 200px;
+		height: 50px;
 		border: none;
 	}
 
@@ -172,11 +168,8 @@
 		border: none;
 		background-color: transparent;
 	}
+
 	.material-icons {
     font-size: 28px;
   }
-
-	h4 {
-		color: var(--medium-grey);
-	}
 </style>
