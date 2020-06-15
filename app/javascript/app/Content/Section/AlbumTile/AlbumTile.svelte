@@ -25,7 +25,7 @@
 
   $: enabled = $user || album.index == 0
   $: extraTextVisibility = rotating ? 'visible' : 'hidden'
-  $: padding = (tileWidth > 180) ? 12 : 8
+  $: padding = (tileWidth > 180) ? 8 : 4
   
   onMount(async () => {
     await loadSoundcloudData()

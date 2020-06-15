@@ -22,8 +22,8 @@
 
   const setPadding = (width) => {
     if (width < 1000) { return 10 }
-    else if (width < 1100) { return 50 }
-    else { return 100 }
+    else if (width < 1100) { return 20 }
+    else { return 50 }
   }
 
   const setDontMissAlbum = (albums, user) => {
