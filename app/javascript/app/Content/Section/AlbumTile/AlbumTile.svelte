@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { user } from '../../../stores.js'
+  import LoadingTile from './LoadingTile/LoadingTile.svelte'
 
   export let album
   export let selectAlbum
@@ -25,7 +26,7 @@
 
   $: enabled = $user || album.index == 0
   $: extraTextVisibility = rotating ? 'visible' : 'hidden'
-  $: padding = (tileWidth > 180) ? 8 : 4
+  $: tilePadding = (tileWidth > 180) ? 8 : 4
   
   onMount(async () => {
     await loadSoundcloudData()
@@ -35,11 +36,10 @@
 <div 
   class='tile-container' 
   class:dont-miss={dontMiss}
-
   style='
-    --size:{tileWidth - (padding * 2)}px; 
-    --visibility:{extraTextVisibility};
-    --padding:{padding}
+    --size:{tileWidth - (tilePadding * 2)}px; 
+    --visibility:{extraTextVisibility}px;
+    --tile-padding:{tilePadding}px;
   ' >
   {#if thumbnail && tileWidth}
     {#if !enabled}
@@ -66,6 +66,8 @@
         <h6 class='truncate'>{album.artist}</h6>
       </div>
     </button>
+  {:else if tileWidth}
+    <LoadingTile tileWidth={tileWidth} tilePadding={tilePadding} />
   {/if}
 </div>
 
@@ -90,7 +92,7 @@
     width: var(--tile-width);
     position: relative;
     display: flex;
-    padding: var(--padding);
+    padding: var(--tilePadding);
     margin-bottom: 2px;
   }
 
