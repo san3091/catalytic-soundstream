@@ -36,6 +36,10 @@
 <div 
   class='tile-container' 
   class:dont-miss={dontMiss}
+  on:click|stopPropagation={() => {selectAlbum(album)}}
+  on:mousedown|stopPropagation={() => { mousedown = true } }
+  on:mouseup|stopPropagation={() => { mousedown = false } }
+  on:mouseleave|stopPropagation={() => { mousedown = false } } 
   style='
     --size:{tileWidth - (tilePadding * 2)}px; 
     --visibility:{extraTextVisibility}px;
@@ -53,13 +57,11 @@
       class:selected
       class:enabled
       class:mousedown
-      style='--color:{album.color || "#666a86"};'
-      on:click|stopPropagation={() => {selectAlbum(album)}}
-      on:mousedown|stopPropagation={() => { mousedown = true } }
-      on:mouseup|stopPropagation={() => { mousedown = false } }
-      on:mouseleave|stopPropagation={() => { mousedown = false } } >
+      style='--color:{album.color || "#666a86"};'>
       <div class='album-art'>
-        <img src={thumbnail} alt={`${album.title} album art`} />
+        <div class='thumbnail'>
+          <img src={thumbnail} alt={`${album.title} album art`} />
+        </div>
       </div>
       <div class='album-info'>
         <h4 class='truncate'>{album.title}</h4>
@@ -139,7 +141,7 @@
   .album-art::after {
     content: '';
     position: absolute;
-    background-color: var(--black);
+    background-color: var(--medium-grey);
     top: 0;
     left: 0;
     opacity: 0;
@@ -149,8 +151,20 @@
     animation: fade-in 1s 0.5s ease-in forwards;
   }
 
-  .selected .album-art::after {
+  .enabled .album-art {
+    border: none;
+  }
+
+  .enabled .album-art::after {
+    background-color: var(--black);
+  }
+
+  .selected.enabled .album-art::after {
     background-color: var(--dark-grey);
+  }
+  
+  .thumbnail { 
+    overflow: hidden
   }
 
   .album-info {
@@ -171,13 +185,18 @@
     z-index: 1;
     width: var(--size);
     height: var(--size);
-    background-color: var(--translucent-grey);
-    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background-color: var(--transparent-grey);
   }
 
   .material-icons {
     font-size: 32px;
     color: var(--light-grey);
+  }
+
+  .tile-container:hover .album-art-screen {
+    opacity: 1;
   }
 
   .album-info * {
@@ -186,6 +205,11 @@
   
   img {
     height: var(--size);
+    filter: blur(2px) brightness(120%) grayscale(30%) contrast(70%);
+  }
+
+  .enabled img {
+    filter: none;
   }
 
   .album-tile.enabled .album-art {

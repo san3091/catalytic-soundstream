@@ -53,7 +53,7 @@
 		--transparent-orange: hsl(7, 93%, 65%, 40%);
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
-		--transparent-grey: hsl(0, 0%, 0%, 10%);
+		--transparent-grey: hsl(0, 0%, 0%, 30%);
 
 		background-color: var(--light-grey);
 		padding: 0px;
