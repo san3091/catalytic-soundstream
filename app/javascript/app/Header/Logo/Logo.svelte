@@ -2,7 +2,7 @@
   import { fade } from 'svelte/transition'
   import CatalyticSoundImage from '../../../assets/catalytic-sound.png'
   import StreamImage from '../../../assets/stream.png'
-  import { padding } from '../../stores.js'
+  import { padding, logoHover } from '../../stores.js'
 
 </script>
  
@@ -10,7 +10,9 @@
   href='https://catalyticsound.com/' 
   target="_blank" 
   rel="noopener noreferrer" 
-  style='--padding:{$padding}px' >
+  style='--padding:{$padding}px' 
+  on:mouseenter={() => logoHover.set(true)}
+  on:mouseleave={() => logoHover.set(false)} >
   <div class='left-logo'>
     <img 
       class='catalytic-sound' 
