@@ -14,7 +14,7 @@ How to set this up:
 
 We use capistrano for deployment, so it's v easy.
 
-`cap production deploy BRANCH=<staging/master>`
+`cap production deploy`
 
 We do ont have a separate cap stage for staging, we use the prod settings for now.
 
