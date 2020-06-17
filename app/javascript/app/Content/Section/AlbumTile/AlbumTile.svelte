@@ -2,6 +2,7 @@
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
   import { user } from '../../../stores.js'
+  import LoadingTile from './LoadingTile/LoadingTile.svelte'
 
   export let album
   export let selectAlbum
@@ -25,7 +26,7 @@
 
   $: enabled = $user || album.index == 0
   $: extraTextVisibility = rotating ? 'visible' : 'hidden'
-  $: padding = (tileWidth > 180) ? 12 : 8
+  $: tilePadding = (tileWidth > 180) ? 8 : 4
   
   onMount(async () => {
     await loadSoundcloudData()
@@ -35,11 +36,14 @@
 <div 
   class='tile-container' 
   class:dont-miss={dontMiss}
-
+  on:click|stopPropagation={() => {selectAlbum(album)}}
+  on:mousedown|stopPropagation={() => { mousedown = true } }
+  on:mouseup|stopPropagation={() => { mousedown = false } }
+  on:mouseleave|stopPropagation={() => { mousedown = false } } 
   style='
-    --size:{tileWidth - (padding * 2)}px; 
-    --visibility:{extraTextVisibility};
-    --padding:{padding}
+    --size:{tileWidth - (tilePadding * 2)}px; 
+    --visibility:{extraTextVisibility}px;
+    --tile-padding:{tilePadding}px;
   ' >
   {#if thumbnail && tileWidth}
     {#if !enabled}
@@ -53,23 +57,29 @@
       class:selected
       class:enabled
       class:mousedown
-      style='--color:{album.color || "#666a86"};'
-      on:click|stopPropagation={() => {selectAlbum(album)}}
-      on:mousedown|stopPropagation={() => { mousedown = true } }
-      on:mouseup|stopPropagation={() => { mousedown = false } }
-      on:mouseleave|stopPropagation={() => { mousedown = false } } >
+      style='--color:{album.color || "#666a86"};'>
       <div class='album-art'>
-        <img src={thumbnail} alt={`${album.title} album art`} />
+        <div class='thumbnail'>
+          <img src={thumbnail} alt={`${album.title} album art`} />
+        </div>
       </div>
       <div class='album-info'>
-        <h5 class='truncate'>{album.title}</h5>
+        <h4 class='truncate'>{album.title}</h4>
         <h6 class='truncate'>{album.artist}</h6>
       </div>
     </button>
+  {:else if tileWidth}
+    <LoadingTile tileWidth={tileWidth} tilePadding={tilePadding} />
   {/if}
 </div>
 
 <style>
+
+  h4 {
+    margin-bottom: 4px;
+    color: black;
+  }
+
   .truncate {
     position: relative;
     right: 10px;
@@ -84,7 +94,7 @@
     width: var(--tile-width);
     position: relative;
     display: flex;
-    padding: var(--padding);
+    padding: var(--tilePadding);
     margin-bottom: 2px;
   }
 
@@ -131,7 +141,7 @@
   .album-art::after {
     content: '';
     position: absolute;
-    background-color: var(--black);
+    background-color: var(--medium-grey);
     top: 0;
     left: 0;
     opacity: 0;
@@ -141,8 +151,20 @@
     animation: fade-in 1s 0.5s ease-in forwards;
   }
 
-  .selected .album-art::after {
-    background-color: var(--medium-grey);
+  .enabled .album-art {
+    border: none;
+  }
+
+  .enabled .album-art::after {
+    background-color: var(--black);
+  }
+
+  .selected.enabled .album-art::after {
+    background-color: var(--dark-grey);
+  }
+  
+  .thumbnail { 
+    overflow: hidden
   }
 
   .album-info {
@@ -152,7 +174,6 @@
     flex-grow: 1;
     width: var(--size);
     box-sizing: border-box;
-    margin-top: 8px;
     padding: 10px 0 10px 20px;
   }
 
@@ -164,13 +185,18 @@
     z-index: 1;
     width: var(--size);
     height: var(--size);
-    background-color: var(--translucent-grey);
-    pointer-events: none;
+    opacity: 0;
+    transition: opacity .4s ease;
+    background-color: var(--transparent-grey);
   }
 
   .material-icons {
     font-size: 32px;
     color: var(--light-grey);
+  }
+
+  .tile-container:hover .album-art-screen {
+    opacity: 1;
   }
 
   .album-info * {
@@ -179,6 +205,11 @@
   
   img {
     height: var(--size);
+    filter: blur(2px) brightness(120%) grayscale(30%) contrast(70%);
+  }
+
+  .enabled img {
+    filter: none;
   }
 
   .album-tile.enabled .album-art {

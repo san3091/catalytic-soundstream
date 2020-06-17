@@ -17,7 +17,7 @@
 <style>
 	.container {
 		position: relative;
-		min-width: 250px;
+		min-width: 200px;
 		margin: 10px;
 	}
 </style>

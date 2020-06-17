@@ -1,9 +1,8 @@
 <script>
   import { fade } from 'svelte/transition'
-  import { tweened } from 'svelte/motion'
-  import { cubicOut } from 'svelte/easing'
+
   import Carousel from './Carousel/Carousel.svelte'
-  import { user } from '../../stores.js'
+  import { user, padding } from '../../stores.js'
 
   export let headerText
   export let sectionDescription
@@ -14,7 +13,6 @@
 
   let width
   let mousedown
-  let padding = tweened(100, { easing: cubicOut, duration: 400 })
   
   const playDontMissAlbum = () => {
     selectAlbum(dontMissAlbum)
@@ -22,8 +20,8 @@
 
   const setPadding = (width) => {
     if (width < 1000) { return 10 }
-    else if (width < 1100) { return 50 }
-    else { return 100 }
+    else if (width < 1100) { return 20 }
+    else { return 50 }
   }
 
   const setDontMissAlbum = (albums, user) => {
@@ -83,7 +81,7 @@
 
   b {
     margin-right: 10px;
-    color: var(--medium-grey);
+    color: var(--dark-grey);
   }
 
   h5 {

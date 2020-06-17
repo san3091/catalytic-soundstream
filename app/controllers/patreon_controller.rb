@@ -5,7 +5,7 @@ class PatreonController < ApplicationController
   def authenticate
     client_id = Rails.application.credentials.patreon[:client_id]
     client_secret = Rails.application.credentials.patreon[:client_secret]
-    redirect_uri = "https://27d8beebdd79.ngrok.io"
+    redirect_uri = ENV["PATRON_REDIRECT"]
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], redirect_uri)

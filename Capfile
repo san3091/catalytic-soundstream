@@ -4,6 +4,7 @@ require "capistrano/setup"
 # Include default deployment tasks
 require "capistrano/deploy"
 
+require 'capistrano/remote'
 require 'capistrano/rails'
 # Passenger 6.0.5 did not like playing with me so I'm putting it in timeout
 # require 'capistrano/passenger'

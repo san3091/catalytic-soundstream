@@ -57,7 +57,7 @@
     background-color: var(--transparent-white);
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid var(--medium-grey);
+    border-bottom: 1px solid var(--dark-grey);
 		transition: background-color 0.3s ease;
   }
 
@@ -75,11 +75,11 @@
 
   h2 {
     margin: 0;
-    color: var(--medium-grey)
+    color: var(--dark-grey)
   }
 
   h4 {
-    color: var(--medium-grey);
+    color: var(--dark-grey);
   }
 
   h6 {
@@ -114,7 +114,7 @@
     border-radius: 20px;
     background-color: var(--light-grey);
     margin-right: 10px;
-    border: 1px solid var(--medium-grey);
+    border: 1px solid var(--dark-grey);
   }
 
   .user-info {
@@ -132,7 +132,7 @@
   .material-icons {
     position: absolute;
     font-size: 28px;
-    color: var(--medium-grey);
+    color: var(--dark-grey);
     left: 0px;
   }
 
@@ -143,14 +143,14 @@
     position: absolute;
     top: 61px;
     width: 100%;
-    border-bottom: 1px solid var(--medium-grey);
+    border-bottom: 1px solid var(--dark-grey);
   }
 
   .menu-button {
     width: 100%;
     height: 32px;
     background-color: var(--transparent-white);
-    color: var(--medium-grey);
+    color: var(--dark-grey);
     border: none;
   }
 

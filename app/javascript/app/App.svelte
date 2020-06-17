@@ -1,12 +1,15 @@
-<script>	
+<script>
 	import { onMount } from 'svelte'
-	import { user, loading, userIsOpen, modalIsOpen } from './stores.js'
+	import { user, loading, userIsOpen, modalIsOpen, redirectUri, clientId } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
 	import { authenticateUser } from './authHelpers.js'
-	import { appWidth, mobileLayout } from './stores.js'
+  import { appWidth, mobileLayout } from './stores.js'
+  export let patreonRedirect
+  export let patreonClientId
 
-	let width
+  let width
+
 
 	const closeOpenThings = () => {
 		userIsOpen.set(false)
@@ -19,8 +22,10 @@
 	}
 
 	onMount(async () => {
-		let authenticatedUser = await authenticateUser()
-		user.set(authenticatedUser)
+    let authenticatedUser = await authenticateUser()
+    user.set(authenticatedUser)
+    redirectUri.set(patreonRedirect)
+    clientId.set(patreonClientId)
 		loading.set(false)
 	})
 
@@ -28,7 +33,7 @@
 	$: setMobileLayout(width)
 </script>
 
-<main 
+<main
 	on:click={closeOpenThings}
 	bind:clientWidth={width}>
 	<Header />
@@ -37,29 +42,27 @@
 
 <style>
 	:global(body) {
-		--black: #222;
-		--medium-grey: #3e3e3e;
+		--black: #000;
+		--dark-grey: #3e3e3e;
+		--medium-grey: #8D8E8F;
 		--light-grey: #dbdedf;
-		--orange: #f96854;
+		--orange: #fd352b;
 		--red-orange: #D3372B;
 		--transparent-white: hsl(0, 0%, 100%, 80%);
 		--transparent-black: hsl(0, 0%, 0%, 50%);
 		--transparent-orange: hsl(7, 93%, 65%, 40%);
-		/* --translucent-orange: hsl(7, 93%, 65%, 90%); */
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
-		--transparent-grey: hsl(0, 0%, 0%, 10%);
-		
+		--transparent-grey: hsl(0, 0%, 0%, 30%);
+
 		background-color: var(--light-grey);
-		/* background-color: var(--medium-grey); */
 		padding: 0px;
 	}
 
 	:global(*) {
 		margin: 0;
 		padding: 0;
-		color: var(--medium-grey);
-		/* color: var(--light-grey); */
+		color: var(--dark-grey);
 	}
 
 	:global(button) {
@@ -72,7 +75,8 @@
 	}
 
 	:global(h4) {
-		font-size: 15px;
+		font-size: 14px;
+		font-weight: 500;
 	}
 
 	:global(h5) {
@@ -85,18 +89,15 @@
 
 	:global(h5) {
 		color: var(--black)
-	} 
-	
+	}
+
 	:global(h6) {
-    color: var(--medium-grey);
-    /* color: white; */
+    color: var(--dark-grey);
 	}
 
 	:global(p) {
 		margin-bottom: 20px;
 	}
-
-
 
 	@media screen and (max-width: 1300px) {
 		:global(p) {
@@ -109,9 +110,9 @@
 		:global(h3) {
 			font-size: 17px;
 		}
-		
+
 		:global(h4) {
-			font-size: 14px;
+			font-size: 13px;
 		}
 
 		:global(h5) {
@@ -121,7 +122,7 @@
 			font-size: 8px;
 		}
 	}
-	
+
 	main {
 		display: flex;
 		flex-direction: column;

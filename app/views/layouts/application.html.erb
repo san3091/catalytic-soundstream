@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CatalyticStreamingBackend</title>
+    <title>Catalytic Soundstream</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,6 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'streaming' %>
     <%= javascript_include_tag 'https://connect.soundcloud.com/sdk/sdk-3.3.2.js' %>
+    <%= favicon_link_tag asset_path 'favicon.png' %>
   </head>
 
   <body>

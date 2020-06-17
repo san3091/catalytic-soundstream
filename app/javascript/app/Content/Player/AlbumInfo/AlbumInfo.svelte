@@ -26,7 +26,7 @@
           href={album.bandcamp_url} 
           class='bandcamp-link'
           target="_blank" rel="noopener noreferrer">
-          View on Bandcamp
+          BUY
         </a>
       {/if}
     </div>
@@ -35,7 +35,7 @@
 
 <style>
   * {
-    color: var(--medium-grey);
+    color: var(--dark-grey);
   }
   .info-container {
     width: 100%;
@@ -44,8 +44,6 @@
 
   .info-content {
     box-sizing: border-box;
-    padding: 20px;
-    border-left: 2px solid var(--orange);
   }
 
   p { 
@@ -53,7 +51,7 @@
   }
   
   .title {
-    color: black;
+    color: var(--black);
     margin-top: 0;
   }
   .curator {
@@ -68,7 +66,7 @@
   .bandcamp-link {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px;
+    padding: 10px 30px;
     color: white;
     background-color: var(--orange);
     font-size: 18px;

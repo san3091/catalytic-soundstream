@@ -1,30 +1,29 @@
 <script>
-  import { loading, modalIsOpen } from '../../../stores.js'
+  import { loading, modalIsOpen, redirectUri, clientId } from '../../../stores.js'
+  import { onMount } from 'svelte'
   export let user
 
 	import PatronButton from '../../../../assets/become_a_patron_button@2x.png'
   import PatreonWordmarkBlack from '../../../../assets/Patreon_Wordmark_Black.png'
 
-  const clientId = 'K0V2sSuIYe12y_yEhHmnlT7XK6sghUrlWv3B2wq-372iVaX8Tsud1AsXxaV3B-XR'
-	const redirect_uri = 'https://27d8beebdd79.ngrok.io'
-	const patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}`
+  $: patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${$clientId}&redirect_uri=${$redirectUri}`
 
 	const openModal = () => modalIsOpen.set(true)
 	const closeModal = () => modalIsOpen.set(false)
 	// <Main> in App.svelte closes modal on:click
 </script>
 
-<button 
+<button
 	class='connect-with-patreon-button'
 	on:click|stopPropagation={openModal}>
-	<h4>Connect with </h4>
+	<h5>Connect with </h5>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
 
 {#if $modalIsOpen}
 	<div class='modal-container'>
 		<div class='patreon-modal'>
-			<button 
+			<button
 				class='close-button'
 				on:click|stopPropagation={closeModal} >
 				<i class="material-icons">close</i>
@@ -35,30 +34,34 @@
 					<a
 						class='become-patron-button'
 						href='https://www.patreon.com/catalyticsound'>
-						<img 
-							class='become-patron-img' 
-							src={PatronButton} 
+						<img
+							class='become-patron-img'
+							src={PatronButton}
 							alt='become a patron' />
 					</a>
 				{:else}
-					<h3>Sign in or become a patron to access more free jazz.</h3>
-					<a 
-						class='sign-in-button' 
+					<h3>Sign in or become a patron to access more music.</h3>
+					<a
+						class='sign-in-button'
 						on:click|stopPropagation
 						href={patreonUrl}>
-						<h4>Sign in with </h4>
-						<img 
-							class='patreon-wordmark' 
-							src={PatreonWordmarkBlack} 
-							alt='sign in with patreon'/>
+						<button
+							class='connect-with-patreon-button'
+							on:click|stopPropagation={openModal}>
+							<h5>Sign in with </h5>
+							<img
+								class='patreon-wordmark'
+								src={PatreonWordmarkBlack}
+								alt='sign in with patreon'/>
+						</button>
 					</a>
 					<a
 						class='become-patron-button'
 						href='https://www.patreon.com/catalyticsound'
 						target="_blank" rel="noopener noreferrer">
-						<img 
-							class='become-patron-img' 
-							src={PatronButton} 
+						<img
+							class='become-patron-img'
+							src={PatronButton}
 							alt='become a patron' />
 					</a>
 				{/if}
@@ -70,9 +73,6 @@
 {/if}
 
   <style>
-	* {
-		color: var(--medium-grey);
-	}
 
 	button {
 		box-sizing: border-box;
@@ -87,18 +87,20 @@
 		justify-content: center;
     padding: 10px;
 		border-radius: 0;
-		border: 1px solid var(--medium-grey);
+		border: 1px solid var(--dark-grey);
 	}
 
 	.connect-with-patreon-button {
+		padding: 8px;
 		transition: background-color 0.3s ease;
 	}
 
 	.connect-with-patreon-button:hover {
 		background-color: var(--white)
 	}
+
 	.patreon-wordmark {
-		height: 40px;
+		height: 32px;
 		margin-left: 10px;
 	}
 
@@ -129,8 +131,8 @@
 
 	a {
 		box-sizing: border-box;
-		border: 1px solid var(--medium-grey);
-		margin: 5px;
+		text-decoration: none;
+		margin: 4px;
 	}
 
 	a:hover {
@@ -138,22 +140,12 @@
 	}
 
 	.sign-in-button {
-		width: 240px;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		padding: 10px;
-		transition: background-color 0.3s ease;
-	}
-
-	.sign-in-button:hover {
-		background-color: var(--white)
+		width: 200px;
 	}
 
 	.become-patron-button {
-		width: 240px;
-		height: 62px;
+		width: 200px;
+		height: 50px;
 		border: none;
 	}
 
@@ -173,11 +165,8 @@
 		border: none;
 		background-color: transparent;
 	}
+
 	.material-icons {
     font-size: 28px;
   }
-
-	h4 {
-		color: var(--medium-grey);
-	}
 </style>
