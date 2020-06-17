@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 
-gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
+gem 'rails', '~> 6.0.3', '>= 6.0.2.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'sass-rails', '>= 6'
@@ -11,10 +11,10 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'activerecord-import'
-gem 'patreon'
+gem 'activerecord-import', '~> 1.0.4'
+gem 'patreon', '~> 0.5.0'
 gem 'bcrypt', '~> 3.1'
-gem 'acts_as_list'
+gem 'acts_as_list', '~> 1.0.1'
 gem 'whenever', require: false
 
 
