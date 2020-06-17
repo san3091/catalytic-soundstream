@@ -86,8 +86,8 @@
     flex-direction: column;
     overflow-y: scroll;
     width: 100%;
-    margin: 50px 0;
-    padding: 25px 50px 0 0;
+    margin: 48px;
+    margin-left: 0;
   }
 
   button, button:active {
