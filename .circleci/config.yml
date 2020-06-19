@@ -9,7 +9,6 @@ jobs:
       - image: cimg/ruby:2.7-node
     steps:
       - checkout
-      - ruby/install-deps
       - run:
           name: Deploying
           command: cap staging deploy
