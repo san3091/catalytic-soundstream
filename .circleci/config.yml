@@ -1,15 +1,23 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@0.1.2 
+  ruby: circleci/ruby@0.1.2
+  node: circleci/node@2
 
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7.1-buster
+      - image: cimg/ruby:2.7-node
     executor: ruby/default
     steps:
       - checkout
+  deploy:
+    steps:
       - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+          name: Deploying
+          command: cap staging deploy
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - deploy
