@@ -4,14 +4,12 @@ orbs:
   node: circleci/node@2
 
 jobs:
-  build:
+  deploy:
     docker:
       - image: cimg/ruby:2.7-node
-    executor: ruby/default
     steps:
       - checkout
-  deploy:
-    steps:
+      - ruby/install-deps
       - run:
           name: Deploying
           command: cap staging deploy
