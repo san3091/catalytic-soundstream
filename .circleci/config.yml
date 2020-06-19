@@ -10,8 +10,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Deploying
-          command: cap staging deploy
+          name: Bundle Install
+          command: bundle check || bundle install
+      - run:
+          name: Deploying to staging
+          command: bundle exec cap staging deploy
 
 workflows:
   version: 2
