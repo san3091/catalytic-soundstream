@@ -17,10 +17,15 @@ jobs:
           command: bundle check || bundle install
       - run:
           name: Deploying to staging
-          command: bundle exec cap staging deploy
+          command: cap staging deploy
 
 workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - deploy
+      - deploy:
+          filters:
+            branches:
+              only:
+                - staging
+                # - /rc-.*/
