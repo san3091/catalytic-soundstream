@@ -1,4 +1,4 @@
-set :branch, 'master'
+set :branch, 'main'
 
 server '138.197.5.16', user: 'deploy', roles: %w{app db web}
 
