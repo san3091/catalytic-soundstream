@@ -18,6 +18,9 @@ jobs:
       - run:
           name: Deploying to staging
           command: cap staging deploy
+      - run:
+          name: Restart the server
+          command: cap staging puma:restart
 
 workflows:
   version: 2
