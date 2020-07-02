@@ -28,6 +28,7 @@
   }
 
   .mission p {
-    line-height: 28px;
+    line-height: 34px;
+    margin-bottom: 28px;
   }
 </style>
