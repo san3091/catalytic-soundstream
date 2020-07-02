@@ -65,7 +65,6 @@
   }
 
   $: tilesPerScroll = setNumberOfVisibleTiles(carouselWidth)
-  $: rotatingMargin = rotating ? '12px' : '0'
   $: scrollable = itemsWidth > carouselWidth
   $: resizeTiles(carouselWidth)
   $: numberOfSections = calcSections(itemsWidth)
@@ -85,7 +84,6 @@
     bind:clientWidth={carouselWidth}>
     {#if currentSection > 0}
       <button 
-        class:rotating
         class='previous-button'
         transition:fade
         on:click={previousSection}
@@ -98,7 +96,6 @@
       style='
         --carousel-offset:{$carouselOffset}px; 
         --tile-width:{$tileWidth}px; 
-        --rotating-margin:{rotatingMargin};
       '
       bind:clientWidth={itemsWidth}
     >
@@ -108,13 +105,12 @@
           selectAlbum={selectAlbum}
           selected={selectedAlbum == album}
           tileWidth={$tileWidth}
-          rotating={rotating}
+          newToday={rotating && album.index == 0}
           dontMiss={album.index == dontMissIndex} />
       {/each}
     </div>
     {#if currentSection < (numberOfSections - 1) }
       <button 
-        class:rotating
         class='next-button'
         transition:fade
         on:click={nextSection}
@@ -144,22 +140,19 @@
     display: flex;
     flex-direction: row;
     right: var(--carousel-offset);
-    margin-bottom: var(--rotating-margin);
+    margin-bottom: 12px;
   }
   
   button {
     height: 100%;
     position: absolute;
+    bottom: 10px;
     width: 80px;
     z-index: 2;
     border: none;
     opacity: 0;
     animation: invisible .4s ease-out forwards;
     margin-bottom: 12px;
-  }
-  
-  .rotating {
-    bottom: 10px;
   }
   
   .previous-button{

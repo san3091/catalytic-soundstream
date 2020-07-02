@@ -8,8 +8,8 @@
   export let selectAlbum
   export let selected
   export let tileWidth
-  export let rotating
   export let dontMiss
+  export let newToday
 
   let mousedown
   let thumbnail = album.thumbnail_url
@@ -25,7 +25,6 @@
   }
 
   $: enabled = $user || album.index == 0
-  $: extraTextVisibility = rotating ? 'visible' : 'hidden'
   $: tilePadding = (tileWidth > 180) ? 8 : 4
   
   onMount(async () => {
@@ -35,6 +34,7 @@
 
 <div 
   class='tile-container' 
+  class:new-today={newToday}
   class:dont-miss={dontMiss}
   on:click|stopPropagation={() => {selectAlbum(album)}}
   on:mousedown|stopPropagation={() => { mousedown = true } }
@@ -42,7 +42,6 @@
   on:mouseleave|stopPropagation={() => { mousedown = false } } 
   style='
     --size:{tileWidth - (tilePadding * 2)}px; 
-    --visibility:{extraTextVisibility}px;
     --tile-padding:{tilePadding}px;
   ' >
   {#if thumbnail && tileWidth}
@@ -102,8 +101,7 @@
     margin-bottom: 2px;
   }
 
-  .tile-container:first-child::after {
-    visibility: var(--visibility);
+  .tile-container.new-today::after {
     opacity: 0;
     content: 'NEW TODAY';
     position: absolute;
@@ -117,7 +115,6 @@
   }
  
   .tile-container.dont-miss::after {
-    visibility: var(--visibility);
     opacity: 0;
     content: "DON'T MISS";
     position: absolute;
