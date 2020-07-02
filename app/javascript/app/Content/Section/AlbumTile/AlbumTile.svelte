@@ -211,7 +211,6 @@
   
   img {
     height: var(--size);
-    filter: blur(2px) brightness(120%) grayscale(30%) contrast(70%);
   }
 
   .enabled img {
