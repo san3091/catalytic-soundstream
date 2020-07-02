@@ -110,6 +110,7 @@
     color: var(--orange);
     bottom: -20px;
     left: -8px;
+    font-size: 20px;
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
@@ -121,7 +122,8 @@
     content: "DON'T MISS";
     position: absolute;
     bottom: -20px;
-    size: 20px;
+    left: -8px;
+    font-size: 20px;
     color: var(--orange);
     text-align: center;
     width: var(--tile-width);
