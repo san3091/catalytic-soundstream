@@ -14,7 +14,7 @@
       <h2 class='title'>{album.title}</h2>
       <h4 class='artist'>{album.artist}</h4>
       {#if album.description}
-        <p>
+        <p class='description'>
           {album.description}
         </p>
       {/if}
@@ -37,6 +37,7 @@
   * {
     color: var(--dark-grey);
   }
+
   .info-container {
     width: 100%;
     margin-bottom: 50px;
@@ -46,8 +47,9 @@
     box-sizing: border-box;
   }
 
-  p { 
+  .description { 
     margin: 20px 0 0;
+    line-height: 28px;
   }
   
   .title {
