@@ -59,9 +59,9 @@
   }
 
   const setNumberOfVisibleTiles = (carouselWidth) => {
-    if (carouselWidth < 1000) { return 5 }
-    else if (carouselWidth < 1300) { return 6 }
-    else { return 7 }
+    if (carouselWidth < 800) { return 4 }
+    else if (carouselWidth < 1300) { return 5 }
+    else { return 6 }
   }
 
   $: tilesPerScroll = setNumberOfVisibleTiles(carouselWidth)
