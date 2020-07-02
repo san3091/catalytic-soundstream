@@ -80,6 +80,10 @@
     color: black;
   }
 
+  h6 {
+    font-weight: 500;
+  }
+  
   .truncate {
     position: relative;
     right: 10px;
