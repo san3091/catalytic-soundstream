@@ -109,7 +109,7 @@
     position: absolute;
     color: var(--orange);
     bottom: -20px;
-    size: 20px;
+    left: -8px;
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
