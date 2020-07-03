@@ -70,6 +70,10 @@
 		padding: 0;
 	}
 
+	:global(button:focus) {
+		outline: none;
+	}
+
 	:global(h2) {
 		margin: 50px 0 10px;
 	}
