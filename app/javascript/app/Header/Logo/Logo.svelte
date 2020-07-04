@@ -35,7 +35,7 @@
   }
 
   img {
-    height: 60px;
+    height: 80px;
   }
 
   .left-logo {
