@@ -1,11 +1,10 @@
 <script>
 	import { onMount } from 'svelte'
-	import { user, loading, userIsOpen, modalIsOpen, redirectUri } from './stores.js'
+	import { user, loading, userIsOpen, modalIsOpen } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
 	import { authenticateUser } from './authHelpers.js'
   import { appWidth, mobileLayout } from './stores.js'
-  export let patreonRedirect
 	
   let width
 
@@ -22,7 +21,6 @@
 	onMount(async () => {
     let authenticatedUser = await authenticateUser()
     user.set(authenticatedUser)
-    redirectUri.set(patreonRedirect)
 		loading.set(false)
 	})
 
