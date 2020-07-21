@@ -8,13 +8,9 @@ class PatreonController < ApplicationController
     redirect_uri = ENV["PATREON_REDIRECT"]
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
-    logger.debug("redirect uri: #{redirect_uri}")
     tokens = oauth_client.get_tokens(params[:code], redirect_uri)
-    logger.debug("tokens: #{tokens} ")
     @access_token = tokens['access_token']
-    logger.debug("access_tokens: #{@access_token}")
     @user = get_user(@access_token)
-    logger.debug("user: #{@user}")
     render json: { errors: "user not found"}, status: 401 unless @user
     @is_member = is_member(@user) if @user
   end
