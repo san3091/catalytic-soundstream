@@ -9,7 +9,7 @@ class PatreonController < ApplicationController
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], redirect_uri)
-    logger.debug("tokens: #{tokens}")
+    logger.debug("tokens: #{tokens} ")
     @access_token = tokens['access_token']
     logger.debug("access_tokens: #{@access_token}")
     @user = get_user(@access_token)
