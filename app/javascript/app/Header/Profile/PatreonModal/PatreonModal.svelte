@@ -7,7 +7,7 @@
   import PatreonWordmarkBlack from '../../../../assets/Patreon_Wordmark_Black.png'
 
 	let clientId =   "SzBWMnNTdUlZZTEyeV95RWhIbW5sVDdYSzZzZ2hVcmxXdjNCMndxLTM3MmlW\nYVg4VHN1ZDFBc1h4YVYzQi1YUg==\n"
-	let redirectUri = "http://stream.staging.catalyticsound.com"
+	let redirectUri = window.location.href.replace(/\/$/, "")
 
   $: patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${atob(clientId)}&redirect_uri=${redirectUri}`
 
