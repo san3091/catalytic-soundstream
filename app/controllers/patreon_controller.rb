@@ -6,29 +6,28 @@ class PatreonController < ApplicationController
     client_id = ENV["PATREON_CLIENT_ID"]
     client_secret = ENV["PATREON_CLIENT_SECRET"]
     redirect_uri = ENV["PATRON_REDIRECT"]
+    logger.debug("client_secret: #{client_secret}")
+    logger.debug("client_id: #{client_id}")
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], redirect_uri)
     @access_token = tokens['access_token']
     @user = get_user(@access_token)
-    if @user
-      @is_member = is_member(@user)
-    else
-      render json: { errors: "user not found"}, status: 401
-    end
+    render json: { errors: "user not found"}, status: 401 unless @user
+    @is_member = is_member(@user) if @user
   end
 
   # get patron user [access_token]
   def user
     @user = get_user(params[:access_token])
-    render json: { error: "not found" }, status: 404 unless @user
+    render json: { error: "user not found" }, status: 401 unless @user
     @is_member = is_member(@user) if @user
   end
 
   private
 
     def is_member(user)
-      user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" || Daddy.exists?(email: user.email) }
+      Daddy.exists?(email: user.email) || user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
     end
 
     def get_user(access_token)
