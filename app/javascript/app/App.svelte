@@ -1,15 +1,13 @@
 <script>
 	import { onMount } from 'svelte'
-	import { user, loading, userIsOpen, modalIsOpen, redirectUri, clientId } from './stores.js'
+	import { user, loading, userIsOpen, modalIsOpen, redirectUri } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
 	import { authenticateUser } from './authHelpers.js'
   import { appWidth, mobileLayout } from './stores.js'
   export let patreonRedirect
-  export let patreonClientId
-
+	
   let width
-
 
 	const closeOpenThings = () => {
 		userIsOpen.set(false)
@@ -25,7 +23,6 @@
     let authenticatedUser = await authenticateUser()
     user.set(authenticatedUser)
     redirectUri.set(patreonRedirect)
-    clientId.set(patreonClientId)
 		loading.set(false)
 	})
 
