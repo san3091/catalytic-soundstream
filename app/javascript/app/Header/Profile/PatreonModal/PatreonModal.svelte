@@ -1,5 +1,5 @@
 <script>
-  import { loading, modalIsOpen, redirectUri } from '../../../stores.js'
+  import { loading, modalIsOpen } from '../../../stores.js'
   import { onMount } from 'svelte'
   export let user
 
@@ -7,8 +7,9 @@
   import PatreonWordmarkBlack from '../../../../assets/Patreon_Wordmark_Black.png'
 
 	let clientId =   "SzBWMnNTdUlZZTEyeV95RWhIbW5sVDdYSzZzZ2hVcmxXdjNCMndxLTM3MmlW\nYVg4VHN1ZDFBc1h4YVYzQi1YUg==\n"
+	let redirectUri = window.location.href 
 
-  $: patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${atob(clientId)}&redirect_uri=${$redirectUri}`
+  $: patreonUrl = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${atob(clientId)}&redirect_uri=${redirectUri}`
 
 	const openModal = () => modalIsOpen.set(true)
 	const closeModal = () => modalIsOpen.set(false)
