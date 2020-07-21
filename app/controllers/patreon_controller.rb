@@ -6,13 +6,12 @@ class PatreonController < ApplicationController
     client_id = ENV["PATREON_CLIENT_ID"]
     client_secret = ENV["PATREON_CLIENT_SECRET"]
     redirect_uri = ENV["PATRON_REDIRECT"]
-    logger.debug("client_secret: #{client_secret}")
-    logger.debug("client_id: #{client_id}")
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], redirect_uri)
     @access_token = tokens['access_token']
     @user = get_user(@access_token)
+    logger.debug("user: #{@user}")
     render json: { errors: "user not found"}, status: 401 unless @user
     @is_member = is_member(@user) if @user
   end
