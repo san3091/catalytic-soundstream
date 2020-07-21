@@ -3,15 +3,19 @@ class PatreonController < ApplicationController
 
   # POST /patreon/authenticate
   def authenticate
-    client_id = Rails.application.credentials.patreon[:client_id]
-    client_secret = Rails.application.credentials.patreon[:client_secret]
+    client_id = ENV["PATREON_CLIENT_ID"]
+    client_secret = ENV["PATREON_CLIENT_SECRET"]
     redirect_uri = ENV["PATRON_REDIRECT"]
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], redirect_uri)
     @access_token = tokens['access_token']
     @user = get_user(@access_token)
-    @is_member = is_member(@user)
+    if @user
+      @is_member = is_member(@user)
+    else
+      render json: { errors: "user not found"}, status: 401
+    end
   end
 
   # get patron user [access_token]
