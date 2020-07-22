@@ -33,7 +33,7 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install
       - run:
-          name: Deploying to staging
+          name: Deploying to production
           command: cap production deploy
       - run:
           name: Restart the server
