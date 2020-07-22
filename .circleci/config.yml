@@ -21,6 +21,23 @@ jobs:
       - run:
           name: Restart the server
           command: cap staging puma:restart
+  release-to-prod:
+    docker:
+      - image: cimg/ruby:2.7-node
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - da:76:8b:64:9e:46:37:92:1c:90:18:ab:c5:90:90:8f
+      - checkout
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      - run:
+          name: Deploying to production
+          command: cap production deploy
+      - run:
+          name: Restart the server
+          command: cap staging puma:restart
 
 workflows:
   version: 2
@@ -31,4 +48,9 @@ workflows:
             branches:
               only:
                 - staging
-                # - /rc-.*/
+      - release-to-prod:
+          filters:
+            branches:
+              only:
+                - main
+

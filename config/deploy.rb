@@ -75,6 +75,7 @@ namespace :deploy do
       within release_path do
         with rails_env: fetch(:rails_env) do
           execute :rake, 'db:seed'
+          execute :rake, 'albums:init_current'
         end
       end
     end
