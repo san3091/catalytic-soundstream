@@ -14,14 +14,22 @@ namespace :albums do
 
   desc 'Initialize albums current status, to be run ONCE and NEVER AGAIN'
   task :init_current => :environment do
-    Category
-      .includes(:albums)
-      .find_by(name: "curated")
-      .albums
-      .limit(30)
-      .update(current: true)
+    Category.transaction do
+      categories = Category.includes(:albums)
+      categories
+        .find_by(name: "curated")
+        .albums
+        .limit(30)
+        .update(current: true)
 
-    puts "album current flags initialized"
+      puts "album current flags initialized"
+
+      categories
+        .where(name: ["catalytic", "history"])
+        .update(current: true)
+
+      puts "catalytic and history set to current"
+    end
   end
 
   desc 'Rotate current albums for curated playlist. Run in cron.'
