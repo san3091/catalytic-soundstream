@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Restart the server
           command: cap staging puma:restart
-  release-to-master:
+  release-to-prod:
     docker:
       - image: cimg/ruby:2.7-node
     steps:
@@ -48,9 +48,9 @@ workflows:
             branches:
               only:
                 - staging
-      - release-to-master:
+      - release-to-prod:
           filters:
             branches:
               only:
-                - master
+                - main
 
