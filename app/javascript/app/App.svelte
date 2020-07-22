@@ -1,15 +1,12 @@
 <script>
 	import { onMount } from 'svelte'
-	import { user, loading, userIsOpen, modalIsOpen, redirectUri, clientId } from './stores.js'
+	import { user, loading, userIsOpen, modalIsOpen } from './stores.js'
 	import Header from './Header/Header.svelte'
 	import Content from './Content/Content.svelte'
 	import { authenticateUser } from './authHelpers.js'
   import { appWidth, mobileLayout } from './stores.js'
-  export let patreonRedirect
-  export let patreonClientId
-
+	
   let width
-
 
 	const closeOpenThings = () => {
 		userIsOpen.set(false)
@@ -24,8 +21,6 @@
 	onMount(async () => {
     let authenticatedUser = await authenticateUser()
     user.set(authenticatedUser)
-    redirectUri.set(patreonRedirect)
-    clientId.set(patreonClientId)
 		loading.set(false)
 	})
 
@@ -70,21 +65,25 @@
 		padding: 0;
 	}
 
+	:global(button:focus) {
+		outline: none;
+	}
+
 	:global(h2) {
 		margin: 50px 0 10px;
 	}
 
 	:global(h4) {
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 500;
 	}
 
 	:global(h5) {
-		font-size: 12px;
+		font-size: 14px;
 	}
 
 	:global(h6) {
-		font-size: 10px;
+		font-size: 12px;
 	}
 
 	:global(h5) {
