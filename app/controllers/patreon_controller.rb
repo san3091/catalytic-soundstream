@@ -3,20 +3,14 @@ class PatreonController < ApplicationController
 
   # POST /patreon/authenticate
   def authenticate
-<<<<<<< Updated upstream
-    client_id = ENV["PATREON_CLIENT_ID"]
-    client_secret = ENV["PATREON_CLIENT_SECRET"]
-    redirect_uri = ENV["PATREON_REDIRECT"]
-=======
     client_id = Rails.application.credentials.patreon[:client_id]
     client_secret = Rails.application.credentials.patreon[:client_secret]
 
     logger.debug("client id: #{client_id}")
     logger.debug("client secret: #{client_secret}")
->>>>>>> Stashed changes
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
-    tokens = oauth_client.get_tokens(params[:code], redirect_uri)
+    tokens = oauth_client.get_tokens(params[:code], params[:redirect_uri])
     @access_token = tokens['access_token']
     @user = get_user(@access_token)
     render json: { errors: "user not found"}, status: 401 unless @user
@@ -48,7 +42,7 @@ class PatreonController < ApplicationController
     end
 
     def auth_params
-      params.require(:patreon).permit(:Hcode, :access_token)
+      params.require(:patreon).permit(:code, :access_token, :redirect_uri)
     end
 
 end
