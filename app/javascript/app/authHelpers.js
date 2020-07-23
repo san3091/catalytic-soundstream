@@ -22,8 +22,10 @@ export const authenticateUser = async () => {
 }
 
 const authenticatePatreon = async (code) => {
+  let redirect_uri = window.location.href.replace(/\/$/, "")
+  
   const url = '/patreon/authenticate'
-		const data = {code}
+		const data = {code, redirect_uri}
 		
 		const response = await fetch(url, {
 			method: 'POST',
