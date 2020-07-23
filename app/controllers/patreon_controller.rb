@@ -3,16 +3,15 @@ class PatreonController < ApplicationController
 
   # POST /patreon/authenticate
   def authenticate
-    client_id = ENV["PATREON_CLIENT_ID"]
-    client_secret = ENV["PATREON_CLIENT_SECRET"]
-    redirect_uri = ENV["PATREON_REDIRECT"]
+    client_id = Rails.application.credentials.patreon[:client_id]
+    client_secret = Rails.application.credentials.patreon[:client_secret]
+
     logger.debug("client id: #{client_id}")
     logger.debug("client secret: #{client_secret}")
-    logger.debug("redirect: #{redirect_uri}")
+    logger.debug("radirect_uri: #{params[:redirect_uri]}")
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
-    tokens = oauth_client.get_tokens(params[:code], redirect_uri)
-    logger.debug("tokens: #{tokens}")
+    tokens = oauth_client.get_tokens(params[:code], params[:redirect_uri])
     @access_token = tokens['access_token']
     logger.debug("access token: #{@access_token}")
     @user = get_user(@access_token)
@@ -46,7 +45,7 @@ class PatreonController < ApplicationController
     end
 
     def auth_params
-      params.require(:patreon).permit(:Hcode, :access_token)
+      params.require(:patreon).permit(:code, :access_token, :redirect_uri)
     end
 
 end
