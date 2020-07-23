@@ -6,6 +6,9 @@ class PatreonController < ApplicationController
     client_id = ENV["PATREON_CLIENT_ID"]
     client_secret = ENV["PATREON_CLIENT_SECRET"]
     redirect_uri = ENV["PATREON_REDIRECT"]
+    logger.debug("client id: #{client_id}")
+    logger.debug("client secret: #{client_secret}")
+    logger.debug("redirect: #{redirect_uri}")
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], redirect_uri)
