@@ -46,7 +46,7 @@
 		--red-orange: #D3372B;
 		--transparent-white: hsl(0, 0%, 100%, 80%);
 		--transparent-black: hsl(0, 0%, 0%, 50%);
-		--transparent-orange: hsl(7, 93%, 65%, 40%);
+		--transparent-orange: hsl(7, 93%, 65%, 80%);
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 30%);

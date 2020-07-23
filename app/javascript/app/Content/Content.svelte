@@ -4,6 +4,8 @@
   import Section from './Section/Section.svelte'
   import Player from './Player/Player.svelte'
   import Mission from './Mission/Mission.svelte'
+  import Footer from './Footer/Footer.svelte'
+
   import { playerIsOpen, modalIsOpen, user, mobileLayout } from '../stores.js'
   
   let categories
@@ -67,7 +69,7 @@
         selectedAlbum={selectedAlbum}
         albums={categories[0].albums} />
     {/if}
-    <div class='footer' class:mobile-player-open={$playerIsOpen && $mobileLayout}></div>
+    <Footer />
   </div>
   <div 
     class='player-container' 
@@ -102,16 +104,6 @@
 
   .music-selection.mobile {
     width: 100%;
-  }
-
-  .footer {
-    display: inline-block;
-    position: relative;
-    min-height: 150px;
-  }
-
-  .footer.mobile-player-open {
-    min-height: 700px;
   }
 
   .player-container {

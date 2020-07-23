@@ -2,7 +2,7 @@
 lock "~> 3.14.0"
 
 set :application, "catalytic-soundstream"
-set :repo_url, "git@github.com:san3091/catalytic-streaming-admin.git"
+set :repo_url, "git@github.com:san3091/catalytic-soundstream.git"
 set :user, "deploy"
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'

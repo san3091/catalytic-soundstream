@@ -31,7 +31,8 @@ yarn-debug.log*
 .yarn-integrity
 
 /config/credentials/production.key
+*grandfathered_users.csv
+*notes.md
 .DS_Store
 .env
 
-/config/credentials/staging.key
