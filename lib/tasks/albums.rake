@@ -15,8 +15,7 @@ namespace :albums do
   desc 'Initialize albums current status, to be run ONCE and NEVER AGAIN'
   task :init_current => :environment do
     Category.transaction do
-      categories = Category.includes(:albums)
-      categories
+      Category.includes(:albums)
         .find_by(name: "curated")
         .albums
         .limit(30)
@@ -24,8 +23,8 @@ namespace :albums do
 
       puts "album current flags initialized"
 
-      categories
-        .where(name: ["catalytic", "history"])
+      Category.includes(:albums)
+        .where(name: ["history", "catalytic"])
         .update(current: true)
 
       puts "catalytic and history set to current"
