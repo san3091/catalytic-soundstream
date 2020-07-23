@@ -26,7 +26,7 @@
   }
 
   const selectAlbum = (album) => {
-    if (album.free || $user.is_member) {
+    if (album.free || ($user && $user.is_member)) {
       playerIsOpen.set(true)
       selectedAlbum = album
     } else {

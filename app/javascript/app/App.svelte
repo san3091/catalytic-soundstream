@@ -20,7 +20,8 @@
 
 	onMount(async () => {
     let authenticatedUser = await authenticateUser()
-    user.set(authenticatedUser)
+		user.set(authenticatedUser)
+		if ($user && !$user.is_member) { modalIsOpen.set(true)}
 		loading.set(false)
 	})
 

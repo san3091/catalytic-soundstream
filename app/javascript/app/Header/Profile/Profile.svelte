@@ -7,10 +7,10 @@
 </script>
 
 <div class='container'>
-	{#if !$user || !$user.is_member}
-		<PatreonModal user={$user} />
-	{:else}
+	{#if $user && $user.is_member}
 		<User/>
+	{:else}
+		<PatreonModal user={$user} />
 	{/if}
 </div>
 

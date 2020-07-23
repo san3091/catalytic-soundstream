@@ -24,7 +24,7 @@
       })
   }
 
-  $: enabled = $user || album.index == 0
+  $: enabled = ($user && $user.is_member) || album.index == 0
   $: tilePadding = (tileWidth > 180) ? 8 : 4
   
   onMount(async () => {
