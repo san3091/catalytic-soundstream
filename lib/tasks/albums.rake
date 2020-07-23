@@ -25,6 +25,7 @@ namespace :albums do
 
       Category.includes(:albums)
         .where(name: ["history", "catalytic"])
+        .albums
         .update(current: true)
 
       puts "catalytic and history set to current"
