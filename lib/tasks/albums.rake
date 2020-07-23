@@ -25,7 +25,9 @@ namespace :albums do
 
       Category.includes(:albums)
         .where(name: ["history", "catalytic"])
-        .update(current: true)
+        .map do |category|
+          category.albums.update(current: true)
+        end
 
       puts "catalytic and history set to current"
     end
