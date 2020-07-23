@@ -8,6 +8,7 @@ class PatreonController < ApplicationController
 
     logger.debug("client id: #{client_id}")
     logger.debug("client secret: #{client_secret}")
+    logger.debug("radirect_uri: #{params[:redirect_uri]}")
 
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], params[:redirect_uri])
