@@ -10,7 +10,7 @@
   export let selectedAlbum
   export let rotating
   export let dontMissIndex
-
+  
   let carouselWidth, itemsWidth
   let currentSection = 0
   let resizing = false
@@ -106,7 +106,7 @@
           selected={selectedAlbum == album}
           tileWidth={$tileWidth}
           newToday={rotating && album.index == 0}
-          dontMiss={album.index == dontMissIndex} />
+          dontMiss={rotating && album.index == dontMissIndex} />
       {/each}
     </div>
     {#if currentSection < (numberOfSections - 1) }

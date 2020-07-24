@@ -24,10 +24,7 @@
     else { return 50 }
   }
 
-  const setDontMissAlbum = (albums, user) => {
-    if (!user) { return null }
-    return albums[albums.length - 1]
-  }
+  const setDontMissAlbum = (albums, user) => albums[albums.length - 1]
 
   const assignIndices = (albums) => {
     albums.forEach((album, index) => {
