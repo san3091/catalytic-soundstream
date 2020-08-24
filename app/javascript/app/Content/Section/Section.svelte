@@ -61,9 +61,10 @@
           on:mousedown|stopPropagation={() => { mousedown = true } }
           on:mouseup|stopPropagation={() => { mousedown = false } }
           on:mouseleave|stopPropagation={() => { mousedown = false } } >
-          <h5>
-            <b>DON'T MISS:</b>{dontMissAlbum.title}
-          </h5>
+          <h6>
+            <b>DON'T MISS:</b>
+            <span>{dontMissAlbum.title}</span>
+          </h6>
         </button>
       </div>
     {/if}
@@ -87,8 +88,13 @@
     color: var(--dark-grey);
   }
 
-  h5 {
-    color: white;
+  span {
+    color: var(--white);
+  }
+
+  h6 {
+    text-align: left;
+		white-space: unset;
   }
 
   .section {
@@ -121,7 +127,6 @@
     padding: 5px 15px;
     border: none;
     background-color: var(--orange);
-    height: 40px;
     border-radius: 0;
     cursor: pointer;
   }
