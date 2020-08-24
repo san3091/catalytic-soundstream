@@ -33,7 +33,7 @@
 			</button>
 			{#if !$loading}
 				{#if user && !user.is_member}
-					<h3>You must be a subsciber at the 'Streaming Tier' to access the complete collection.</h3>
+					<h3>You must be a subscriber at the 'Streaming Tier' to access the complete collection.</h3>
 					<a
 						class='become-patron-button'
 						href='https://www.patreon.com/catalyticsound'>
