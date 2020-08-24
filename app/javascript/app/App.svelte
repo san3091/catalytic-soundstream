@@ -87,12 +87,13 @@
 	}
 
 	:global(h5) {
-		font-size: 1.125px;
+		font-size: 1.125rem;
 		color: var(--black)
 	}
 
 	:global(h6) {
 		font-size: 1rem;
+		white-space: nowrap;
     color: var(--dark-grey);
 	}
 

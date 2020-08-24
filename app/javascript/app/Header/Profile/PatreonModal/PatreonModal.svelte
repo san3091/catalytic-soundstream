@@ -19,7 +19,7 @@
 <button
 	class='connect-with-patreon-button'
 	on:click|stopPropagation={openModal}>
-	<h5>Connect with </h5>
+	<h6>Connect with </h6>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
 
@@ -51,7 +51,7 @@
 						<button
 							class='connect-with-patreon-button'
 							on:click|stopPropagation={openModal}>
-							<h5>Sign in with </h5>
+							<h6>Sign in with </h6>
 							<img
 								class='patreon-wordmark'
 								src={PatreonWordmarkBlack}

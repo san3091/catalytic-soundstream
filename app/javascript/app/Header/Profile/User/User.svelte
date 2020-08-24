@@ -83,6 +83,7 @@
   }
 
   h6 {
+    font-size: 0.75rem;
     color: var(--black);
   }
 
