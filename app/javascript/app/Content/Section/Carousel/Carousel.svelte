@@ -105,6 +105,7 @@
         <AlbumTile 
           album={album} 
           selectAlbum={selectAlbum}
+          highlight={highlight}
           selected={selectedAlbum == album}
           tileWidth={$tileWidth}
           newToday={rotating && album.index == 0}
