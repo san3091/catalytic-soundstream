@@ -75,23 +75,17 @@
 	}
 
 	:global(h4) {
-		font-size: 16px;
+		font-size: 20px;
 		font-weight: 500;
 	}
 
 	:global(h5) {
-		font-size: 14px;
-	}
-
-	:global(h6) {
-		font-size: 12px;
-	}
-
-	:global(h5) {
+		font-size: 18px;
 		color: var(--black)
 	}
 
 	:global(h6) {
+		font-size: 16px;
     color: var(--dark-grey);
 	}
 
@@ -112,14 +106,14 @@
 		}
 
 		:global(h4) {
-			font-size: 13px;
+			font-size: 16px;
 		}
 
 		:global(h5) {
-			font-size: 10px;
+			font-size: 14px;
 		}
 		:global(h6) {
-			font-size: 8px;
+			font-size: 12px;
 		}
 	}
 
