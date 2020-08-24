@@ -42,11 +42,11 @@
 		--dark-grey: #3e3e3e;
 		--medium-grey: #8D8E8F;
 		--light-grey: #dbdedf;
-		--orange: #fd352b;
+		--orange: hsl(3, 98%, 58%);
 		--red-orange: #D3372B;
 		--transparent-white: hsl(0, 0%, 100%, 80%);
 		--transparent-black: hsl(0, 0%, 0%, 50%);
-		--transparent-orange: hsl(7, 93%, 65%, 80%);
+		--transparent-orange: hsl(3, 98%, 58%, 60%);
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 30%);
