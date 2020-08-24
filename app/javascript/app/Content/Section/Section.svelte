@@ -28,7 +28,7 @@
   const setDontMissAlbum = (albums, user) => albums[albums.length - 1]
 
   const assignIndices = (albums) => {
-    albums.forEach((album, index) => {
+    albums.reverse().forEach((album, index) => {
       album.index = index
     });
   }
