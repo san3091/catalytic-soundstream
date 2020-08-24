@@ -48,7 +48,7 @@
     <Mission />
     {#if categories}
       <Section
-        headerText='Catalytic Radio'
+        headerText='Radio'
         sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day'
         sectionNumber={0}
         selectAlbum={selectAlbum}
