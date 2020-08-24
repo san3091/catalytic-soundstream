@@ -9,6 +9,7 @@
   export let sectionNumber
   export let selectedAlbum
   export let selectAlbum
+  export let highlight
   export let albums = []
 
   let width
@@ -42,7 +43,11 @@
   $: selected = dontMissAlbum == selectedAlbum
 </script>
 
-<div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
+<div 
+  class='section' 
+  class:highlight
+  bind:clientWidth={width} 
+  style='--padding:{$padding}px' >
   <div class='section-top'>
     <div class='section-header'>
       <h2>{headerText}</h2>
@@ -71,6 +76,7 @@
     selectAlbum={selectAlbum} 
     selectedAlbum={selectedAlbum}
     rotating={rotating}
+    highlight={highlight}
     dontMissIndex={dontMissAlbum && dontMissAlbum.index} />
 </div>
 
@@ -90,10 +96,13 @@
 
   .section {
     box-sizing: border-box;
-    width: 100%;
-    padding: 0 var(--padding);
+    padding: 0 calc(var(--padding) / 2);
+    margin: 0 calc(var(--padding) / 2);
   }
 
+  .section.highlight {
+    background-color: var(--transparent-orange);
+  }
   .section-top {
     display: flex;
     flex-direction: row;

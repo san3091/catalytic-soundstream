@@ -58,6 +58,7 @@
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
         sectionNumber={1}
+        highlight={true}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         albums={categories[2].albums} />

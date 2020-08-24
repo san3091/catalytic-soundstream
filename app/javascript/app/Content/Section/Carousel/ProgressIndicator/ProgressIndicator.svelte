@@ -2,6 +2,7 @@
   export let numberOfSections
   export let currentSection
   export let scroll
+  export let highlight
 
   const iterableDashes = (numberOfSections) => {
     return [...Array(numberOfSections).keys()]
@@ -11,7 +12,11 @@
   $: dashes = iterableDashes(numberOfSections)
 </script>
 
-<svg viewBox="0 0 {indicatorLength} 20" class='progress-indicator' style='--width:{indicatorLength}'>
+<svg 
+  viewBox="0 0 {indicatorLength} 20" 
+  class:highlight
+  class='progress-indicator' 
+  style='--width:{indicatorLength}'>
   {#each dashes as { id, dash }, i}
     <line 
       class:active="{i == currentSection}"
@@ -38,5 +43,9 @@
 
   .active {
     stroke: var(--orange);
+  }
+
+  .highlight .active {
+    stroke: var(--red-orange);
   }
 </style>
