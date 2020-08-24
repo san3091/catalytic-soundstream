@@ -9,6 +9,7 @@
   export let selectAlbum
   export let selectedAlbum
   export let rotating
+  export let highlight
   export let dontMissIndex
   
   let carouselWidth, itemsWidth
@@ -74,6 +75,7 @@
 <div class='carousel-container'>
   {#if scrollable }
     <ProgressIndicator 
+      highlight={highlight}
       numberOfSections={numberOfSections}
       currentSection={currentSection}
       scroll={scroll} />

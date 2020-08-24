@@ -48,7 +48,7 @@
     <Mission />
     {#if categories}
       <Section
-        headerText='Catalytic Radio'
+        headerText='Radio'
         sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day'
         sectionNumber={0}
         selectAlbum={selectAlbum}
@@ -58,6 +58,7 @@
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
         sectionNumber={1}
+        highlight={true}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         albums={categories[2].albums} />
@@ -86,7 +87,6 @@
     justify-content: stretch;
     width: 100%;
     height: calc(100vh - 82px);
-    overflow-y: scroll;
   }
    
   .content.mobile {
@@ -100,6 +100,7 @@
     flex-direction:column;
     width: 0;
     flex-grow: 1;
+    overflow-y: scroll;
   }
 
   .music-selection.mobile {
@@ -108,9 +109,7 @@
 
   .player-container {
     display: flex;
-    position: sticky;
     right: 0;
-    top: 0;
   }
 
   .player-container.mobile {

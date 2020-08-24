@@ -19,7 +19,7 @@
 <button
 	class='connect-with-patreon-button'
 	on:click|stopPropagation={openModal}>
-	<h5>Connect with </h5>
+	<h6>Connect with </h6>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
 
@@ -33,7 +33,7 @@
 			</button>
 			{#if !$loading}
 				{#if user && !user.is_member}
-					<h3>You must be a subsciber at the 'Streaming Tier' to access the complete collection.</h3>
+					<h3>You must be a subscriber at the 'Streaming Tier' to access the complete collection.</h3>
 					<a
 						class='become-patron-button'
 						href='https://www.patreon.com/catalyticsound'>
@@ -51,7 +51,7 @@
 						<button
 							class='connect-with-patreon-button'
 							on:click|stopPropagation={openModal}>
-							<h5>Sign in with </h5>
+							<h6>Sign in with </h6>
 							<img
 								class='patreon-wordmark'
 								src={PatreonWordmarkBlack}
