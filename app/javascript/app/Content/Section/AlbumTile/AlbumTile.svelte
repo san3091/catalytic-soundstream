@@ -129,8 +129,7 @@
     animation: fade-in 1s 2s ease-in forwards;
   }
 
-  .highlight h4
-  {
+  .highlight h4 {
     color: var(--white);
   }
 
