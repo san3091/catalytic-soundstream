@@ -8,6 +8,7 @@
   export let selectAlbum
   export let selected
   export let tileWidth
+  export let highlight
   export let dontMiss
   export let newToday
 
@@ -34,6 +35,7 @@
 
 <div 
   class='tile-container' 
+  class:highlight
   class:new-today={newToday}
   class:dont-miss={dontMiss}
   on:click|stopPropagation={() => {selectAlbum(album)}}
@@ -76,7 +78,7 @@
 
   h4 {
     margin-bottom: 4px;
-    color: black;
+    color: var(--black);
   }
 
   h6 {
@@ -127,7 +129,17 @@
     animation: fade-in 1s 2s ease-in forwards;
   }
 
+  .highlight h4
+  {
+    color: var(--white);
+  }
+
+  .highlight h6 {
+    color: var(--light-grey);
+  }
+
   .album-tile {
+    z-index: 1;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -144,13 +156,12 @@
   .album-art::after {
     content: '';
     position: absolute;
-    background-color: var(--medium-grey);
     top: 0;
     left: 0;
     opacity: 0;
     height: 100%;
     width: 100%;
-    z-index: -2;
+    z-index: -1;
     animation: fade-in 1s 0.5s ease-in forwards;
   }
 
@@ -165,6 +176,11 @@
   .selected.enabled .album-art::after {
     background-color: var(--dark-grey);
   }
+  
+  .highlight .enabled .album-art::after {
+    background-color: var(--transparent-orange);
+  }
+
   
   .thumbnail { 
     overflow: hidden

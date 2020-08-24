@@ -45,7 +45,11 @@
     stroke: var(--orange);
   }
 
-  .highlight .active {
-    stroke: var(--red-orange);
+  .highlight line {
+    stroke: var(--light-grey);
+  }
+
+  .highlight line.active {
+    stroke: var(--orange);
   }
 </style>

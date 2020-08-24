@@ -103,9 +103,18 @@
     margin: 0 calc(var(--padding) / 2);
   }
 
-  .section.highlight {
-    background-color: var(--transparent-orange);
+  .highlight {
+    background-color: var(--dark-grey);
   }
+
+  .highlight h2 {
+    color: var(--white);
+  }
+
+  .highlight p {
+    color: var(--light-grey);
+  }
+
   .section-top {
     display: flex;
     flex-direction: row;
