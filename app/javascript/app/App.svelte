@@ -70,50 +70,52 @@
 		outline: none;
 	}
 
+
+	:global(p) {
+		font-size: 1rem;
+		margin-bottom: 20px;
+	}
+
 	:global(h2) {
+		font-size: 1.5rem;
 		margin: 50px 0 10px;
 	}
 
 	:global(h4) {
-		font-size: 20px;
+		font-size: 1.25rem;
 		font-weight: 500;
 	}
 
 	:global(h5) {
-		font-size: 18px;
+		font-size: 1.125px;
 		color: var(--black)
 	}
 
 	:global(h6) {
-		font-size: 16px;
+		font-size: 1rem;
     color: var(--dark-grey);
 	}
 
-	:global(p) {
-		margin-bottom: 20px;
-	}
-
-	@media screen and (max-width: 1300px) {
+	@media screen and (max-width: 700px) {
 		:global(p) {
-			font-size: 14px;
+			font-size: 1.25rem;
 		}
+
 		:global(h2) {
+			font-size: 1.75rem;
 			margin-top: 25px;
-			font-size: 20px;
-		}
-		:global(h3) {
-			font-size: 17px;
 		}
 
 		:global(h4) {
-			font-size: 16px;
+			font-size: 1.5rem;
 		}
 
 		:global(h5) {
-			font-size: 14px;
+			font-size: 1.25rem;
 		}
+		
 		:global(h6) {
-			font-size: 12px;
+			font-size: 1.125rem;
 		}
 	}
 
