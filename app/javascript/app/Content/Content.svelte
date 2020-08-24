@@ -86,7 +86,6 @@
     justify-content: stretch;
     width: 100%;
     height: calc(100vh - 82px);
-    overflow-y: scroll;
   }
    
   .content.mobile {
@@ -100,6 +99,7 @@
     flex-direction:column;
     width: 0;
     flex-grow: 1;
+    overflow-y: scroll;
   }
 
   .music-selection.mobile {
@@ -108,9 +108,7 @@
 
   .player-container {
     display: flex;
-    position: sticky;
     right: 0;
-    top: 0;
   }
 
   .player-container.mobile {
