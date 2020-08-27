@@ -1,7 +1,7 @@
 require 'csv'
 
 class Category < ApplicationRecord
-  has_many :albums, -> { order("position ASC") }
+  has_many :albums, -> { order("position ASC") }, dependent: :destroy
 
   def import_albums(file, insert_mode)
     albums = []
