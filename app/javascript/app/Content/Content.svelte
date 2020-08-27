@@ -49,14 +49,14 @@
     {#if categories}
       <Section
         headerText='Catalytic Radio'
-        sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day'
+        sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day.'
         sectionNumber={0}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         albums={categories[1].albums} />
       <Section
-        headerText='New Radio'
-        sectionDescription='blah'
+        headerText='Label Radio'
+        sectionDescription='Check out releases from out partner labels.'
         sectionNumber={4}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
