@@ -9,6 +9,7 @@
   export let sectionNumber
   export let selectedAlbum
   export let selectAlbum
+  export let highlight
   export let albums = []
 
   let width
@@ -27,7 +28,7 @@
   const setDontMissAlbum = (albums, user) => albums[albums.length - 1]
 
   const assignIndices = (albums) => {
-    albums.forEach((album, index) => {
+    albums.reverse().forEach((album, index) => {
       album.index = index
     });
   }
@@ -39,7 +40,11 @@
   $: selected = dontMissAlbum == selectedAlbum
 </script>
 
-<div class='section' bind:clientWidth={width} style='--padding:{$padding}px' >
+<div 
+  class='section' 
+  class:highlight
+  bind:clientWidth={width} 
+  style='--padding:{$padding}px' >
   <div class='section-top'>
     <div class='section-header'>
       <h2>{headerText}</h2>
@@ -56,9 +61,10 @@
           on:mousedown|stopPropagation={() => { mousedown = true } }
           on:mouseup|stopPropagation={() => { mousedown = false } }
           on:mouseleave|stopPropagation={() => { mousedown = false } } >
-          <h5>
-            <b>DON'T MISS:</b>{dontMissAlbum.title}
-          </h5>
+          <h6>
+            <b>DON'T MISS:</b>
+            <span>{dontMissAlbum.title}</span>
+          </h6>
         </button>
       </div>
     {/if}
@@ -68,6 +74,7 @@
     selectAlbum={selectAlbum} 
     selectedAlbum={selectedAlbum}
     rotating={rotating}
+    highlight={highlight}
     dontMissIndex={dontMissAlbum && dontMissAlbum.index} />
 </div>
 
@@ -81,14 +88,31 @@
     color: var(--dark-grey);
   }
 
-  h5 {
-    color: white;
+  span {
+    color: var(--white);
+  }
+
+  h6 {
+    text-align: left;
+		white-space: unset;
   }
 
   .section {
     box-sizing: border-box;
-    width: 100%;
-    padding: 0 var(--padding);
+    padding: 0 calc(var(--padding) / 2);
+    margin: 0 calc(var(--padding) / 2);
+  }
+
+  .highlight {
+    background-color: var(--dark-grey);
+  }
+
+  .highlight h2 {
+    color: var(--white);
+  }
+
+  .highlight p {
+    color: var(--light-grey);
   }
 
   .section-top {
@@ -112,7 +136,6 @@
     padding: 5px 15px;
     border: none;
     background-color: var(--orange);
-    height: 40px;
     border-radius: 0;
     cursor: pointer;
   }

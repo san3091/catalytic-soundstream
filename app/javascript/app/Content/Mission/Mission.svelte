@@ -25,10 +25,13 @@
   .mission {
     position: relative;
     margin: 20px var(--mission-padding) -20px;
+    background-color: var(--dark-grey);
+    padding: 50px 50px 26px;
   }
 
   .mission p {
     line-height: 32px;
     margin-bottom: 24px;
+    color: var(--white);
   }
 </style>
