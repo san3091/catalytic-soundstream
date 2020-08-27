@@ -27,23 +27,23 @@
 
   $: enabled = ($user && $user.is_member) || album.index == 0
   $: tilePadding = (tileWidth > 180) ? 8 : 4
-  
+
   onMount(async () => {
     await loadSoundcloudData()
   })
 </script>
 
-<div 
-  class='tile-container' 
+<div
+  class='tile-container'
   class:highlight
   class:new-today={newToday}
   class:dont-miss={dontMiss}
   on:click|stopPropagation={() => {selectAlbum(album)}}
   on:mousedown|stopPropagation={() => { mousedown = true } }
   on:mouseup|stopPropagation={() => { mousedown = false } }
-  on:mouseleave|stopPropagation={() => { mousedown = false } } 
+  on:mouseleave|stopPropagation={() => { mousedown = false } }
   style='
-    --size:{tileWidth - (tilePadding * 2)}px; 
+    --size:{tileWidth - (tilePadding * 2)}px;
     --tile-padding:{tilePadding}px;
   ' >
   {#if thumbnail && tileWidth}
@@ -52,7 +52,7 @@
         <i class='material-icons'>lock_open</i>
       </div>
     {/if}
-    <button 
+    <button
       transition:fade
       class='album-tile'
       class:selected
@@ -84,7 +84,7 @@
   h6 {
     font-weight: 500;
   }
-  
+
   .truncate {
     position: relative;
     right: 10px;
@@ -115,7 +115,7 @@
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
   }
- 
+
   .tile-container.dont-miss::after {
     opacity: 0;
     content: "DON'T MISS";
@@ -175,13 +175,13 @@
   .selected.enabled .album-art::after {
     background-color: var(--dark-grey);
   }
-  
+
   .highlight .enabled .album-art::after {
     background-color: var(--transparent-orange);
   }
 
-  
-  .thumbnail { 
+
+  .thumbnail {
     overflow: hidden
   }
 
@@ -220,7 +220,7 @@
   .album-info * {
     text-align: left;
   }
-  
+
   img {
     height: var(--size);
   }
@@ -263,17 +263,17 @@
     top: -6px;
     left: -6px;
   }
-  
+
   .enabled.selected .album-art::after {
     top: 6px;
     left: 6px;
   }
- 
+
   .enabled.selected:hover .album-art {
     top: -6px;
     left: -6px;
   }
-  
+
   .enabled.selected:hover .album-art::after {
     top: 6px;
     left: 6px;

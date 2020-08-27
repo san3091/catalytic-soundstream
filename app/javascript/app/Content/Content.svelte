@@ -7,7 +7,7 @@
   import Footer from './Footer/Footer.svelte'
 
   import { playerIsOpen, modalIsOpen, user, mobileLayout } from '../stores.js'
-  
+
   let categories
   let selectedAlbum
 
@@ -44,17 +44,24 @@
 </script>
 
 <div class='content' class:mobile={$mobileLayout}>
-  <div class='music-selection' class:mobile={$mobileLayout}> 
+  <div class='music-selection' class:mobile={$mobileLayout}>
     <Mission />
     {#if categories}
       <Section
         headerText='Radio'
-        sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day'
+        sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day.'
         sectionNumber={0}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         albums={categories[1].albums} />
-      <Section 
+      <Section
+        headerText='Label Radio'
+        sectionDescription='Check out releases from out partner labels.'
+        sectionNumber={4}
+        selectAlbum={selectAlbum}
+        selectedAlbum={selectedAlbum}
+        albums={categories[3].albums} />
+      <Section
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
         sectionNumber={1}
@@ -62,7 +69,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         albums={categories[2].albums} />
-      <Section 
+      <Section
         headerText="History is What's Happening"
         sectionDescription='Discover classics from the Catalytic Sound catalog.'
         sectionNumber={2}
@@ -72,8 +79,8 @@
     {/if}
     <Footer />
   </div>
-  <div 
-    class='player-container' 
+  <div
+    class='player-container'
     class:mobile={$mobileLayout}>
     <Player selectedAlbum={selectedAlbum} />
   </div>
@@ -88,7 +95,7 @@
     width: 100%;
     height: calc(100vh - 82px);
   }
-   
+
   .content.mobile {
     flex-direction: column;
   }
