@@ -33,14 +33,9 @@
   })
 </script>
 
-<<<<<<< HEAD
-<div
-  class='tile-container'
-=======
 <div
   class='tile-container'
   class:highlight
->>>>>>> staging
   class:new-today={newToday}
   class:dont-miss={dontMiss}
   on:click|stopPropagation={() => {selectAlbum(album)}}
