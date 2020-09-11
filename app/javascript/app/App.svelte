@@ -38,7 +38,7 @@
 
 <style>
 	:global(body) {
-		--black: #000;
+		--black: #242424;
 		--dark-grey: #3e3e3e;
 		--medium-grey: #8D8E8F;
 		--light-grey: #dbdedf;
@@ -77,12 +77,12 @@
 	}
 
 	:global(h2) {
-		font-size: 1.5rem;
-		margin: 50px 0 10px;
+		font-size: 1.4rem;
+		margin: 40px 0 10px;
 	}
 
 	:global(h4) {
-		font-size: 1.25rem;
+		font-size: 1.15rem;
 		font-weight: 500;
 	}
 
@@ -92,7 +92,7 @@
 	}
 
 	:global(h6) {
-		font-size: 1rem;
+		font-size: 0.9rem;
 		white-space: nowrap;
     color: var(--dark-grey);
 	}
