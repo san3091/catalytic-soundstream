@@ -151,7 +151,7 @@
     position: absolute;
     bottom: 10px;
     width: 80px;
-    z-index: 2;
+    z-index: 3;
     border: none;
     opacity: 0;
     animation: invisible .4s ease-out forwards;

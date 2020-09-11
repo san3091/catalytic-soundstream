@@ -14,7 +14,7 @@
 
   let mousedown
   let thumbnail = album.thumbnail_url
-
+  
   const loadSoundcloudData = async () => {
     await SC.oEmbed(album.soundcloud_url)
       .then(SCAlbum => {
@@ -200,7 +200,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
     width: var(--size);
     height: var(--size);
     opacity: 0;
