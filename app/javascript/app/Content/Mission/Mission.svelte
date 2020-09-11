@@ -30,7 +30,7 @@
   }
 
   .mission p {
-    line-height: 32px;
+    line-height: 26px;
     margin-bottom: 24px;
     color: var(--white);
   }
