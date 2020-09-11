@@ -99,8 +99,7 @@
 
   .section {
     box-sizing: border-box;
-    padding: 0 calc(var(--padding) / 2);
-    margin: 0 calc(var(--padding) / 2);
+    padding: 0 var(--padding);
   }
 
   .highlight {
