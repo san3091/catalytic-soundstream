@@ -77,7 +77,7 @@
 	}
 
 	:global(h2) {
-		font-size: 1.4rem;
+		font-size: 1.5rem;
 		margin: 40px 0 10px;
 	}
 
