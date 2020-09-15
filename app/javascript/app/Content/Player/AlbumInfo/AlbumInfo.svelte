@@ -49,7 +49,7 @@
 
   .description { 
     margin: 20px 0 0;
-    line-height: 28px;
+    line-height: 26px;
   }
   
   .title {

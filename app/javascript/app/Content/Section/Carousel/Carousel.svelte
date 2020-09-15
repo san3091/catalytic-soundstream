@@ -127,7 +127,7 @@
 <style>
   .carousel-container {
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     width: 100%;
   }
   

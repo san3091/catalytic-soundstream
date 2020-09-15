@@ -110,7 +110,7 @@
     color: var(--orange);
     bottom: -20px;
     left: -8px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
@@ -122,7 +122,7 @@
     position: absolute;
     bottom: -20px;
     left: -8px;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--orange);
     text-align: center;
     width: var(--tile-width);
