@@ -7,6 +7,7 @@
   import Footer from './Footer/Footer.svelte'
 
   import { playerIsOpen, modalIsOpen, user, mobileLayout } from '../stores.js'
+  import { playable } from '../helpers.js'
 
   let categories
   let playingAlbum
@@ -28,7 +29,7 @@
   }
 
   const playAlbum = (album) => {
-    if (album.free || ($user && $user.is_member)) {
+    if (playable(album, $user)) {
       playerIsOpen.set(true)
       playingAlbum = album
     } else {
@@ -54,13 +55,13 @@
         playAlbum={playAlbum}
         playingAlbum={playingAlbum}
         albums={categories[1].albums} />
-      <Section
+      <!-- <Section
         headerText='Label Radio'
         sectionDescription='Check out releases from out partner labels.'
         sectionNumber={4}
         playAlbum={playAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[3].albums} />
+        albums={categories[3].albums} /> -->
       <Section
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'

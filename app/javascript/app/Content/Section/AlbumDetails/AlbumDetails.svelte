@@ -1,17 +1,24 @@
 <script>
   import { fade } from 'svelte/transition'
 
+  import { playable } from '../../../helpers.js'
+  import { user } from '../../../stores.js'
+  
   export let playAlbum
   export let selectedAlbum
+
+  $: primaryButtonText = playable(selectedAlbum, $user) ? 'PLAY' : 'UNLOCK'
 </script>
 
 <div class='album-info'>
   <div class='album-info-left'>
-    <div class='album-headings'>
-      <h2 class='title'>{selectedAlbum.title}</h2>
-      <h4 class='artist'>{selectedAlbum.artist}</h4>
-    </div>
-    
+    <h2 class='title'>{selectedAlbum.title}</h2>
+    <h4 class='artist'>{selectedAlbum.artist}</h4>
+    <button 
+      class='primary-button'
+      on:click|stopPropagation={() => {playAlbum(selectedAlbum)}}>
+      { primaryButtonText }
+    </button>
   </div>
   <div class='album-info-right'>
     {#if selectedAlbum.description}
@@ -45,11 +52,21 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   }
   
   .title  {
     margin-top: 0;
+  }
+
+  .primary-button {
+    align-self: flex-start;
+    margin-top: 40px;
+    padding: 10px 30px;
+    color: white;
+    background-color: var(--orange);
+    font-size: 18px;
+    transition: background-color .1s ease-in;
+    border: none;
   }
 
   .curator {
