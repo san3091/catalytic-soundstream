@@ -3,7 +3,7 @@
 
   export let headerText
   export let sectionDescription
-  export let selected
+  export let playing
   export let rotating
   export let dontMissAlbum
   export let playDontMissAlbum
@@ -21,7 +21,7 @@
       <button 
         transition:fade 
         class='play-last-button' 
-        class:selected
+        class:playing
         class:mousedown
         on:click|stopPropagation={playDontMissAlbum}
         on:mousedown|stopPropagation={() => { mousedown = true } }
@@ -124,12 +124,12 @@ h2, p {
     left: 2px;
   }
 
-  .selected, .play-last-button.selected:hover {
+  .playing, .play-last-button.playing:hover {
     top: -2px;
     left: -2px;
   }
 
-  .selected::after, .play-last-button.selected:hover::after {
+  .playing::after, .play-last-button.playing:hover::after {
     top: 5px;
     left: 5px;
   }

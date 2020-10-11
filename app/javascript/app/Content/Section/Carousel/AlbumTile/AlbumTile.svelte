@@ -5,8 +5,9 @@
   import LoadingTile from './LoadingTile/LoadingTile.svelte'
 
   export let album
+  // export let playAlbum
   export let selectAlbum
-  export let selected
+  export let playing
   export let tileWidth
   export let highlight
   export let dontMiss
@@ -55,7 +56,7 @@
     <button
       transition:fade
       class='album-tile'
-      class:selected
+      class:playing
       class:enabled
       class:mousedown
       style='--color:{album.color || "#666a86"};'>
@@ -172,7 +173,7 @@
     background-color: var(--black);
   }
 
-  .selected.enabled .album-art::after {
+  .playing.enabled .album-art::after {
     background-color: var(--dark-grey);
   }
 
@@ -259,22 +260,22 @@
     left: 2px;
   }
 
-  .enabled.selected .album-art {
+  .enabled.playing .album-art {
     top: -6px;
     left: -6px;
   }
 
-  .enabled.selected .album-art::after {
+  .enabled.playing .album-art::after {
     top: 6px;
     left: 6px;
   }
 
-  .enabled.selected:hover .album-art {
+  .enabled.playing:hover .album-art {
     top: -6px;
     left: -6px;
   }
 
-  .enabled.selected:hover .album-art::after {
+  .enabled.playing:hover .album-art::after {
     top: 6px;
     left: 6px;
   }

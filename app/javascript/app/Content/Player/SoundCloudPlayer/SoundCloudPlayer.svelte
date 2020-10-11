@@ -1,13 +1,13 @@
 <script>
   import { onMount } from 'svelte'
 
-  export let selectedAlbum
+  export let playingAlbum
 
 </script>
 
 <div  class='player-container'>
-  {#if selectedAlbum}
-    {@html selectedAlbum && selectedAlbum.html}
+  {#if playingAlbum}
+    {@html playingAlbum && playingAlbum.html}
   {/if}
 </div>
 

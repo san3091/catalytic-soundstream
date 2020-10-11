@@ -7,7 +7,7 @@
   import AlbumInfo from './AlbumInfo/AlbumInfo.svelte'
   import { playerIsOpen, appWidth, mobileLayout } from '../../stores.js'
   
-  export let selectedAlbum
+  export let playingAlbum
 
   let width = tweened(50, { easing: cubicOut, duration: 400 })
   let heightOffset = tweened(0, { easing: cubicOut, duration: 400 })
@@ -60,8 +60,8 @@
   </button>
   {#if !isClosed}
     <div transition:fade class='player-content'>
-      <AlbumInfo album={selectedAlbum} />
-      <SoundCloudPlayer selectedAlbum={selectedAlbum} />
+      <AlbumInfo album={playingAlbum} />
+      <SoundCloudPlayer playingAlbum={playingAlbum} />
     </div>
   {/if}
 </div>
