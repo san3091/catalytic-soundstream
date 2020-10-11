@@ -2,7 +2,7 @@
   import { tweened } from 'svelte/motion'
   import { cubicOut } from 'svelte/easing'
   import { fade } from 'svelte/transition'
-  import AlbumTile from '../AlbumTile/AlbumTile.svelte'
+  import AlbumTile from './AlbumTile/AlbumTile.svelte'
   import ProgressIndicator from './ProgressIndicator/ProgressIndicator.svelte'
 
   export let albums

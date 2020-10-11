@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import { fade } from 'svelte/transition'
-  import { user } from '../../../stores.js'
+  import { user } from '../../../../stores.js'
   import LoadingTile from './LoadingTile/LoadingTile.svelte'
 
   export let album
