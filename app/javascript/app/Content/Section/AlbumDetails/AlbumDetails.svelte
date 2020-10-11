@@ -7,7 +7,8 @@
   export let playAlbum
   export let selectedAlbum
 
-  $: primaryButtonText = playable(selectedAlbum, $user) ? 'PLAY' : 'UNLOCK'
+  $: isPlayable = playable(selectedAlbum, $user)
+  $: primaryButtonText = isPlayable ? 'PLAY' : 'UNLOCK'
 </script>
 
 <div class='album-info'>
@@ -15,30 +16,31 @@
     <h2 class='title'>{selectedAlbum.title}</h2>
     <h4 class='artist'>{selectedAlbum.artist}</h4>
     <button 
-      class='primary-button'
+      class='button primary-button'
       on:click|stopPropagation={() => {playAlbum(selectedAlbum)}}>
       { primaryButtonText }
     </button>
   </div>
   <div class='album-info-right'>
+    {#if selectedAlbum.curator}
+      <h5 class='curator'>Curated by: {selectedAlbum.curator}</h5>
+    {/if}
     {#if selectedAlbum.description}
       <p class='description'>
         {selectedAlbum.description}
       </p>
     {/if}
-    {#if selectedAlbum.curator}
-      <h5 class='curator'>Curated by: {selectedAlbum.curator}</h5>
+    {#if selectedAlbum.bandcamp_url}
+      <a 
+        href={selectedAlbum.bandcamp_url} 
+        class='soundcloud-link'
+        target="_blank" rel="noopener noreferrer">
+        view on bandcamp
+      </a>
     {/if}
   </div>
   
-  <!-- {#if selectedAlbum.bandcamp_url}
-    <a 
-      href={selectedAlbum.bandcamp_url} 
-      class='bandcamp-link'
-      target="_blank" rel="noopener noreferrer">
-      BUY
-    </a>
-  {/if} -->
+ 
 </div>
 
 <style>
@@ -58,19 +60,30 @@
     margin-top: 0;
   }
 
+  .button {
+    padding: 10px 30px;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
   .primary-button {
     align-self: flex-start;
     margin-top: 40px;
-    padding: 10px 30px;
     color: white;
     background-color: var(--orange);
-    font-size: 18px;
     transition: background-color .1s ease-in;
     border: none;
   }
 
+  .soundcloud-link {
+    align-self: flex-start;
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--orange);
+  }
+
   .curator {
-    justify-self: flex-end;
+    margin-bottom: 20px;
   }
 
   .album-info-right {
