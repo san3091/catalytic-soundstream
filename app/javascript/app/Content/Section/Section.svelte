@@ -1,7 +1,7 @@
 <script>
-  import { fade } from 'svelte/transition'
 
   import Carousel from './Carousel/Carousel.svelte'
+  import SectionHeading from './SectionHeading/SectionHeading.svelte'
   import { user, padding } from '../../stores.js'
 
   export let headerText
@@ -45,30 +45,14 @@
   class:highlight
   bind:clientWidth={width} 
   style='--padding:{$padding}px' >
-  <div class='section-top'>
-    <div class='section-header'>
-      <h2>{headerText}</h2>
-      <p class='description'>{sectionDescription}</p>
-    </div>
-    {#if rotating && dontMissAlbum}
-      <div class='button-container'>
-        <button 
-          transition:fade 
-          class='play-last-button' 
-          class:selected
-          class:mousedown
-          on:click|stopPropagation={playDontMissAlbum}
-          on:mousedown|stopPropagation={() => { mousedown = true } }
-          on:mouseup|stopPropagation={() => { mousedown = false } }
-          on:mouseleave|stopPropagation={() => { mousedown = false } } >
-          <h6>
-            <b>DON'T MISS:</b>
-            <span>{dontMissAlbum.title}</span>
-          </h6>
-        </button>
-      </div>
-    {/if}
-  </div>
+  <SectionHeading 
+    headerText={headerText} 
+    sectionDescription={sectionDescription}
+    selected={selected}
+    rotating={rotating}
+    dontMissAlbum={dontMissAlbum}
+    mousedown={mousedown}
+    />
   <Carousel 
     albums={albums} 
     selectAlbum={selectAlbum} 
