@@ -60,8 +60,8 @@
   </button>
   {#if !isClosed}
     <div transition:fade class='player-content'>
-      <AlbumInfo album={playingAlbum} />
       <SoundCloudPlayer playingAlbum={playingAlbum} />
+      <AlbumInfo album={playingAlbum} />
     </div>
   {/if}
 </div>

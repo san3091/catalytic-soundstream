@@ -77,7 +77,7 @@
   .primary-button:hover {
     background-color: var(--red-orange);
   }
-  
+
   .soundcloud-link {
     align-self: flex-start;
     display: inline-block;
@@ -95,15 +95,11 @@
     padding: 20px;
   }
 
-  .highlight h2 {
+  .highlight h2, .highlight h5 {
     color: var(--white);
   }
   
-  .highlight h4 {
-    color: var(--light-grey);
-  }
-
-  .highlight p {
+  .highlight h4, .highlight p {
     color: var(--light-grey);
   }
 </style>
