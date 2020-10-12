@@ -6,12 +6,13 @@
   
   export let playAlbum
   export let selectedAlbum
+  export let highlight
 
   $: isPlayable = playable(selectedAlbum, $user)
   $: primaryButtonText = isPlayable ? 'PLAY' : 'UNLOCK'
 </script>
 
-<div class='album-info'>
+<div class='album-info' class:highlight>
   <div class='album-info-left'>
     <h2 class='title'>{selectedAlbum.title}</h2>
     <h4 class='artist'>{selectedAlbum.artist}</h4>
@@ -39,8 +40,6 @@
       </a>
     {/if}
   </div>
-  
- 
 </div>
 
 <style>
@@ -57,7 +56,7 @@
   }
   
   .title  {
-    margin-top: 0;
+    margin-top: 20px;
   }
 
   .button {
@@ -75,6 +74,10 @@
     border: none;
   }
 
+  .primary-button:hover {
+    background-color: var(--red-orange);
+  }
+  
   .soundcloud-link {
     align-self: flex-start;
     display: inline-block;
@@ -90,5 +93,17 @@
     flex: 1;
     border: 1px solid var(--orange);
     padding: 20px;
+  }
+
+  .highlight h2 {
+    color: var(--white);
+  }
+  
+  .highlight h4 {
+    color: var(--light-grey);
+  }
+
+  .highlight p {
+    color: var(--light-grey);
   }
 </style>

@@ -76,6 +76,11 @@
 		margin-bottom: 20px;
 	}
 
+	:global(h1) {
+		font-size: 2rem;
+		margin: 40px 0 10px;
+	}
+
 	:global(h2) {
 		font-size: 1.5rem;
 		margin: 40px 0 10px;

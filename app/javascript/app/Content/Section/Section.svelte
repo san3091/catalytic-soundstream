@@ -70,7 +70,8 @@
   {#if selectedAlbum}
     <AlbumDetails 
       playAlbum={playAlbum}
-      selectedAlbum={selectedAlbum} />
+      selectedAlbum={selectedAlbum}
+      highlight={highlight} />
   {/if}
 </div>
 

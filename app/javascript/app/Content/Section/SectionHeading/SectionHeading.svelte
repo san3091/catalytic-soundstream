@@ -13,7 +13,7 @@
 
 <div class='section-top' class:highlight>
   <div class='section-header'>
-    <h2>{headerText}</h2>
+    <h1>{headerText}</h1>
     <p class='description'>{sectionDescription}</p>
   </div>
   {#if rotating && dontMissAlbum}
@@ -37,10 +37,6 @@
 </div>
 
 <style>
-h2, p {
-    margin-left: 50px;
-  }
-
   b {
     font-weight: 400;
     margin-right: 10px;
@@ -55,7 +51,8 @@ h2, p {
     text-align: left;
 		white-space: unset;
   }
-  .highlight h2 {
+
+  .highlight h1 {
     color: var(--white);
   }
 
