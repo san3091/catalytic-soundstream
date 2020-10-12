@@ -8,15 +8,13 @@
   export let headerText
   export let sectionDescription
   export let sectionNumber
-  export let playingAlbum
+  // export let playingAlbum
   export let playAlbum
   export let highlight
   export let albums = []
 
   let width
-  let mousedown
   let selectedAlbum
-  
 
   const setPadding = (width) => {
     if (width < 1000) { return 10 }
@@ -38,7 +36,6 @@
   $: padding.set(setPadding(width))
   $: dontMissAlbum = setDontMissAlbum(albums, $user)
   $: rotating = sectionNumber == 0
-  $: playing = dontMissAlbum == playingAlbum
 </script>
 
 <div 
@@ -49,12 +46,11 @@
   <SectionHeading 
     headerText={headerText} 
     sectionDescription={sectionDescription}
-    playing={playing}
     rotating={rotating}
     dontMissAlbum={dontMissAlbum}
-    mousedown={mousedown}
     highlight={highlight}
     selectAlbum={selectAlbum}
+    selectedAlbum={selectedAlbum}
     />
   <Carousel 
     albums={albums} 
@@ -62,6 +58,7 @@
     selectAlbum={selectAlbum}
     rotating={rotating}
     highlight={highlight}
+    selectedAlbum={selectedAlbum}
     dontMissIndex={dontMissAlbum && dontMissAlbum.index} />
   {#if selectedAlbum}
     <AlbumDetails 

@@ -5,7 +5,7 @@
   import LoadingTile from './LoadingTile/LoadingTile.svelte'
 
   export let album
-  // export let playAlbum
+  export let selected
   export let selectAlbum
   export let playing
   export let tileWidth
@@ -48,16 +48,11 @@
     --tile-padding:{tilePadding}px;
   ' >
   {#if thumbnail && tileWidth}
-    {#if !enabled}
-      <div class='album-art-screen'>
-        <i class='material-icons'>lock_open</i>
-      </div>
-    {/if}
     <button
       transition:fade
       class='album-tile'
       class:playing
-      class:enabled
+      class:selected
       class:mousedown
       style='--color:{album.color || "#666a86"};'>
       <div class='album-art'>
@@ -156,28 +151,16 @@
   .album-art::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+    top: -1px;
+    left: -1px;
     height: 100%;
     width: 100%;
     z-index: -1;
-    animation: fade-in 1s 0.5s ease-in forwards;
-  }
-
-  .enabled .album-art {
-    border: none;
-  }
-
-  .enabled .album-art::after {
+    opacity: 0;
     background-color: var(--black);
   }
 
-  .playing.enabled .album-art::after {
-    background-color: var(--dark-grey);
-  }
-
-  .highlight .enabled .album-art::after {
+  .highlight .album-art::after {
     background-color: var(--transparent-orange);
   }
 
@@ -196,28 +179,6 @@
     padding: 10px 0 10px 20px;
   }
 
-  .album-art-screen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    z-index: 2;
-    width: var(--size);
-    height: var(--size);
-    opacity: 0;
-    transition: opacity .4s ease;
-    background-color: var(--transparent-grey);
-  }
-
-  .material-icons {
-    font-size: 32px;
-    color: var(--light-grey);
-  }
-
-  .tile-container:hover .album-art-screen {
-    opacity: 1;
-  }
-
   .album-info * {
     text-align: left;
   }
@@ -226,58 +187,37 @@
     height: var(--size);
   }
 
-  .enabled img {
-    filter: none;
-  }
-
-  .album-tile.enabled .album-art {
-    top: -2px;
-    left: -2px;
-  }
-
-  .album-tile.enabled .album-art::after {
-    top: 2px;
-    left: 2px;
-  }
-
-  .album-tile.enabled:hover .album-art {
-    top: -4px;
+  .album-tile:hover .album-art {
+    top: -3px;
     left: -4px;
   }
 
-  .album-tile.enabled:hover .album-art::after {
-    top: 4px;
+  .album-tile:hover .album-art::after {
+    opacity: 1;
+    top: 3px;
     left: 4px;
   }
 
- .album-tile.enabled.mousedown .album-art {
+  .album-tile.selected .album-art {
+    top: -6px;
+    left: -8px;
+  }
+
+  .album-tile.selected .album-art::after {
+    top: 6px;
+    left: 8px;
+    opacity: 1;
+    background-color: var(--orange);
+  }
+
+  .album-tile.mousedown .album-art {
     top: -2px;
-    left: -2px;
+    left: -3px;
   }
 
- .album-tile.enabled.mousedown .album-art::after {
+ .album-tile.mousedown .album-art::after {
     top: 2px;
-    left: 2px;
-  }
-
-  .enabled.playing .album-art {
-    top: -6px;
-    left: -6px;
-  }
-
-  .enabled.playing .album-art::after {
-    top: 6px;
-    left: 6px;
-  }
-
-  .enabled.playing:hover .album-art {
-    top: -6px;
-    left: -6px;
-  }
-
-  .enabled.playing:hover .album-art::after {
-    top: 6px;
-    left: 6px;
+    left: 3px;
   }
 
   @keyframes fade-in {

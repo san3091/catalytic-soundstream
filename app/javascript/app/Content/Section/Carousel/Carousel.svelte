@@ -12,6 +12,7 @@
   export let rotating
   export let highlight
   export let dontMissIndex
+  export let selectedAlbum
   
   let carouselWidth, itemsWidth
   let currentSection = 0
@@ -106,6 +107,7 @@
         <AlbumTile 
           album={album} 
           selectAlbum={selectAlbum}
+          selected={selectedAlbum == album}
           highlight={highlight}
           playing={playingAlbum == album}
           tileWidth={$tileWidth}
