@@ -6,7 +6,7 @@
   export let playing
   export let rotating
   export let dontMissAlbum
-  export let playDontMissAlbum
+  export let selectAlbum
   export let mousedown
   export let highlight
 </script>
@@ -23,7 +23,7 @@
         class='play-last-button' 
         class:playing
         class:mousedown
-        on:click|stopPropagation={playDontMissAlbum}
+        on:click|stopPropagation={() => selectAlbum(dontMissAlbum) }
         on:mousedown|stopPropagation={() => { mousedown = true } }
         on:mouseup|stopPropagation={() => { mousedown = false } }
         on:mouseleave|stopPropagation={() => { mousedown = false } } >

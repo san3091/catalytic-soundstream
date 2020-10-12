@@ -15,13 +15,8 @@
 
   let width
   let mousedown
-  // let showDetails = false
   let selectedAlbum
   
-  const playDontMissAlbum = () => {
-    openDetails()
-    // playAlbum(dontMissAlbum)
-  }
 
   const setPadding = (width) => {
     if (width < 1000) { return 10 }
@@ -59,6 +54,7 @@
     dontMissAlbum={dontMissAlbum}
     mousedown={mousedown}
     highlight={highlight}
+    selectAlbum={selectAlbum}
     />
   <Carousel 
     albums={albums} 
