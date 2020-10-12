@@ -30,6 +30,7 @@
     });
   }
 
+  const deselectAlbum = () => { selectedAlbum = null }
   const selectAlbum = (album) => { selectedAlbum = album }
 
   $: assignIndices(albums)
@@ -64,7 +65,8 @@
     <AlbumDetails 
       playAlbum={playAlbum}
       selectedAlbum={selectedAlbum}
-      highlight={highlight} />
+      highlight={highlight}
+      deselectAlbum={deselectAlbum} />
   {/if}
 </div>
 

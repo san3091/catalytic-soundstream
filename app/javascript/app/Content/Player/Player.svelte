@@ -106,9 +106,13 @@
   .slide-button i {
     flex: 1;
     margin: 10px;
-    font-size: 28px;
+    font-size: 32px;
+    transition: color 0.1s ease-in-out;
   }
 
+  .slide-button:hover i {
+    color: var(--orange);
+  }
 
   .mobile {
     z-index: 2;
