@@ -10,7 +10,7 @@
   export let sectionNumber
   export let selectAlbum
   export let selectedAlbum
-  // export let playingAlbum
+  export let playingAlbum
   export let playAlbum
   export let highlight
   export let albums = []
@@ -57,6 +57,7 @@
     albums={albums} 
     playAlbum={playAlbum} 
     selectAlbum={selectAlbum}
+    playingAlbum={playingAlbum}
     rotating={rotating}
     highlight={highlight}
     selectedAlbum={selectedAlbum}

@@ -57,6 +57,9 @@
       style='--color:{album.color || "#666a86"};'>
       <div class='album-art'>
         <div class='thumbnail'>
+          {#if playing}
+            <i in:fade class='material-icons'>play_circle_outline</i>
+          {/if}
           <img src={thumbnail} alt={`${album.title} album art`} />
         </div>
       </div>
@@ -164,9 +167,18 @@
     background-color: var(--transparent-orange);
   }
 
+  i {
+    position: absolute;
+    z-index: 4;
+    font-size: 50px;
+    color: var(--orange);
+  }
 
   .thumbnail {
-    overflow: hidden
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .album-info {
