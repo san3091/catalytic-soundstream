@@ -3,6 +3,7 @@
   import { fade } from 'svelte/transition'
   import { user } from '../../../../stores.js'
   import LoadingTile from './LoadingTile/LoadingTile.svelte'
+  import AlbumTileInfo from './AlbumTileInfo/AlbumTileInfo.svelte'
 
   export let album
   export let selected
@@ -53,8 +54,7 @@
       class='album-tile'
       class:playing
       class:selected
-      class:mousedown
-      style='--color:{album.color || "#666a86"};'>
+      class:mousedown >
       <div class='album-art'>
         <div class='thumbnail'>
           {#if playing}
@@ -63,10 +63,7 @@
           <img src={thumbnail} alt={`${album.title} album art`} />
         </div>
       </div>
-      <div class='album-info'>
-        <h4 class='truncate'>{album.title}</h4>
-        <h6 class='truncate'>{album.artist}</h6>
-      </div>
+      <AlbumTileInfo album={album} highlight={highlight} />
     </button>
   {:else if tileWidth}
     <LoadingTile tileWidth={tileWidth} tilePadding={tilePadding} />
@@ -74,25 +71,6 @@
 </div>
 
 <style>
-
-  h4 {
-    margin-bottom: 4px;
-    color: var(--black);
-  }
-
-  h6 {
-    font-weight: 500;
-  }
-
-  .truncate {
-    position: relative;
-    right: 10px;
-    width: calc(var(--tile-width) - 35px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   .tile-container {
     box-sizing: border-box;
     width: var(--tile-width);
@@ -126,14 +104,6 @@
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
-  }
-
-  .highlight h4 {
-    color: var(--white);
-  }
-
-  .highlight h6 {
-    color: var(--light-grey);
   }
 
   .album-tile {
@@ -179,20 +149,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .album-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
-    width: var(--size);
-    box-sizing: border-box;
-    padding: 10px 0 10px 20px;
-  }
-
-  .album-info * {
-    text-align: left;
   }
 
   img {
