@@ -74,6 +74,7 @@
 	:global(p) {
 		font-size: 1rem;
 		margin-bottom: 20px;
+		line-height: 26px;
 	}
 
 	:global(h1) {

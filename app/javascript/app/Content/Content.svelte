@@ -10,6 +10,7 @@
   import { playable } from '../helpers.js'
 
   let categories
+  let selectedAlbum
   let playingAlbum
 
   const getAlbums = async () => {
@@ -37,6 +38,8 @@
     }
   }
 
+  const selectAlbum = (album) => { selectedAlbum = album }
+
   onMount(async () => {
     await getAlbums()
     selectFirstAlbum()
@@ -53,6 +56,8 @@
         sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day.'
         sectionNumber={0}
         playAlbum={playAlbum}
+        selectAlbum={selectAlbum}
+        selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
         albums={categories[1].albums} />
       <!-- <Section
@@ -60,6 +65,8 @@
         sectionDescription='Check out releases from out partner labels.'
         sectionNumber={4}
         playAlbum={playAlbum}
+        selectAlbum={selectAlbum}
+        selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
         albums={categories[3].albums} /> -->
       <Section
@@ -68,6 +75,8 @@
         sectionNumber={1}
         highlight={true}
         playAlbum={playAlbum}
+        selectAlbum={selectAlbum}
+        selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
         albums={categories[2].albums} />
       <Section
@@ -75,7 +84,9 @@
         sectionDescription='Discover classics from the Catalytic Sound catalog.'
         sectionNumber={2}
         playAlbum={playAlbum}
+        selectAlbum={selectAlbum}
         playingAlbum={playingAlbum}
+        selectedAlbum={selectedAlbum}
         albums={categories[0].albums} />
     {/if}
     <Footer />
@@ -102,13 +113,11 @@
   }
 
   .music-selection {
-    position: relative;
     padding-top: 25px;
     display: flex;
     flex-direction:column;
-    width: 0;
-    flex-grow: 1;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .music-selection.mobile {

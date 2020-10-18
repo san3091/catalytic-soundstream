@@ -8,13 +8,14 @@
   export let headerText
   export let sectionDescription
   export let sectionNumber
+  export let selectAlbum
+  export let selectedAlbum
   // export let playingAlbum
   export let playAlbum
   export let highlight
   export let albums = []
 
   let width
-  let selectedAlbum
 
   const setPadding = (width) => {
     if (width < 1000) { return 10 }
@@ -31,7 +32,6 @@
   }
 
   const deselectAlbum = () => { selectedAlbum = null }
-  const selectAlbum = (album) => { selectedAlbum = album }
 
   $: assignIndices(albums)
   $: padding.set(setPadding(width))
@@ -61,7 +61,7 @@
     highlight={highlight}
     selectedAlbum={selectedAlbum}
     dontMissIndex={dontMissAlbum && dontMissAlbum.index} />
-  {#if selectedAlbum}
+  {#if albums.includes(selectedAlbum)}
     <AlbumDetails 
       playAlbum={playAlbum}
       selectedAlbum={selectedAlbum}

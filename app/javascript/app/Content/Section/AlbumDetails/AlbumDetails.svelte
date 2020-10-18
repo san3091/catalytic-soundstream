@@ -13,20 +13,24 @@
   $: primaryButtonText = isPlayable ? 'PLAY' : 'UNLOCK'
 </script>
 
-<div class='album-info' class:highlight>
+<div class='album-details' 
+  class:highlight
+  in:fade >
   <button class='close-button' on:click={deselectAlbum}>
     <i class='material-icons'>close</i>
   </button>
-  <div class='album-info-left'>
-    <h2 class='title'>{selectedAlbum.title}</h2>
-    <h4 class='artist'>{selectedAlbum.artist}</h4>
+  <div class='album-details-left'>
+    <div class='details-headers'>
+      <h2 class='title'>{selectedAlbum.title}</h2>
+      <h4 class='artist'>{selectedAlbum.artist}</h4>
+    </div>
     <button 
       class='button primary-button'
       on:click|stopPropagation={() => {playAlbum(selectedAlbum)}}>
       { primaryButtonText }
     </button>
   </div>
-  <div class='album-info-right'>
+  <div class='album-details-right'>
     {#if selectedAlbum.curator}
       <h5 class='curator'>Curated by: {selectedAlbum.curator}</h5>
     {/if}
@@ -47,7 +51,7 @@
 </div>
 
 <style>
-  .album-info {
+  .album-details {
     display: flex;
     flex-direction: row;
     margin: 20px 40px 40px;
@@ -72,10 +76,11 @@
     color: var(--dark-grey);
   }
 
-  .album-info-left {
+  .album-details-left {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
   
   .title  {
@@ -86,6 +91,7 @@
     padding: 10px 30px;
     font-size: 18px;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .primary-button {
@@ -112,7 +118,7 @@
     margin-bottom: 20px;
   }
 
-  .album-info-right {
+  .album-details-right {
     flex: 1;
     border: 1px solid var(--orange);
     padding: 20px;
