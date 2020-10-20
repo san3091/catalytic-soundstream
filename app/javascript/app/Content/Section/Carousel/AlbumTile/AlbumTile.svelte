@@ -9,6 +9,7 @@
   export let album
   export let selected
   export let selectAlbum
+  export let playAlbum
   export let playing
   export let tileWidth
   export let highlight
@@ -32,6 +33,10 @@
     return album
   }
 
+  const selectOrPlay = (album) => {
+    selected ? playAlbum(album) : selectAlbum(album)
+  }
+
   onMount(async () => {
     album = await loadSoundcloudData(album)
   })
@@ -42,7 +47,7 @@
   class:highlight
   class:new-today={newToday}
   class:dont-miss={dontMiss}
-  on:click|stopPropagation={() => {selectAlbum(album)}}
+  on:click|stopPropagation={() => {selectOrPlay(album)}}
   on:mousedown|stopPropagation={() => { mousedown = true } }
   on:mouseup|stopPropagation={() => { mousedown = false } }
   on:mouseover|stopPropagation={() => { hover = true } }

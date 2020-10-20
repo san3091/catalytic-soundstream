@@ -55,7 +55,7 @@
 
   i {
     position: absolute;
-    z-index: 4;
+    z-index: 1;
     font-size: 50px;
     color: var(--orange);
   }

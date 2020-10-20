@@ -6,7 +6,7 @@
   import ProgressIndicator from './ProgressIndicator/ProgressIndicator.svelte'
 
   export let albums
-  // export let playAlbum
+  export let playAlbum
   export let selectAlbum
   export let playingAlbum
   export let rotating
@@ -109,6 +109,7 @@
           selectAlbum={selectAlbum}
           selected={selectedAlbum == album}
           highlight={highlight}
+          playAlbum={playAlbum}
           playing={playingAlbum == album}
           tileWidth={$tileWidth}
           newToday={rotating && album.index == 0}
