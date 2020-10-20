@@ -3,7 +3,7 @@
   import Carousel from './Carousel/Carousel.svelte'
   import SectionHeading from './SectionHeading/SectionHeading.svelte'
   import AlbumDetails from './AlbumDetails/AlbumDetails.svelte'
-  import { user, padding } from '../../stores.js'
+  import { user, padding, selectionWidth } from '../../stores.js'
 
   export let headerText
   export let sectionDescription
@@ -34,7 +34,7 @@
   const deselectAlbum = () => { selectedAlbum = null }
 
   $: assignIndices(albums)
-  $: padding.set(setPadding(width))
+  $: padding.set(setPadding($selectionWidth))
   $: dontMissAlbum = setDontMissAlbum(albums, $user)
   $: rotating = sectionNumber == 0
 </script>
@@ -42,7 +42,6 @@
 <div 
   class='section' 
   class:highlight
-  bind:clientWidth={width} 
   style='--padding:{$padding}px' >
   <SectionHeading 
     headerText={headerText} 

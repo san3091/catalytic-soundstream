@@ -17,23 +17,23 @@
 
   let mousedown
   let hover
-  let thumbnail = album.thumbnail_url
-  
-  const loadSoundcloudData = async () => {
+
+  $: thumbnail = album.thumbnail_url
+  $: enabled = ($user && $user.is_member) || album.index == 0
+  $: tilePadding = (tileWidth > 180) ? 8 : 4
+
+  const loadSoundcloudData = async (album) => {
     await SC.oEmbed(album.soundcloud_url, { auto_play: true })
       .then(SCAlbum => {
         const { html, thumbnail_url} = SCAlbum
         const free = album.index == 0
-        thumbnail = thumbnail_url
-        Object.assign(album, {html, free})
+        Object.assign(album, {html, thumbnail_url, free})
       })
+    return album
   }
 
-  $: enabled = ($user && $user.is_member) || album.index == 0
-  $: tilePadding = (tileWidth > 180) ? 8 : 4
-
   onMount(async () => {
-    await loadSoundcloudData()
+    album = await loadSoundcloudData(album)
   })
 </script>
 
@@ -51,7 +51,7 @@
     --size:{tileWidth - (tilePadding * 2)}px;
     --tile-padding:{tilePadding}px;
   ' >
-  {#if thumbnail && tileWidth}
+  {#if album.thumbnail_url && tileWidth}
     <button
       transition:fade
       class='album-tile' >

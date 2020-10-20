@@ -6,12 +6,13 @@
   import Mission from './Mission/Mission.svelte'
   import Footer from './Footer/Footer.svelte'
 
-  import { playerIsOpen, modalIsOpen, user, mobileLayout } from '../stores.js'
+  import { playerIsOpen, modalIsOpen, user, mobileLayout, selectionWidth } from '../stores.js'
   import { playable } from '../helpers.js'
 
   let categories
   let selectedAlbum
   let playingAlbum
+  let width
 
   const getAlbums = async () => {
     const url = '/categories'
@@ -40,6 +41,8 @@
 
   const selectAlbum = (album) => { selectedAlbum = album }
 
+  $: selectionWidth.set(width)
+
   onMount(async () => {
     await getAlbums()
     selectFirstAlbum()
@@ -48,7 +51,8 @@
 </script>
 
 <div class='content' class:mobile={$mobileLayout}>
-  <div class='music-selection' class:mobile={$mobileLayout}>
+  <div class='music-selection' class:mobile={$mobileLayout} 
+  bind:clientWidth={width} >
     <Mission />
     {#if categories}
       <Section

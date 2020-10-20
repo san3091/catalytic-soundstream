@@ -2,7 +2,7 @@
   import { fade } from 'svelte/transition'
 
   import { playable } from '../../../helpers.js'
-  import { user } from '../../../stores.js'
+  import { user, selectionWidth } from '../../../stores.js'
   
   export let playAlbum
   export let selectedAlbum
@@ -13,16 +13,21 @@
   $: primaryButtonText = isPlayable ? 'PLAY' : 'UNLOCK'
 </script>
 
-<div class='album-details' 
+<div class='album-details' class:vertical={$selectionWidth < 800} 
   class:highlight
   in:fade >
   <button class='close-button' on:click={deselectAlbum}>
     <i class='material-icons'>close</i>
   </button>
   <div class='album-details-left'>
-    <div class='details-headers'>
-      <h2 class='title'>{selectedAlbum.title}</h2>
-      <h4 class='artist'>{selectedAlbum.artist}</h4>
+    <div class='details-header'>
+      <img class='details-header-img' 
+        src={selectedAlbum.thumbnail_url} 
+        alt='{selectedAlbum.title} album cover' />
+      <div class='details-header-text'>
+        <h2 class='title'>{selectedAlbum.title}</h2>
+        <h4 class='artist'>{selectedAlbum.artist}</h4>
+      </div>
     </div>
     <button 
       class='button primary-button'
@@ -83,6 +88,16 @@
     justify-content: space-between;
   }
   
+  .details-header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .details-header-img {
+    height: 100px;
+    margin: 20px 20px 0 0;
+  }
+
   .title  {
     margin-top: 20px;
   }
@@ -130,5 +145,32 @@
   
   .highlight h4, .highlight p {
     color: var(--light-grey);
+  }
+
+  .album-details.vertical {
+    flex-direction: column;
+  }
+
+  .vertical .album-details-left {
+    flex-direction: row;
+    margin-bottom: 20px;
+  }
+
+  .vertical .details-header {
+    align-items: flex-end
+  }
+
+  .vertical .primary-button {
+    align-self: flex-end;
+  }
+
+  .vertical .close-button {
+    justify-content: flex-end;
+    margin: 0;
+  }
+
+  .vertical .details-header-img {
+    height: 100px;
+    margin: 0 20px 0 0;
   }
 </style>
