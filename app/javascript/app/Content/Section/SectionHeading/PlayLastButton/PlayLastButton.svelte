@@ -1,5 +1,7 @@
 <script>
     import { fade } from 'svelte/transition'
+    import { playable } from '../../../../helpers'
+    import { user } from '../../../../stores'
 
     export let dontMissAlbum
     export let selected
@@ -13,6 +15,7 @@
     transition:fade 
     class='play-last-button'
     class:selected 
+    class:playable={playable(dontMissAlbum, $user)}
     class:mousedown
     on:click|stopPropagation={() => selectAlbum(dontMissAlbum) }
     on:mousedown|stopPropagation={() => { mousedown = true } }
@@ -29,7 +32,7 @@
   b {
     font-weight: 400;
     margin-right: 10px;
-    color: var(--orange);
+    color: var(--red-orange);
   }
 
   span {
@@ -90,6 +93,10 @@
     top: 6px;
     left: 8px;
     opacity: 1;
+    background-color: var(--red-orange);
+  }
+
+  .play-last-button.playable.selected::after {
     background-color: var(--orange);
   }
 

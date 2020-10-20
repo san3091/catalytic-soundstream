@@ -16,16 +16,17 @@
   class:highlight 
   class:hover
   class:selected
-  class:mousedown >
+  class:mousedown
+  class:playable={playable(album, $user)} >
   <div class='thumbnail'>
     {#if playing}
-      <i class='material-icons'>play_circle_outline</i>
-    {:else if selected}
-      {#if playable(album, $user)}
-        <i class='material-icons'>play_arrow</i>
-      {:else}
+      <i class='material-icons' in:fade >play_circle_outline</i>
+    {:else if !playable(album, $user)}
+      <div class='lock-icon'>
         <i class='material-icons lock'>lock</i>
-      {/if}
+      </div>
+    {:else if selected && hover}
+      <i class='material-icons' in:fade >play_arrow</i>
     {/if}
     <img src={thumbnail} alt={`${album.title} album art`} />
   </div>
@@ -60,8 +61,19 @@
     color: var(--orange);
   }
 
+  .lock-icon {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
   .lock {
-    font-size: 40px;
+    font-size: 30px;
+    color: var(--red-orange);
+    margin: 10px;
   }
 
   .thumbnail {
@@ -95,6 +107,10 @@
     top: 6px;
     left: 8px;
     opacity: 1;
+    background-color: var(--red-orange);
+  }
+
+  .selected.playable.album-art::after {
     background-color: var(--orange);
   }
 

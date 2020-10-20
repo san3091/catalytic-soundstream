@@ -89,10 +89,10 @@
     opacity: 0;
     content: 'NEW TODAY';
     position: absolute;
-    color: var(--orange);
-    bottom: -20px;
+    color: var(--red-orange);
+    bottom: -10px;
     left: -8px;
-    font-size: 18px;
+    font-size: 14px;
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;
@@ -102,10 +102,10 @@
     opacity: 0;
     content: "DON'T MISS";
     position: absolute;
-    bottom: -20px;
+    bottom: -10px;
     left: -8px;
-    font-size: 18px;
-    color: var(--orange);
+    font-size: 14px;
+    color: var(--red-orange);
     text-align: center;
     width: var(--tile-width);
     animation: fade-in 1s 2s ease-in forwards;

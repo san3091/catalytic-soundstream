@@ -42,7 +42,7 @@
   }
 
   a {
-    color: var(--orange);
+    color: var(--red-orange);
     text-decoration: none;
   }
 

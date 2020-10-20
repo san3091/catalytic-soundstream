@@ -17,7 +17,7 @@
     width: 100%;
     display: flex;
     z-index: 3;
-    border-bottom: 1px solid var(--orange);
+    border-bottom: 1px solid var(--red-orange);
   }
 
   .header-content {

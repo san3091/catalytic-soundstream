@@ -13,8 +13,9 @@
   $: primaryButtonText = isPlayable ? 'PLAY' : 'UNLOCK'
 </script>
 
-<div class='album-details' class:vertical={$selectionWidth < 800} 
+<div class='album-details' 
   class:highlight
+  class:vertical={$selectionWidth < 800} 
   in:fade >
   <button class='close-button' on:click={deselectAlbum}>
     <i class='material-icons'>close</i>
@@ -47,7 +48,7 @@
     {#if selectedAlbum.bandcamp_url}
       <a 
         href={selectedAlbum.bandcamp_url} 
-        class='soundcloud-link'
+        class='bandcamp-link'
         target="_blank" rel="noopener noreferrer">
         view on bandcamp
       </a>
@@ -122,11 +123,11 @@
     background-color: var(--red-orange);
   }
 
-  .soundcloud-link {
+  .bandcamp-link {
     align-self: flex-start;
     display: inline-block;
     margin-top: 20px;
-    color: var(--orange);
+    color: var(--red-orange);
   }
 
   .curator {
@@ -135,7 +136,7 @@
 
   .album-details-right {
     flex: 1;
-    border: 1px solid var(--orange);
+    border: 1px solid var(--red-orange);
     padding: 20px;
   }
 
