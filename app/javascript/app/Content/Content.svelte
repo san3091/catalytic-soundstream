@@ -135,7 +135,7 @@
 
   .player-container.mobile {
     position: fixed;
-    z-index: 5;
+    z-index: 4;
     pointer-events: none;
     right: unset;
     top: unset;

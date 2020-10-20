@@ -117,7 +117,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: var(--translucent-grey);	}
+		background-color: var(--translucent-grey);	
+	}
 
 	.patreon-modal {
 		position: relative;

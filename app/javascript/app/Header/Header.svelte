@@ -16,7 +16,7 @@
   .header {
     width: 100%;
     display: flex;
-    z-index: 3;
+    z-index: 5;
     border-bottom: 1px solid var(--red-orange);
   }
 
