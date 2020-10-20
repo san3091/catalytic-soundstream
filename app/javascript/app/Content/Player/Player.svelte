@@ -74,7 +74,6 @@
     flex-direction: row;
     min-width: var(--width);
     max-width: var(--width);
-    overflow: hidden;
     border-left: 1px solid var(--red-orange);
     background-color: var(--light-grey);
     z-index: 1;

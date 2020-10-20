@@ -45,6 +45,7 @@
 
   .info-content {
     box-sizing: border-box;
+    margin-bottom: 20px;
   }
 
   .description { 
