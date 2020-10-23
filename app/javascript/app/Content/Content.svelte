@@ -64,7 +64,7 @@
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
         albums={categories[1].albums} />
-      <Section
+      <!-- <Section
         headerText='Label Radio'
         sectionDescription='Check out releases from out partner labels.'
         sectionNumber={4}
@@ -72,7 +72,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[3].albums} />
+        albums={categories[3].albums} /> -->
       <Section
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
@@ -122,6 +122,7 @@
     flex-direction:column;
     overflow-y: scroll;
     overflow-x: hidden;
+    width: 100%;
   }
 
   .music-selection.mobile {

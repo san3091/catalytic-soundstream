@@ -10,7 +10,3 @@
     {@html playingAlbum && playingAlbum.html}
   {/if}
 </div>
-
-<style>
-</style>
- 
