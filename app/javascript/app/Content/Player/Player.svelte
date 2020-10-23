@@ -10,10 +10,10 @@
   export let playingAlbum
 
   let width = tweened(50, { easing: cubicOut, duration: 400 })
-  let heightOffset = tweened(0, { easing: cubicOut, duration: 400 })
+  let heightOffset = tweened(-9000, { easing: cubicOut, duration: 400 })
   let isClosed = false
   let playerArrow = 'keyboard_arrow_right'
-  let playerHeight
+  let playerHeight = -9000
   
   const toggleOpen = () => {
     playerIsOpen.set(!$playerIsOpen)
@@ -85,8 +85,8 @@
     flex-direction: column;
     overflow-y: scroll;
     width: 100%;
-    margin: 48px;
-    margin-left: 0;
+    padding: 48px;
+    padding-left: 0;
   }
 
   button, button:active {

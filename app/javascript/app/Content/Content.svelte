@@ -52,7 +52,7 @@
 
 <div class='content' class:mobile={$mobileLayout}>
   <div class='music-selection' class:mobile={$mobileLayout} 
-  bind:clientWidth={width} >
+    bind:clientWidth={width} >
     <Mission />
     {#if categories}
       <Section
@@ -64,7 +64,7 @@
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
         albums={categories[1].albums} />
-      <!-- <Section
+      <Section
         headerText='Label Radio'
         sectionDescription='Check out releases from out partner labels.'
         sectionNumber={4}
@@ -72,7 +72,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[3].albums} /> -->
+        albums={categories[3].albums} />
       <Section
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
@@ -123,6 +123,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
+    max-height: 100%;
   }
 
   .music-selection.mobile {
@@ -135,13 +136,14 @@
   }
 
   .player-container.mobile {
-    position: fixed;
+    position: absolute;
     z-index: 4;
     pointer-events: none;
     right: unset;
     top: unset;
-    bottom: 0;
+    top: 0;
     width: 100%;
+    height: 100%;
   }
 
 </style>
