@@ -6,10 +6,13 @@
   import Mission from './Mission/Mission.svelte'
   import Footer from './Footer/Footer.svelte'
 
-  import { playerIsOpen, modalIsOpen, user, mobileLayout } from '../stores.js'
+  import { playerIsOpen, modalIsOpen, user, mobileLayout, selectionWidth } from '../stores.js'
+  import { playable } from '../helpers.js'
 
   let categories
   let selectedAlbum
+  let playingAlbum
+  let width
 
   const getAlbums = async () => {
     const url = '/categories'
@@ -23,18 +26,22 @@
     .then(SCAlbum => {
       const { html, thumbnail_url} = SCAlbum
       Object.assign(firstAlbum, {html, thumbnail_url})
-      selectedAlbum = firstAlbum
+      playingAlbum = firstAlbum
     })
   }
 
-  const selectAlbum = (album) => {
-    if (album.free || ($user && $user.is_member)) {
+  const playAlbum = (album) => {
+    if (playable(album, $user)) {
       playerIsOpen.set(true)
-      selectedAlbum = album
+      playingAlbum = album
     } else {
       modalIsOpen.set(true)
     }
   }
+
+  const selectAlbum = (album) => { selectedAlbum = album }
+
+  $: selectionWidth.set(width)
 
   onMount(async () => {
     await getAlbums()
@@ -44,36 +51,45 @@
 </script>
 
 <div class='content' class:mobile={$mobileLayout}>
-  <div class='music-selection' class:mobile={$mobileLayout}>
+  <div class='music-selection' class:mobile={$mobileLayout} 
+    bind:clientWidth={width} >
     <Mission />
     {#if categories}
       <Section
         headerText='Radio'
         sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day.'
         sectionNumber={0}
+        playAlbum={playAlbum}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
+        playingAlbum={playingAlbum}
         albums={categories[1].albums} />
       <Section
         headerText='Label Radio'
         sectionDescription='Check out releases from out partner labels.'
         sectionNumber={4}
+        playAlbum={playAlbum}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
+        playingAlbum={playingAlbum}
         albums={categories[3].albums} />
       <Section
         headerText='Catalytic Artist Albums'
         sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
         sectionNumber={1}
         highlight={true}
+        playAlbum={playAlbum}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
+        playingAlbum={playingAlbum}
         albums={categories[2].albums} />
       <Section
         headerText="History is What's Happening"
         sectionDescription='Discover classics from the Catalytic Sound catalog.'
         sectionNumber={2}
+        playAlbum={playAlbum}
         selectAlbum={selectAlbum}
+        playingAlbum={playingAlbum}
         selectedAlbum={selectedAlbum}
         albums={categories[0].albums} />
     {/if}
@@ -82,7 +98,7 @@
   <div
     class='player-container'
     class:mobile={$mobileLayout}>
-    <Player selectedAlbum={selectedAlbum} />
+    <Player playingAlbum={playingAlbum} />
   </div>
 </div>
 
@@ -94,6 +110,7 @@
     justify-content: stretch;
     width: 100%;
     height: calc(100vh - 82px);
+    overflow: hidden;
   }
 
   .content.mobile {
@@ -101,13 +118,13 @@
   }
 
   .music-selection {
-    position: relative;
     padding-top: 25px;
     display: flex;
     flex-direction:column;
-    width: 0;
-    flex-grow: 1;
     overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    max-height: 100%;
   }
 
   .music-selection.mobile {
@@ -120,13 +137,15 @@
   }
 
   .player-container.mobile {
-    position: fixed;
-    z-index: 5;
+    position: absolute;
+    z-index: 4;
     pointer-events: none;
     right: unset;
     top: unset;
-    bottom: 0;
+    top: 0;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
 </style>

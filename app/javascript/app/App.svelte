@@ -74,6 +74,12 @@
 	:global(p) {
 		font-size: 1rem;
 		margin-bottom: 20px;
+		line-height: 26px;
+	}
+
+	:global(h1) {
+		font-size: 2rem;
+		margin: 40px 0 10px;
 	}
 
 	:global(h2) {

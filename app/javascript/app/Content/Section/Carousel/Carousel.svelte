@@ -2,15 +2,17 @@
   import { tweened } from 'svelte/motion'
   import { cubicOut } from 'svelte/easing'
   import { fade } from 'svelte/transition'
-  import AlbumTile from '../AlbumTile/AlbumTile.svelte'
+  import AlbumTile from './AlbumTile/AlbumTile.svelte'
   import ProgressIndicator from './ProgressIndicator/ProgressIndicator.svelte'
 
   export let albums
+  export let playAlbum
   export let selectAlbum
-  export let selectedAlbum
+  export let playingAlbum
   export let rotating
   export let highlight
   export let dontMissIndex
+  export let selectedAlbum
   
   let carouselWidth, itemsWidth
   let currentSection = 0
@@ -105,8 +107,10 @@
         <AlbumTile 
           album={album} 
           selectAlbum={selectAlbum}
-          highlight={highlight}
           selected={selectedAlbum == album}
+          highlight={highlight}
+          playAlbum={playAlbum}
+          playing={playingAlbum == album}
           tileWidth={$tileWidth}
           newToday={rotating && album.index == 0}
           dontMiss={rotating && album.index == dontMissIndex} />

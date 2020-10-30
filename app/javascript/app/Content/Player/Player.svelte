@@ -7,13 +7,13 @@
   import AlbumInfo from './AlbumInfo/AlbumInfo.svelte'
   import { playerIsOpen, appWidth, mobileLayout } from '../../stores.js'
   
-  export let selectedAlbum
+  export let playingAlbum
 
   let width = tweened(50, { easing: cubicOut, duration: 400 })
-  let heightOffset = tweened(0, { easing: cubicOut, duration: 400 })
+  let heightOffset = tweened(-9000, { easing: cubicOut, duration: 400 })
   let isClosed = false
   let playerArrow = 'keyboard_arrow_right'
-  let playerHeight
+  let playerHeight = -9000
   
   const toggleOpen = () => {
     playerIsOpen.set(!$playerIsOpen)
@@ -60,8 +60,8 @@
   </button>
   {#if !isClosed}
     <div transition:fade class='player-content'>
-      <AlbumInfo album={selectedAlbum} />
-      <SoundCloudPlayer selectedAlbum={selectedAlbum} />
+      <SoundCloudPlayer playingAlbum={playingAlbum} />
+      <AlbumInfo album={playingAlbum} />
     </div>
   {/if}
 </div>
@@ -74,8 +74,7 @@
     flex-direction: row;
     min-width: var(--width);
     max-width: var(--width);
-    overflow: hidden;
-    border-left: 1px solid var(--orange);
+    border-left: 1px solid var(--red-orange);
     background-color: var(--light-grey);
     z-index: 1;
   }
@@ -86,8 +85,8 @@
     flex-direction: column;
     overflow-y: scroll;
     width: 100%;
-    margin: 48px;
-    margin-left: 0;
+    padding: 48px;
+    padding-left: 0;
   }
 
   button, button:active {
@@ -106,9 +105,13 @@
   .slide-button i {
     flex: 1;
     margin: 10px;
-    font-size: 28px;
+    font-size: 32px;
+    transition: color 0.1s ease-in-out;
   }
 
+  .slide-button:hover i {
+    color: var(--orange);
+  }
 
   .mobile {
     z-index: 2;

@@ -8,7 +8,7 @@
   <div 
     class='mission'
     style='--mission-padding:{$padding}px'
-    transition:fade >
+    in:fade >
       <p>
         The music streaming industry makes over ten billion dollars each year selling music made by more than a million artists. Despite their reliance on the creativity and labor of musicians, Spotify, Apple, Google, and other streaming services pay artists almost nothing, and treat musicians as replaceable cogs in a content-production machine.
       </p>
@@ -30,7 +30,6 @@
   }
 
   .mission p {
-    line-height: 26px;
     margin-bottom: 24px;
     color: var(--white);
   }

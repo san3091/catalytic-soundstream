@@ -13,13 +13,13 @@
       >
       <h2 class='title'>{album.title}</h2>
       <h4 class='artist'>{album.artist}</h4>
+      {#if album.curator}
+        <h5 class='curator'>Curated by: {album.curator}</h5>
+      {/if}
       {#if album.description}
         <p class='description'>
           {album.description}
         </p>
-      {/if}
-      {#if album.curator}
-        <h5 class='curator'>Curated by: {album.curator}</h5>
       {/if}
       {#if album.bandcamp_url}
         <a 
@@ -40,24 +40,25 @@
 
   .info-container {
     width: 100%;
-    margin-bottom: 50px;
+    margin-top: 40px;
   }
 
   .info-content {
     box-sizing: border-box;
+    margin-bottom: 20px;
   }
 
   .description { 
     margin: 20px 0 0;
-    line-height: 26px;
   }
   
   .title {
     color: var(--black);
     margin-top: 0;
   }
+  
   .curator {
-    margin-top: 20px;
+    margin-top: 40px;
     color: black;
   }
 

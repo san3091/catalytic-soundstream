@@ -42,7 +42,7 @@
   }
 
   .active {
-    stroke: var(--orange);
+    stroke: var(--red-orange);
   }
 
   .highlight line {
@@ -50,6 +50,6 @@
   }
 
   .highlight line.active {
-    stroke: var(--orange);
+    stroke: var(--red-orange);
   }
 </style>
