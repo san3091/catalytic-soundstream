@@ -66,7 +66,7 @@
         albums={categories[1].albums} />
       <!-- <Section
         headerText='Label Radio'
-        sectionDescription='A curated mix of albums from core and guest labels each month. Rotating daily.'
+        sectionDescription='A curated mix of albums from core and guest labels each month. A new recording rotated daily.'
         sectionNumber={4}
         playAlbum={playAlbum}
         selectAlbum={selectAlbum}
@@ -75,7 +75,7 @@
         albums={categories[3].albums} /> -->
       <Section
         headerText='Catalytic Artist Albums'
-        sectionDescription='The complete series of member-exclusive monthly digital releases.'
+        sectionDescription='The complete and ongoing series of member-exclusive monthly digital releases.'
         sectionNumber={1}
         highlight={true}
         playAlbum={playAlbum}
@@ -85,7 +85,7 @@
         albums={categories[2].albums} />
       <Section
         headerText="History is What's Happening"
-        sectionDescription='Classics from the Catalytic Sound catalog.'
+        sectionDescription='A selection of ten classics from the Catalytic Sound catalog, updated monthly.'
         sectionNumber={2}
         playAlbum={playAlbum}
         selectAlbum={selectAlbum}
