@@ -126,7 +126,7 @@
   .bandcamp-link {
     align-self: flex-start;
     display: inline-block;
-    margin-top: 20px;
+    margin-top: 10px;
     color: var(--red-orange);
   }
 

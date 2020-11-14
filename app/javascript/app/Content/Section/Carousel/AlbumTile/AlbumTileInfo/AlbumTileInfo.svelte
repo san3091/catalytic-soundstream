@@ -25,11 +25,12 @@
 
   h4 {
     margin-bottom: 4px;
-    color: var(--black);
+    color: var(--dark-grey);
   }
 
   h6 {
     font-weight: 500;
+    color: var(--medium-grey);
   }
 
   .highlight h4 {

@@ -19,9 +19,7 @@
   class:mousedown
   class:playable={playable(album, $user)} >
   <div class='thumbnail'>
-    {#if playing}
-      <i class='material-icons' in:fade >play_circle_outline</i>
-    {:else if !playable(album, $user)}
+    {#if !playable(album, $user)}
       <div class='lock-icon'>
         <i class='material-icons lock'>lock</i>
       </div>
@@ -47,7 +45,7 @@
     width: 100%;
     z-index: -1;
     opacity: 0;
-    background-color: var(--black);
+    background-color: var(--medium-grey);
   }
 
   .highlight.album-art::after {
@@ -72,7 +70,7 @@
 
   .lock {
     font-size: 30px;
-    color: var(--red-orange);
+    color: var(--translucent-grey);
     margin: 10px;
   }
 

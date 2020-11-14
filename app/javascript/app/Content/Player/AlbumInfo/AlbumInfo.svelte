@@ -22,11 +22,11 @@
         </p>
       {/if}
       {#if album.bandcamp_url}
-        <a 
+       <a 
           href={album.bandcamp_url} 
           class='bandcamp-link'
           target="_blank" rel="noopener noreferrer">
-          BUY
+          view on bandcamp
         </a>
       {/if}
     </div>
@@ -34,10 +34,6 @@
 </div>
 
 <style>
-  * {
-    color: var(--dark-grey);
-  }
-
   .info-container {
     width: 100%;
     margin-top: 40px;
@@ -53,31 +49,35 @@
   }
   
   .title {
-    color: var(--black);
     margin-top: 0;
   }
   
   .curator {
     margin-top: 40px;
-    color: black;
   }
 
   .mobile {
     margin-bottom: 25px;
   }
 
-  .bandcamp-link {
+  /* .bandcamp-link {
     display: inline-block;
-    margin-top: 20px;
     padding: 10px 30px;
     color: white;
     background-color: var(--orange);
     font-size: 18px;
     text-decoration: none;
     transition: background-color .1s ease-in;
+  } */
+
+  .bandcamp-link {
+    align-self: flex-start;
+    display: inline-block;
+    margin: 40px 0 10px;
+    color: var(--red-orange);
   }
 
-  .bandcamp-link:hover {
+  /* .bandcamp-link:hover {
     background-color: var(--red-orange);
-  }
+  } */
 </style>

@@ -56,26 +56,26 @@
     <Mission />
     {#if categories}
       <Section
-        headerText='Radio'
-        sectionDescription='Explore a rotating selection of music from Catalytic Sound, curated by co-op artists. One album in, one out—every day.'
+        headerText='Catalytic Radio'
+        sectionDescription='A rotating selection of music from the expanding Catalytic Sound catalog, curated by co-op artists and staff. One album in, one out—every day.'
         sectionNumber={0}
         playAlbum={playAlbum}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
         albums={categories[1].albums} />
-      <Section
+      <!-- <Section
         headerText='Label Radio'
-        sectionDescription='Check out releases from out partner labels.'
+        sectionDescription='A curated mix of albums from core and guest labels each month. Rotating daily.'
         sectionNumber={4}
         playAlbum={playAlbum}
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[3].albums} />
+        albums={categories[3].albums} /> -->
       <Section
         headerText='Catalytic Artist Albums'
-        sectionDescription='Experience the complete series of member-exclusive monthly digital releases.'
+        sectionDescription='The complete series of member-exclusive monthly digital releases.'
         sectionNumber={1}
         highlight={true}
         playAlbum={playAlbum}
@@ -85,7 +85,7 @@
         albums={categories[2].albums} />
       <Section
         headerText="History is What's Happening"
-        sectionDescription='Discover classics from the Catalytic Sound catalog.'
+        sectionDescription='Classics from the Catalytic Sound catalog.'
         sectionNumber={2}
         playAlbum={playAlbum}
         selectAlbum={selectAlbum}
