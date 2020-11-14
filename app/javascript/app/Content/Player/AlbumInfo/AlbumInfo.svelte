@@ -60,24 +60,10 @@
     margin-bottom: 25px;
   }
 
-  /* .bandcamp-link {
-    display: inline-block;
-    padding: 10px 30px;
-    color: white;
-    background-color: var(--orange);
-    font-size: 18px;
-    text-decoration: none;
-    transition: background-color .1s ease-in;
-  } */
-
   .bandcamp-link {
     align-self: flex-start;
     display: inline-block;
     margin: 40px 0 10px;
     color: var(--red-orange);
   }
-
-  /* .bandcamp-link:hover {
-    background-color: var(--red-orange);
-  } */
 </style>
