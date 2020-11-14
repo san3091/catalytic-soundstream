@@ -41,5 +41,6 @@
 
   .description {
     margin-bottom: 30px;
+    line-height: 20px;
   }
 </style>

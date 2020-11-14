@@ -36,7 +36,7 @@
   }
 
   span {
-    color: var(--black);
+    color: var(--dark-grey);
   }
 
   h6 {
@@ -63,10 +63,8 @@
   .play-last-button::after {
     content: '';
     position: absolute;
-    background-color: var(--black);
+    background-color: var(--medium-grey);
     opacity: 0;
-    /* top: 4px;
-    left: 4px; */
     height: 100%;
     width: 100%;
     z-index: -2;

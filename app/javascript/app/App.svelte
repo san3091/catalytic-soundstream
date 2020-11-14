@@ -40,7 +40,7 @@
 	:global(body) {
 		--black: #242424;
 		--dark-grey: #3e3e3e;
-		--medium-grey: #8D8E8F;
+		--medium-grey: #747373;
 		--light-grey: #dbdedf;
 		--orange: hsl(3, 98%, 58%);
 		--red-orange: #D3372B;
@@ -72,28 +72,32 @@
 
 
 	:global(p) {
-		font-size: 1rem;
+		font-size: 0.9rem;
 		margin-bottom: 20px;
-		line-height: 26px;
+		line-height: 23px;
+		color: var(--medium-grey);
 	}
 
 	:global(h1) {
-		font-size: 2rem;
+		font-size: 1.7rem;
 		margin: 40px 0 10px;
+		color: var(--black);
 	}
 
 	:global(h2) {
 		font-size: 1.5rem;
 		margin: 40px 0 10px;
+		color: var(--dark-grey);
 	}
 
 	:global(h4) {
 		font-size: 1.15rem;
 		font-weight: 500;
+		color: var(--medium-grey);
 	}
 
 	:global(h5) {
-		font-size: 1.125rem;
+		font-size: 1rem;
 		color: var(--black)
 	}
 
