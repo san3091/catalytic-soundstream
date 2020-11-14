@@ -64,7 +64,7 @@
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
         albums={categories[1].albums} />
-      <!-- <Section
+      <Section
         headerText='Label Radio'
         sectionDescription='A curated mix of albums from core and guest labels each month. A new recording rotated daily.'
         sectionNumber={4}
@@ -72,7 +72,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[3].albums} /> -->
+        albums={categories[3].albums} />
       <Section
         headerText='Catalytic Artist Albums'
         sectionDescription='The complete and ongoing series of member-exclusive monthly digital releases.'
