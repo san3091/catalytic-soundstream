@@ -40,7 +40,7 @@
 	:global(body) {
 		--black: #242424;
 		--dark-grey: #3e3e3e;
-		--medium-grey: #838383;
+		--medium-grey: #747373;
 		--light-grey: #dbdedf;
 		--orange: hsl(3, 98%, 58%);
 		--red-orange: #D3372B;
