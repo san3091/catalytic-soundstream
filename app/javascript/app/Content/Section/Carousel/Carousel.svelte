@@ -139,7 +139,7 @@
     position: relative;
     display: flex;
     overflow: hidden;
-    padding: 5px 5px 2px;
+    padding: 5px 0 0 5px;
   }
 
   .carousel-items {
