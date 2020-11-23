@@ -1,5 +1,5 @@
 
-category_names = %w(history curated catalytic)
+category_names = %w(history curated catalytic label)
 categories = category_names.map { |category| Category.find_or_create_by(name: category) }
 puts "Created categories #{category_names.join(", ")}"
 
