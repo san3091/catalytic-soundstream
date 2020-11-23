@@ -89,12 +89,12 @@ namespace :deploy do
 end
 
 namespace :db do
-  desv "Erase and reset database"
+  desc "Erase and reset database"
   task :reset do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, 'db:schema:load'
+          execute :rake, 'DISABLE_DATABASE_ENVIRONMENT_CHECK=1 db:schema:load'
         end
       end
     end
