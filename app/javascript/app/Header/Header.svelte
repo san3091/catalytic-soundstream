@@ -1,11 +1,9 @@
 <script>
   import Profile from './Profile/Profile.svelte'
   import Logo from './Logo/Logo.svelte'
-  import BetaBanner from './BetaBanner/BetaBanner.svelte'
 </script>
 
 <div class='header'>
-  <BetaBanner />
   <div class='header-content'>
     <Logo />
     <Profile />
