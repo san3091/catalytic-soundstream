@@ -1,15 +1,11 @@
 <script>
-  import { disconnectUser } from '../../../authHelpers.js'
   import { user, userIsOpen } from '../../../stores.js'
+
+  export let signOut
 
   const firstInitial = () => $user.first_name.charAt(0)
   const toggleUserIsOpen = () => userIsOpen.set(!$userIsOpen)
   // <Main> in App.svelte closes user dropdown on:click
-
-  const signOut = () => {
-    disconnectUser()
-    user.set(null)
-  }
 </script>
 
 <button 
@@ -21,7 +17,6 @@
     </div>
     <div class='user-info'>
       <h5 class='user-name'>{$user.first_name} {$user.last_name}</h5>
-      <!-- <h3 class='user-name'>{$user.full_name}</h3> -->
       <h6 class='user-email'>{$user.email}</h6>
     </div>
   </div>
