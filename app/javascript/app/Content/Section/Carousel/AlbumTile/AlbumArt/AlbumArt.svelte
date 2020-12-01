@@ -69,6 +69,7 @@
   }
 
   .lock {
+    position: relative;
     font-size: 30px;
     color: var(--translucent-grey);
     margin: 10px;
