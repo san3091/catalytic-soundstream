@@ -10,7 +10,7 @@
     style='--mission-padding:{$padding}px'
     in:fade >
       <p>
-       The music streaming industry makes over ten billion dollars each year selling music made by millions of artists. Despite their reliance on the creativity and labor of musicians, Spotify, Apple, Google, and other streaming companies pay artists almost nothing, and treat musicians as cogs in a content-production machine.
+        The music streaming industry makes over ten billion dollars each year selling music made by millions of artists. Despite their reliance on the creativity and labor of musicians, streaming companies pay artists almost nothing, and treat musicians as cogs in a content-production machine.</p>
       </p>
       <p>
         The Catalytic Soundstream is our solution to this systemic imbalance: an artist owned and curated, subscription-based streaming service that pays Catalytic Sound co-op musicians 2/3 of net income generated through listeners' subscriptions. Independent record labels represented on the Label Radio tier will also compensate their artists a proportional amount.
