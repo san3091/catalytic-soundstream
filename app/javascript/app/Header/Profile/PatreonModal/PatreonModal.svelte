@@ -35,7 +35,7 @@
 			</button>
 			{#if !$loading}
 				{#if user && !user.is_member}
-					<h3>You must be a subscriber at the 'Streaming Tier' to access the complete collection.</h3>
+					<h3>You must be a subscriber at the Soundstream Membership tier or Full Membership tier to access the complete collection.</h3>
 					<BecomeAPatronButton />
 					<button 
 						class='white-button' 
