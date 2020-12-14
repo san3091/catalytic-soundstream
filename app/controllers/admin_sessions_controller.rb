@@ -12,7 +12,7 @@ class AdminSessionsController < AdminController
       session[:admin_id] = @admin.id
       redirect_to "/admin"
     else
-      redirect_to '/login'
+      redirect_to '/login', notice: "Authentication failed"
     end
   end
 

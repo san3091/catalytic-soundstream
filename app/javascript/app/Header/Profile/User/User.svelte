@@ -1,15 +1,11 @@
 <script>
-  import { disconnectUser } from '../../../authHelpers.js'
   import { user, userIsOpen } from '../../../stores.js'
+
+  export let signOut
 
   const firstInitial = () => $user.first_name.charAt(0)
   const toggleUserIsOpen = () => userIsOpen.set(!$userIsOpen)
   // <Main> in App.svelte closes user dropdown on:click
-
-  const signOut = () => {
-    disconnectUser()
-    user.set(null)
-  }
 </script>
 
 <button 
@@ -20,8 +16,7 @@
       <h2>{firstInitial()}</h2>
     </div>
     <div class='user-info'>
-      <h4 class='user-name'>{$user.first_name} {$user.last_name}</h4>
-      <!-- <h3 class='user-name'>{$user.full_name}</h3> -->
+      <h5 class='user-name'>{$user.first_name} {$user.last_name}</h5>
       <h6 class='user-email'>{$user.email}</h6>
     </div>
   </div>
@@ -41,12 +36,12 @@
       href='https://www.patreon.com/user/creators' 
       on:click|stopPropagation
     target="_blank" rel="noopener noreferrer">
-      <h4>View Profile</h4>
+      <h5>View Profile</h5>
     </a>
     <button 
       class='menu-button sign-out' 
         on:click|stopPropagation={signOut}>
-      <h4>Sign Out</h4>
+      <h5>Sign Out</h5>
     </button>
   </div>
 {/if}
@@ -78,11 +73,12 @@
     color: var(--dark-grey)
   }
 
-  h4 {
+  h5 {
     color: var(--dark-grey);
   }
 
   h6 {
+    font-size: 0.75rem;
     color: var(--black);
   }
 

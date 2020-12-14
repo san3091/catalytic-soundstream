@@ -38,15 +38,15 @@
 
 <style>
 	:global(body) {
-		--black: #000;
+		--black: #242424;
 		--dark-grey: #3e3e3e;
-		--medium-grey: #8D8E8F;
+		--medium-grey: #747373;
 		--light-grey: #dbdedf;
-		--orange: #fd352b;
+		--orange: hsl(3, 98%, 58%);
 		--red-orange: #D3372B;
 		--transparent-white: hsl(0, 0%, 100%, 80%);
 		--transparent-black: hsl(0, 0%, 0%, 50%);
-		--transparent-orange: hsl(7, 93%, 65%, 80%);
+		--transparent-orange: hsl(3, 98%, 58%, 60%);
 		--translucent-grey: hsl(0, 0%, 24%, 90%);
 		--white: hsl(0, 0%, 100%, 95%);
 		--transparent-grey: hsl(0, 0%, 0%, 30%);
@@ -70,56 +70,63 @@
 		outline: none;
 	}
 
+
+	:global(p) {
+		font-size: 0.9rem;
+		margin-bottom: 20px;
+		line-height: 23px;
+		color: var(--medium-grey);
+	}
+
+	:global(h1) {
+		font-size: 1.7rem;
+		margin: 40px 0 10px;
+		color: var(--black);
+	}
+
 	:global(h2) {
-		margin: 50px 0 10px;
+		font-size: 1.5rem;
+		margin: 40px 0 10px;
+		color: var(--dark-grey);
 	}
 
 	:global(h4) {
-		font-size: 16px;
+		font-size: 1.15rem;
 		font-weight: 500;
+		color: var(--medium-grey);
 	}
 
 	:global(h5) {
-		font-size: 14px;
-	}
-
-	:global(h6) {
-		font-size: 12px;
-	}
-
-	:global(h5) {
+		font-size: 1rem;
 		color: var(--black)
 	}
 
 	:global(h6) {
+		font-size: 0.9rem;
+		white-space: nowrap;
     color: var(--dark-grey);
 	}
 
-	:global(p) {
-		margin-bottom: 20px;
-	}
-
-	@media screen and (max-width: 1300px) {
+	@media screen and (max-width: 700px) {
 		:global(p) {
-			font-size: 14px;
+			font-size: 1.25rem;
 		}
+
 		:global(h2) {
+			font-size: 1.75rem;
 			margin-top: 25px;
-			font-size: 20px;
-		}
-		:global(h3) {
-			font-size: 17px;
 		}
 
 		:global(h4) {
-			font-size: 13px;
+			font-size: 1.5rem;
 		}
 
 		:global(h5) {
-			font-size: 10px;
+			font-size: 1.25rem;
 		}
+		
 		:global(h6) {
-			font-size: 8px;
+			font-size: 1.125rem;
 		}
 	}
 

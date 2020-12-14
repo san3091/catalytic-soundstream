@@ -4,6 +4,18 @@
   import StreamImage from '../../../assets/stream.png'
   import { padding, logoHover } from '../../stores.js'
 
+  let logoVisible = true
+  
+  const refreshLogo = (logoHover) => {
+    if (logoHover) {
+      logoVisible = false
+      setTimeout(() => {
+        logoVisible = true
+      }, 200)
+    }
+  }
+
+  $: refreshLogo($logoHover)
 </script>
  
 <a 
@@ -18,12 +30,17 @@
       class='catalytic-sound' 
       src={CatalyticSoundImage} 
       alt='Catalytic Sound' />
-    <div class='divider'></div>
+    {#if logoVisible}
+      <div out:fade="{{duration: 200 }}" class='divider'></div>
+    {/if}
   </div>
-  <img 
-    class='stream'
-    src={StreamImage} 
-    alt='Stream' />
+  {#if logoVisible}
+    <img 
+      out:fade="{{duration: 200 }}"
+      class='stream'
+      src={StreamImage} 
+      alt='Stream' />
+  {/if}
 </a>
 
 <style>

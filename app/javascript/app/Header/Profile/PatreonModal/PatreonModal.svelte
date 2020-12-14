@@ -1,10 +1,12 @@
 <script>
   import { loading, modalIsOpen } from '../../../stores.js'
-  import { onMount } from 'svelte'
-  export let user
-
-	import PatronButton from '../../../../assets/become_a_patron_button@2x.png'
+	import { onMount } from 'svelte'
+	
+	import BecomeAPatronButton from './BecomeAPatronButton/BecomeAPatronButton.svelte'
   import PatreonWordmarkBlack from '../../../../assets/Patreon_Wordmark_Black.png'
+	
+	export let user
+	export let signOut
 
 	let clientId =   "SzBWMnNTdUlZZTEyeV95RWhIbW5sVDdYSzZzZ2hVcmxXdjNCMndxLTM3MmlW\nYVg4VHN1ZDFBc1h4YVYzQi1YUg==\n"
 	let redirectUri = window.location.href.replace(/\/$/, "")
@@ -17,9 +19,9 @@
 </script>
 
 <button
-	class='connect-with-patreon-button'
+	class='white-button'
 	on:click|stopPropagation={openModal}>
-	<h5>Connect with </h5>
+	<h6>Connect with </h6>
 	<img class='patreon-wordmark' src={PatreonWordmarkBlack} alt='connect with patreon' />
 </button>
 
@@ -33,40 +35,29 @@
 			</button>
 			{#if !$loading}
 				{#if user && !user.is_member}
-					<h3>You must be a subsciber at the 'Streaming Tier' to access the complete collection.</h3>
-					<a
-						class='become-patron-button'
-						href='https://www.patreon.com/catalyticsound'>
-						<img
-							class='become-patron-img'
-							src={PatronButton}
-							alt='become a patron' />
-					</a>
+					<h3>You must be a subscriber at the Soundstream Membership tier or Full Membership tier to access the complete collection.</h3>
+					<BecomeAPatronButton />
+					<button 
+						class='white-button' 
+							on:click|stopPropagation={signOut}>
+						<h5>Sign Out</h5>
+					</button>
 				{:else}
 					<h3>Sign in or become a patron to access more music.</h3>
 					<a
-						class='sign-in-button'
 						on:click|stopPropagation
 						href={patreonUrl}>
 						<button
-							class='connect-with-patreon-button'
+							class='white-button'
 							on:click|stopPropagation={openModal}>
-							<h5>Sign in with </h5>
+							<h6>Sign in with </h6>
 							<img
 								class='patreon-wordmark'
 								src={PatreonWordmarkBlack}
 								alt='sign in with patreon'/>
 						</button>
 					</a>
-					<a
-						class='become-patron-button'
-						href='https://www.patreon.com/catalyticsound'
-						target="_blank" rel="noopener noreferrer">
-						<img
-							class='become-patron-img'
-							src={PatronButton}
-							alt='become a patron' />
-					</a>
+					<BecomeAPatronButton />
 				{/if}
 			{:else}
 				<h3>Working...</h3>
@@ -90,15 +81,15 @@
 		justify-content: center;
     padding: 10px;
 		border-radius: 0;
-		border: 1px solid var(--dark-grey);
 	}
 
-	.connect-with-patreon-button {
+	.white-button {
 		padding: 8px;
 		transition: background-color 0.3s ease;
+		width: 200px;
 	}
 
-	.connect-with-patreon-button:hover {
+	.white-button:hover {
 		background-color: var(--white)
 	}
 
@@ -117,7 +108,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: var(--translucent-grey);	}
+		background-color: var(--translucent-grey);	
+	}
 
 	.patreon-modal {
 		position: relative;
@@ -135,26 +127,11 @@
 	a {
 		box-sizing: border-box;
 		text-decoration: none;
-		margin: 4px;
+		/* margin: 4px; */
 	}
 
 	a:hover {
 		background: none;
-	}
-
-	.sign-in-button {
-		width: 200px;
-	}
-
-	.become-patron-button {
-		width: 200px;
-		height: 50px;
-		border: none;
-	}
-
-	.become-patron-img {
-		width: 100%;
-		height: 100%;
 	}
 
 	.close-button {

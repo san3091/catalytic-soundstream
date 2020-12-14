@@ -13,20 +13,20 @@
       >
       <h2 class='title'>{album.title}</h2>
       <h4 class='artist'>{album.artist}</h4>
+      {#if album.curator}
+        <h5 class='curator'>Curated by: {album.curator}</h5>
+      {/if}
       {#if album.description}
         <p class='description'>
           {album.description}
         </p>
       {/if}
-      {#if album.curator}
-        <h5 class='curator'>Curated by: {album.curator}</h5>
-      {/if}
       {#if album.bandcamp_url}
-        <a 
+       <a 
           href={album.bandcamp_url} 
           class='bandcamp-link'
           target="_blank" rel="noopener noreferrer">
-          BUY
+          view on bandcamp
         </a>
       {/if}
     </div>
@@ -34,31 +34,26 @@
 </div>
 
 <style>
-  * {
-    color: var(--dark-grey);
-  }
-
   .info-container {
     width: 100%;
-    margin-bottom: 50px;
+    margin-top: 40px;
   }
 
   .info-content {
     box-sizing: border-box;
+    margin-bottom: 20px;
   }
 
   .description { 
     margin: 20px 0 0;
-    line-height: 28px;
   }
   
   .title {
-    color: var(--black);
     margin-top: 0;
   }
+  
   .curator {
-    margin-top: 20px;
-    color: black;
+    margin-top: 40px;
   }
 
   .mobile {
@@ -66,17 +61,9 @@
   }
 
   .bandcamp-link {
+    align-self: flex-start;
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 30px;
-    color: white;
-    background-color: var(--orange);
-    font-size: 18px;
-    text-decoration: none;
-    transition: background-color .1s ease-in;
-  }
-
-  .bandcamp-link:hover {
-    background-color: var(--red-orange);
+    margin: 40px 0 10px;
+    color: var(--red-orange);
   }
 </style>

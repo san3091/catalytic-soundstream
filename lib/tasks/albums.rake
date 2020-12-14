@@ -1,17 +1,4 @@
 namespace :albums do
-  desc 'Populate database from csv file'
-  task :bulk_import, [:category] => [:environment] do |t, args|
-    category = Category.find_or_create_by(name: args.category)
-    # TODO switch on a flag replace/append and make sure album order logic knows this
-    Album.transaction do
-      category.albums.destroy_all
-      beginning_order = Album.all.order(:order).last.order + 1
-
-      category.import_albums("lib/#{args.category}.csv", beginning_order)
-      Album.where(order: [beginning_order..beginning_order + 30]).update(current: true)
-    end
-  end
-
   desc 'Initialize albums current status, to be run ONCE and NEVER AGAIN'
   task :init_current => :environment do
     Category.transaction do
@@ -38,7 +25,7 @@ namespace :albums do
     Category.transaction do
       timestamp = DateTime.now.strftime("%Y-%m-%dT%H:%M:%S.%6N ")
 
-      curated = Category.includes(:albums).find_by(name: "curated")
+      rotating_categories = Category.includes(:albums).where(rotating: true)
       current = curated.albums.where(current: true)
       oldest_album = current.first
       oldest_album.update(current: false)

@@ -6,7 +6,7 @@ orbs:
 jobs:
   deploy:
     docker:
-      - image: cimg/ruby:2.7-node
+      - image: cimg/ruby:2.7.1-node
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -23,7 +23,7 @@ jobs:
           command: cap staging puma:restart
   release-to-prod:
     docker:
-      - image: cimg/ruby:2.7-node
+      - image: cimg/ruby:2.7.1-node
     steps:
       - add_ssh_keys:
           fingerprints:

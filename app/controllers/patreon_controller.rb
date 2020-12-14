@@ -5,6 +5,10 @@ class PatreonController < ApplicationController
   def authenticate
     client_id = Rails.application.credentials.patreon[:client_id]
     client_secret = Rails.application.credentials.patreon[:client_secret]
+   
+    # replace above in development and add keys to .env
+    # client_id = ENV["PATREON_CLIENT_ID"]
+    # client_secret = ENV["PATREON_CLIENT_SECRET"]
 
     logger.debug("client id: #{client_id}")
     logger.debug("client secret: #{client_secret}")
@@ -13,9 +17,7 @@ class PatreonController < ApplicationController
     oauth_client = Patreon::OAuth.new(client_id, client_secret)
     tokens = oauth_client.get_tokens(params[:code], params[:redirect_uri])
     @access_token = tokens['access_token']
-    logger.debug("access token: #{@access_token}")
     @user = get_user(@access_token)
-    logger.debug("user: #{@user}")
     render json: { errors: "user not found"}, status: 401 unless @user
     @is_member = is_member(@user) if @user
   end
@@ -30,7 +32,19 @@ class PatreonController < ApplicationController
   private
 
     def is_member(user)
-      Daddy.exists?(email: user.email) || user.pledges.any? { |pledge| pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title == "Member" }
+      is_daddy(user) || is_subscriber(user)
+    end
+
+    def is_daddy(user)
+      Daddy.exists?(email: user.email)
+    end
+
+    def is_subscriber(user)
+      patreon_tiers = ["Member", "Full Membership", "Soundstream Membership"]
+
+      user.pledges.any? do |pledge| 
+        pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title.in?(patreon_tiers)
+      end
     end
 
     def get_user(access_token)
@@ -47,5 +61,4 @@ class PatreonController < ApplicationController
     def auth_params
       params.require(:patreon).permit(:code, :access_token, :redirect_uri)
     end
-
 end
