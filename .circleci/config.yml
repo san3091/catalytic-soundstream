@@ -37,7 +37,7 @@ jobs:
           command: cap production deploy
       - run:
           name: Restart the server
-          command: cap staging puma:restart
+          command: cap production puma:restart
 
 workflows:
   version: 2
