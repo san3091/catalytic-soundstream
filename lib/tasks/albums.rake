@@ -26,13 +26,17 @@ namespace :albums do
       timestamp = DateTime.now.strftime("%Y-%m-%dT%H:%M:%S.%6N ")
 
       rotating_categories = Category.includes(:albums).where(rotating: true)
-      current = curated.albums.where(current: true)
-      oldest_album = current.first
-      oldest_album.update(current: false)
-      puts "#{timestamp} album #{oldest_album.title} by #{oldest_album.artist} removed from current albums"
+      rotating_categories.each do |category|
+        puts "rotating #{category.name}"
+        current = category.albums.where(current: true)
+        oldest_album = current.first
+        oldest_album.update(current: false)
+        puts "#{timestamp} album #{oldest_album.title} by #{oldest_album.artist} removed from current albums"
 
-      new_album = current.last.lower_item
-      new_album.update(current: true)
-      puts "#{timestamp} album #{new_album.title} by #{new_album.artist} added to current albums"    end
+        new_album = current.last.lower_item
+        new_album.update(current: true)
+        puts "#{timestamp} album #{new_album.title} by #{new_album.artist} added to current albums"
+      end
+    end
   end
 end
