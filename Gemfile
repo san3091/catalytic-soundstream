@@ -44,6 +44,9 @@ group :development do
   gem 'capistrano3-puma', require: false
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4', require: false
   gem 'capistrano-remote', require: false
+
+  # security audits
+  gem 'brakeman'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
