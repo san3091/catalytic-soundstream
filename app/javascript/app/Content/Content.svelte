@@ -20,6 +20,12 @@
     categories = await response.json()
   }
 
+  const findAlbumsByCategoryName = (name) => {
+    const category = categories.find(category => category.name == name)
+
+    return category.albums
+  }
+
   const selectFirstAlbum = () => {
     const firstAlbum = categories[1].albums[0]
     SC.oEmbed(firstAlbum.soundcloud_url)
@@ -63,7 +69,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[2].albums} />
+        albums={findAlbumsByCategoryName('catalytic')} />
       <Section
         headerText='Label Radio'
         sectionDescription='A curated mix of albums from core and guest labels each month. A new recording rotated daily.'
@@ -72,7 +78,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[3].albums} />
+        albums={findAlbumsByCategoryName('label')} />
       <Section
         headerText='Catalytic Artist Albums'
         sectionDescription='The complete and ongoing series of member-exclusive monthly digital releases.'
@@ -82,7 +88,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={categories[1].albums} />
+        albums={findAlbumsByCategoryName('curated')} />
       <Section
         headerText="History is What's Happening"
         sectionDescription='A selection of ten classics from the Catalytic Sound catalog, updated monthly.'
@@ -91,7 +97,7 @@
         selectAlbum={selectAlbum}
         playingAlbum={playingAlbum}
         selectedAlbum={selectedAlbum}
-        albums={categories[0].albums} />
+        albums={findAlbumsByCategoryName('history')} />
     {/if}
     <Footer />
   </div>
