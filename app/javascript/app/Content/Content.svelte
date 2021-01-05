@@ -69,7 +69,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={findAlbumsByCategoryName('catalytic')} />
+        albums={findAlbumsByCategoryName('curated')} />
       <Section
         headerText='Label Radio'
         sectionDescription='A curated mix of albums from core and guest labels each month. A new recording rotated daily.'
@@ -88,7 +88,7 @@
         selectAlbum={selectAlbum}
         selectedAlbum={selectedAlbum}
         playingAlbum={playingAlbum}
-        albums={findAlbumsByCategoryName('curated')} />
+        albums={findAlbumsByCategoryName('catalytic')} />
       <Section
         headerText="History is What's Happening"
         sectionDescription='A selection of ten classics from the Catalytic Sound catalog, updated monthly.'
