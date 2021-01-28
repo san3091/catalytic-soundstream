@@ -11,3 +11,5 @@ puts 'Added seed albums to categories'
 
 Daddy.import_daddies('lib/grandfathered_users.csv')
 puts "Added #{Daddy.count} grandfathered users"
+
+Rake::Task['albums:init_current'].invoke
