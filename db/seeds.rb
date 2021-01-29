@@ -10,7 +10,7 @@ puts "Created categories #{category_names.join(", ")}"
 categories.map { |category| category.import_albums("lib/#{category.name}.csv", 'replace') }
 puts 'Added seed albums to categories'
 
-Daddy.import_daddies('lib/grandfathered_users.csv')
-puts "Added #{Daddy.count} grandfathered users"
+#Daddy.import_daddies('lib/grandfathered_users.csv')
+#puts "Added #{Daddy.count} grandfathered users"
 
 Rake::Task["albums:init_current"].invoke
