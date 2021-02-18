@@ -21,6 +21,14 @@ namespace :albums do
     end
   end
 
+  desc 'Import albums to category'
+  task :import_albums, [:category] => [:environment] do |t, args|
+    category = Category.find_by_name(args[:category])
+    raise "Category #{args[:category]} not found" unless category.present?
+    category.import_albums("lib/#{category.name}.csv", "append")
+    puts "Added albums to #{category.name}"
+  end
+
   desc 'Rotate current albums for curated playlist. Run in cron.'
   task :daily_rotate => :environment do
     Category.transaction do
