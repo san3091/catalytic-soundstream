@@ -4,7 +4,8 @@ class Category < ApplicationRecord
   has_many :albums, -> { order("position ASC") }, dependent: :destroy
 
   def import_albums(file, insert_mode)
-    albums = []
+    albums.destroy_all if insert_mode == "replace"
+
     CSV.foreach(file, headers: :first_row) do |row|
       new_album = Album.new do |a|
         a.title           = row['title']
