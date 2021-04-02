@@ -25,7 +25,7 @@ namespace :albums do
   task :import_albums, [:category] => [:environment] do |t, args|
     category = Category.find_by_name(args[:category])
     raise "Category #{args[:category]} not found" unless category.present?
-    category.import_albums("lib/#{category.name}.csv", "append")
+    category.import_albums("lib/#{category.name}.csv", "replace")
     puts "Added albums to #{category.name}"
   end
 
