@@ -12,14 +12,4 @@ How to set this up:
 
 ### Deployment
 
-We use capistrano for deployment, so it's v easy.
-
-`cap production deploy`
-
-TODO currently puma:restart is getting called twice and the server isn't starting at the end `deploy` so I have to run `puma:restart` for it to start. Leaving this here so I can remember later.
-
-We do ont have a separate cap stage for staging, we use the prod settings for now.
-
-Sometimes I need to check that stuff is set up right so we user capistrano remote
-
-`cap production remote:console` for example
+This app is deployed through heroku pipelines, merging a pr to staging will deploy app to [staging](https://stream.staging.catalyticsound.com) and is then promoted through the [heroku dashboard](https://dashboard.heroku.com/pipelines/47c86409-2fa5-4f29-b7c2-d94900e82206) to [production](https://stream.catalyticsound.com).
