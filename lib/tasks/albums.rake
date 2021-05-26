@@ -22,11 +22,14 @@ namespace :albums do
   end
 
   desc 'Import albums to category'
-  task :import_albums, [:category] => [:environment] do |t, args|
-    category = Category.find_by_name(args[:category])
-    raise "Category #{args[:category]} not found" unless category.present?
-    category.import_albums("lib/#{category.name}.csv", "replace")
-    puts "Added albums to #{category.name}"
+  task :import_albums, [:category_list] => [:environment] do |t, args|
+    categories = args[:category_list].split('-')
+    categories.map do |category_name|
+      category = Category.find_by_name(category_name)
+      raise "Category #{category_name} not found" unless category.present?
+      category.import_albums("lib/#{category.name}.csv", "replace")
+      puts "Added albums to #{category.name}"
+    end
   end
 
   desc 'Rotate current albums for curated playlist. Run in cron.'
