@@ -5,7 +5,7 @@ class PatreonController < ApplicationController
   def authenticate
     client_id = Rails.application.credentials.patreon[:client_id]
     client_secret = Rails.application.credentials.patreon[:client_secret]
-   
+
     # replace above in development and add keys to .env
     # client_id = ENV["PATREON_CLIENT_ID"]
     # client_secret = ENV["PATREON_CLIENT_SECRET"]
@@ -40,9 +40,9 @@ class PatreonController < ApplicationController
     end
 
     def is_subscriber(user)
-      patreon_tiers = ["Member", "Full Membership", "Soundstream Membership"]
+      patreon_tiers = ["Member", "Full Membership", "Soundstream Membership", "Digital Membership", "Artifacts Membership"]
 
-      user.pledges.any? do |pledge| 
+      user.pledges.any? do |pledge|
         pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title.in?(patreon_tiers)
       end
     end
