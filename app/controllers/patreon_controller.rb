@@ -40,7 +40,7 @@ class PatreonController < ApplicationController
     end
 
     def is_subscriber(user)
-      patreon_tiers = ["Member", "Full Membership", "Soundstream Membership", "Digital Membership", "Artifacts Membership"]
+      patreon_tiers = ["Member", "Full Membership", "Soundstream Membership", "Catalytic Sound Artist Support Fund", "Artifacts Membership"]
 
       user.pledges.any? do |pledge|
         pledge.creator.campaign.name == "Catalytic Sound" && pledge.reward.title.in?(patreon_tiers)
