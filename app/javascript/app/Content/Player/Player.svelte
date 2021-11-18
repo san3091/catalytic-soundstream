@@ -28,15 +28,18 @@
     return $appWidth < 1200 ? 400 : 550
   }
 
+  const layout = $mobileLayout
+  const open = $playerIsOpen
+
   const setArrowIcon = (playerIsOpen, mobileLayout) => {
-    if ($mobileLayout) {
-      if ($playerIsOpen) {
+    if (layout) {
+      if (open) {
         playerArrow = 'keyboard_arrow_down'
       } else {
         playerArrow = 'keyboard_arrow_up'
       }
     } else {
-      if ($playerIsOpen) {
+      if (open) {
         playerArrow = 'keyboard_arrow_right'
       } else {
         playerArrow = 'keyboard_arrow_left'
