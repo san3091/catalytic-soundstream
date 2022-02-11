@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.4'
 
-gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+gem 'rails', '~> 7.0.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'sass-rails', '>= 6'
