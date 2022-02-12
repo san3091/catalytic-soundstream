@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'login', to: 'admin_sessions#create'
   post 'logout', to: 'admin_sessions#delete'
 
-  get 'admin', to: 'admin_dashboards#index'
-  post 'admin', to: 'admin_dashboards#update'
+  scope :admin do
+    get '/', to: 'admin_dashboards#index'
+    post '/', to: 'admin_dashboards#update'
+  end
 end
