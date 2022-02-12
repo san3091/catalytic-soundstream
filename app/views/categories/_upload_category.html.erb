@@ -3,17 +3,11 @@
     <%= label_tag 'Category'%>
     <div class="upload-category__radio-container">
       <% categories.each do |category| %>
-        <%= label_tag category.name %>
-        <%= radio_button_tag "category", category.name %>
+        <div class="form-check">
+          <%= label_tag category.name, nil, class: "form-check-label" %>
+          <%= radio_button_tag "category", category.name, class: "form-check-input" %>
+        </div>
       <% end %>
-    </div>
-
-    <%= label_tag 'Insert Mode'%>
-    <div class='upload-category__radio-container'>
-      <%= label_tag "Replace" %>
-      <%= radio_button_tag "insert_mode", "replace"%>
-      <%= label_tag "Append" %>
-      <%= radio_button_tag "insert_mode", "append"%>
     </div>
 
     <%= label_tag 'album file (.csv format)' %>
