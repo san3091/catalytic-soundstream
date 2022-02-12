@@ -1,30 +1,33 @@
+<div class="albums-table__header-container">
+  <h1 class="albums-table__header">Albums</h1>
+</div>
 <% @albums_by_category.each do |category| %>
-  <div>
-    <h2><%= category.name %></h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Artist</th>
-          <th>Description</th>
-          <th>Soundcloud URL</th>
-          <th>Bandcamp URL</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% category.albums.each do |album| %>
+  <div class="albums-table__container">
+    <div class="albums-table__category-header-container">
+      <h2 class="albums-table__category-header"><%= category.name %></h2>
+    </div>
+    <div class="albums-table__table-container">
+      <table class="table table-striped">
+        <thead class="thead-dark">
           <tr>
-            <td><%= album.title %></td>
-            <td><%= album.artist%></td>
-            <td><%= album.description%></td>
-            <td><%= album.soundcloud_url%></td>
-            <td><%= album.bandcamp_url%></td>
+            <th scope="col">Order</th>
+            <th scope="col">Title</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Visible</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <% category.albums.each do |album| %>
-    <% end %>
+        </thead>
+        <tbody>
+          <% category.albums.each do |album| %>
+            <tr>
+              <td scope="row"><%= album.position%></td>
+              <td><%= album.title %></td>
+              <td><%= album.artist %></td>
+              <td><%= album.current %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 <% end %>
   

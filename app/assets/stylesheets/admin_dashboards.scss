@@ -40,3 +40,33 @@
     margin-right: 5px;
   }
 }
+
+.albums-table__header {
+  font-size: 26px;
+  text-align: center;
+}
+
+.albums-table__header-container {
+  margin: 20px;
+}
+
+.albums-table__container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.albums-table__category-header {
+  font-size: 25px;
+}
+
+.albums-table__category-header-container {
+  margin: 15px; 
+}
+
+.albums-table__table-container {
+  padding: 15px;
+  margin: 15px;
+  border: 2px solid gray;
+  border-radius: 4px;
+}
+
