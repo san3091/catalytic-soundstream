@@ -1,0 +1,30 @@
+<% @albums_by_category.each do |category| %>
+  <div>
+    <h2><%= category.name %></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Artist</th>
+          <th>Description</th>
+          <th>Soundcloud URL</th>
+          <th>Bandcamp URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% category.albums.each do |album| %>
+          <tr>
+            <td><%= album.title %></td>
+            <td><%= album.artist%></td>
+            <td><%= album.description%></td>
+            <td><%= album.soundcloud_url%></td>
+            <td><%= album.bandcamp_url%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% category.albums.each do |album| %>
+    <% end %>
+  </div>
+<% end %>
+  
