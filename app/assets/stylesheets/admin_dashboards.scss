@@ -8,7 +8,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid gray;
 }
 
 .admin-dashboard__container {
@@ -16,6 +15,8 @@
   justify-content: start;
   align-items: center;
   justify-content: space-around;
+  margin-top: 15px;
+  border-top: 2px solid gray;
 }
 
 .admin-dashboard__upload {
@@ -73,9 +74,6 @@
 }
 
 .albums-table__table-container {
-  padding: 15px;
   margin: 15px;
-  border: 2px solid gray;
-  border-radius: 4px;
 }
 
