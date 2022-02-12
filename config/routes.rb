@@ -5,12 +5,13 @@ Rails.application.routes.draw do
 
   get 'categories', to: 'categories#index'
 
-  get 'login', to: 'admin_sessions#new'
-  post 'login', to: 'admin_sessions#create'
-  post 'logout', to: 'admin_sessions#delete'
 
-  scope :admin do
+  namespace :admin do
     get '/', to: 'admin_dashboards#index'
     post '/', to: 'admin_dashboards#update'
+
+    get 'login', to: 'admin_sessions#new'
+    post 'login', to: 'admin_sessions#create'
+    post 'logout', to: 'admin_sessions#delete'
   end
 end
