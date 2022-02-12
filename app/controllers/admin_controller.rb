@@ -12,6 +12,6 @@ class AdminController < ApplicationController
   end
 
   def authorized
-    redirect_to '/login' unless admin_logged_in?
+    redirect_to '/admin/login' unless admin_logged_in?
   end
 end

@@ -5,7 +5,7 @@
       <p class='login__flash'><%= flash[:notice] %></p>
     <% end %>
     <h1>Admin Login</h1>
-    <%= form_tag '/login', class: "login__form" do %>
+    <%= form_tag '/admin/login', class: "login__form" do %>
       <%= label_tag :email %>
       <%= text_field_tag :email %>
       <%= label_tag :password %>
