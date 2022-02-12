@@ -1,0 +1,33 @@
+<div class="albums-table__header-container">
+  <h1 class="albums-table__header">Albums</h1>
+</div>
+<% @albums_by_category.each do |category| %>
+  <div class="albums-table__container">
+    <div class="albums-table__category-header-container">
+      <h2 class="albums-table__category-header"><%= category.name %></h2>
+    </div>
+    <div class="albums-table__table-container">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Order</th>
+            <th scope="col">Title</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Visible</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% category.albums.each do |album| %>
+            <tr>
+              <td scope="row"><%= album.position%></td>
+              <td><%= album.title %></td>
+              <td><%= album.artist %></td>
+              <td><%= album.current %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+  

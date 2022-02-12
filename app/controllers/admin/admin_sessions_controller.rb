@@ -1,6 +1,6 @@
-class AdminSessionsController < AdminController
+class Admin::AdminSessionsController < AdminController
   layout "admin"
-  skip_before_action :authorized, only: [:new, :create]
+  before_action :authorized, only: [:delete]
 
   def new
   end
@@ -12,11 +12,12 @@ class AdminSessionsController < AdminController
       session[:admin_id] = @admin.id
       redirect_to "/admin"
     else
-      redirect_to '/login', notice: "Authentication failed"
+      redirect_to '/admin/login', notice: "Authentication failed"
     end
   end
 
   def delete
-    session[:admin] = nil
+    session[:admin_id] = nil
+    redirect_to "/admin/login"
   end
 end

@@ -15,6 +15,7 @@ gem 'activerecord-import', '~> 1.0.4'
 gem 'patreon', '~> 0.5.0'
 gem 'bcrypt', '~> 3.1'
 gem 'acts_as_list', '~> 1.0.1'
+gem 'bootstrap', '~> 5.1.3'
 gem 'whenever', require: false
 
 
