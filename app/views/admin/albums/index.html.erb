@@ -11,7 +11,9 @@
           <i class="fa fa-angle-up"></i>
         </div>
       </div>
-      <p>Last updated <%= category.updated_at.strftime("%m/%d/%Y at %H:%M") %></p>
+      <% if category.album_uploads.any? %>
+        <p>Last updated <%= category.album_uploads.last.created_at.strftime("%m/%d/%Y at %H:%M") %></p>
+      <% end %>
     </div>
     <div class="albums-table__table-container collapse", id="<%= category.name %>">
       <table class="table table-striped">

@@ -2,8 +2,10 @@ require 'csv'
 
 class Category < ApplicationRecord
   has_many :albums, -> { order("position ASC") }, dependent: :destroy
+  has_many :album_uploads, dependent: :destroy
 
   def import_albums(file)
+    album_upload = AlbumUpload.create(category: self)
     albums.destroy_all unless self.rotating
 
     CSV.foreach(file, headers: :first_row) do |row|
@@ -15,6 +17,7 @@ class Category < ApplicationRecord
         a.bandcamp_url    = row['bandcamp link']
         a.curator_id      = Curator.find_or_create_by(name: row['curator']).id
         a.category        = self
+        a.album_upload    = album_upload
         a.current         = current?
       end
 
