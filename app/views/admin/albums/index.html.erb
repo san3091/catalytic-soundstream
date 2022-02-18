@@ -5,6 +5,7 @@
   <div class="albums-table__container">
     <div class="albums-table__category-header-container">
       <h2 class="albums-table__category-header"><%= category.name %></h2>
+      <p>Last updated <%= category.updated_at.strftime("%m/%d/%Y at %H:%M") %></p>
     </div>
     <div class="albums-table__table-container">
       <table class="table table-striped">
