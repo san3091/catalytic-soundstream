@@ -1,17 +1,19 @@
 <div class='upload-category__container'>
-  <%= form_tag 'admin', multipart: true do %>
-    <%= label_tag 'Category'%>
-    <div class="upload-category__radio-container">
-      <% categories.each do |category| %>
-        <div class="form-check">
-          <%= label_tag category.name, nil, class: "form-check-label" %>
-          <%= radio_button_tag "category", category.name, class: "form-check-input" %>
-        </div>
-      <% end %>
+  <%= form_with url: 'admin' do |form| %>
+    <div class="form-group">
+      <h3>Upload Albums</h3>
+      <div class="upload-category__radio-container">
+        <% categories.each do |category| %>
+          <div class="form-check">
+            <%= form.radio_button :category, category.name, class: "form-check-input" %>
+            <%= form.label "#{category.name} #{"(destructive)" unless category.rotating}", class: "form-check-label", for: "category_#{category.name}" %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-    <%= label_tag 'album file (.csv format)' %>
-    <%= file_field_tag :file, accept: 'text/csv', class: 'upload-category__file-field'%>
-    <%= submit_tag 'Upload' %>
+    <%= form.label "Upload category file in .csv format"%>
+    <%= form.file_field :file, accept: 'text/csv', class: 'upload-category__file-field'%>
+    <%= form.submit 'Upload' %>
   <% end %>
 </div>
