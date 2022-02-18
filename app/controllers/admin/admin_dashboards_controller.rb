@@ -7,7 +7,8 @@ class Admin::AdminDashboardsController < AdminController
 
   # post update category name, csv file
   def update
-    result = Category.find_by(name: params[:category]).import_albums(params[:file])
+    category = Category.find_by(name: params[:category])
+    result = category.import_albums(params[:file])
     redirect_to '/admin', notice: "Succes! #{category.name} category updated."
   rescue => e
     logger.error [e.message, *e.backtrace].join($/)

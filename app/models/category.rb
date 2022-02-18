@@ -24,7 +24,7 @@ class Category < ApplicationRecord
   end
 
   def current?
-    (['curated', 'label'].include? self.name) false : true
+    (['curated', 'label'].include? self.name) ? false : true
   end
 
 end
