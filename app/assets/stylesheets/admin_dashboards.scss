@@ -54,6 +54,7 @@
 .albums-table__container {
   max-width: 900px;
   margin: 0 auto;
+  border-bottom: 1px solid gray;
 }
 
 .albums-table__category-header {
@@ -68,3 +69,22 @@
   margin: 15px;
 }
 
+.albums-table__category-name {
+  display: flex;
+  align-items: center;
+}
+
+.expand-caret {
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+.expand-caret i {
+  font-size: 25px;
+}
+// switch the caret style on expanded state
+.expand-caret:not([aria-expanded="true"]) .fa.fa-angle-up,
+.expand-caret[aria-expanded="false"] .fa.fa-angle-up,
+.expand-caret[aria-expanded="true"] .fa.fa-angle-down {
+   display:none;
+ }

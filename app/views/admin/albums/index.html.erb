@@ -4,10 +4,16 @@
 <% @albums_by_category.each do |category| %>
   <div class="albums-table__container">
     <div class="albums-table__category-header-container">
-      <h2 class="albums-table__category-header"><%= category.name %></h2>
+      <div class="albums-table__category-name">
+        <h2 class="albums-table__category-header"><%= category.name %></h2>
+        <div class="expand-caret" data-toggle="collapse" data-target="#<%= category.name %>">
+          <i class="fa fa-angle-down"></i>
+          <i class="fa fa-angle-up"></i>
+        </div>
+      </div>
       <p>Last updated <%= category.updated_at.strftime("%m/%d/%Y at %H:%M") %></p>
     </div>
-    <div class="albums-table__table-container">
+    <div class="albums-table__table-container collapse", id="<%= category.name %>">
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
