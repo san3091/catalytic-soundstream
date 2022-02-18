@@ -22,7 +22,7 @@
               <td scope="row"><%= album.position%></td>
               <td><%= album.title %></td>
               <td><%= album.artist %></td>
-              <td><%= album.current %></td>
+              <td><%= album.current ? raw("&#9733;") : "" %></td>
             </tr>
           <% end %>
         </tbody>
