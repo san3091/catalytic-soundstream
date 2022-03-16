@@ -87,7 +87,7 @@
 
   .tile-container.new-today::after {
     opacity: 0;
-    content: 'NEW TODAY';
+    content: 'JUST ADDED';
     position: absolute;
     color: var(--red-orange);
     bottom: -10px;
