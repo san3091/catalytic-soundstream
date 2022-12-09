@@ -63,7 +63,7 @@
     {#if categories}
       <Section
         headerText='Catalytic Radio'
-        sectionDescription='A rotating selection of music from the expanding Catalytic Sound catalog, curated by co-op artists and staff. One album in, one out—every day.'
+        sectionDescription='A rotating selection of music from the expanding Catalytic Sound catalog, curated by co-op artists and staff.'
         sectionNumber={0}
         playAlbum={playAlbum}
         selectAlbum={selectAlbum}
@@ -72,7 +72,7 @@
         albums={findAlbumsByCategoryName('curated')} />
       <Section
         headerText='Label Radio'
-        sectionDescription='A curated mix of albums from core and guest labels each month. A new recording rotated daily.'
+        sectionDescription='A curated mix of albums from core and guest labels each month.'
         sectionNumber={4}
         playAlbum={playAlbum}
         selectAlbum={selectAlbum}
