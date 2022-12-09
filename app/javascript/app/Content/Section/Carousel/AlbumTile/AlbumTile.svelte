@@ -27,8 +27,7 @@
     await SC.oEmbed(album.soundcloud_url, { auto_play: true })
       .then(SCAlbum => {
         const { html, thumbnail_url} = SCAlbum
-        const free = album.index == 0
-        Object.assign(album, {html, thumbnail_url, free})
+        Object.assign(album, {html, thumbnail_url})
       })
     return album
   }
