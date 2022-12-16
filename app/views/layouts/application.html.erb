@@ -12,10 +12,11 @@
     })(window,document,'script','dataLayer','GTM-WKCQDTL');</script>
     <!-- End Google Tag Manager -->
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Raleway|Material+Icons&display=swap' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'streaming' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'streaming' %>
     <%= javascript_include_tag 'https://connect.soundcloud.com/sdk/sdk-3.3.2.js' %>
     <%= favicon_link_tag asset_path 'favicon.png' %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
